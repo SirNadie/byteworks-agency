@@ -1,8 +1,22 @@
 ---
 import Base from "../layouts/Base.astro";
+
 // WhatsApp opcional (server env)
-const phone = import.meta.env?.PUBLIC_WHATSAPP_PHONE || "";
+const phone = (import.meta.env || {}).PUBLIC_WHATSAPP_PHONE || "";
 const wa = phone ? `https://wa.me/${phone}` : null;
+
+const { pathname } = Astro.url;
+const lang = pathname.startsWith("/es") ? "es" : "en";
+const isES = lang === "es";
+
+const title = isES ? "Página no encontrada" : "Page Not Found";
+const description = isES
+  ? "La página que buscas no existe."
+  : "The page you are looking for does not exist.";
+
+const home = isES ? "/es/" : "/en/";
+const plans = isES ? "/es/plans/" : "/en/plans/";
+const contact = isES ? "/es/contact/" : "/en/contact/";
 
 // Alternar idioma manteniendo path equivalente
 function altHref(targetLang: "en" | "es") {

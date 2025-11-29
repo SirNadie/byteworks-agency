@@ -11,12 +11,6 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.5
         version: 0.9.5(prettier@3.6.2)(typescript@5.9.3)
-      '@prisma/client':
-        specifier: ^5.22.0
-        version: 5.22.0(prisma@5.22.0)
-      '@supabase/supabase-js':
-        specifier: ^2.45.4
-        version: 2.76.1
       '@vercel/speed-insights':
         specifier: ^1.2.0
         version: 1.2.0(react@19.2.0)
@@ -29,9 +23,6 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
-      zod:
-        specifier: ^3.23.8
-        version: 3.25.76
     devDependencies:
       '@astrojs/sitemap':
         specifier: ^3.6.0
@@ -40,17 +31,14 @@ importers:
         specifier: ^6.0.2
         version: 6.0.2(astro@5.15.1(@types/node@24.7.2)(@vercel/functions@2.2.13)(jiti@1.21.7)(lightningcss@1.30.1)(rollup@4.52.4)(typescript@5.9.3)(yaml@2.8.1))(tailwindcss@3.4.18(yaml@2.8.1))
       '@astrojs/vercel':
-        specifier: ^9.0.0
-        version: 9.0.0(astro@5.15.1(@types/node@24.7.2)(@vercel/functions@2.2.13)(jiti@1.21.7)(lightningcss@1.30.1)(rollup@4.52.4)(typescript@5.9.3)(yaml@2.8.1))(react@19.2.0)(rollup@4.52.4)
+        specifier: ^8.0.4
+        version: 8.2.11(astro@5.15.1(@types/node@24.7.2)(@vercel/functions@2.2.13)(jiti@1.21.7)(lightningcss@1.30.1)(rollup@4.52.4)(typescript@5.9.3)(yaml@2.8.1))(react@19.2.0)(rollup@4.52.4)
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
-      prisma:
-        specifier: ^5.22.0
-        version: 5.22.0
       tailwindcss:
         specifier: ^3.4.18
         version: 3.4.18(yaml@2.8.1)
@@ -105,8 +93,8 @@ packages:
     resolution: {integrity: sha512-UFBgfeldP06qu6khs/yY+q1cDAaArM2/7AEIqQ9Cuvf7B1hNLq0xDrZkct+QoIGyjq56y8IaE2I3CTvG99mlhQ==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0}
 
-  '@astrojs/vercel@9.0.0':
-    resolution: {integrity: sha512-Mz199DSMHenljq35eRaZgtPXOkFD1xrF4iwxqrRUa5Q1JAQg/d9lU5DJhZjQRNA3MpfNh09y84zUm5FX8TJieQ==}
+  '@astrojs/vercel@8.2.11':
+    resolution: {integrity: sha512-PGtWHvHYMkT8ftSR3yuR7oyf/oPvOv8AfhCFlSQg318hfpalSEPND9mjbdQGpMeZz3KtvvOnHyYwqmu5V8MSHg==}
     peerDependencies:
       astro: ^5.0.0
 
@@ -497,30 +485,6 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@prisma/client@5.22.0':
-    resolution: {integrity: sha512-M0SVXfyHnQREBKxCgyo7sffrKttwE6R8PMq330MIUF0pTwjUhLbW84pFDlf06B27XyCR++VtjugEnIHdr07SVA==}
-    engines: {node: '>=16.13'}
-    peerDependencies:
-      prisma: '*'
-    peerDependenciesMeta:
-      prisma:
-        optional: true
-
-  '@prisma/debug@5.22.0':
-    resolution: {integrity: sha512-AUt44v3YJeggO2ZU5BkXI7M4hu9BF2zzH2iF2V5pyXT/lRTyWiElZ7It+bRH1EshoMRxHgpYg4VB6rCM+mG5jQ==}
-
-  '@prisma/engines-version@5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2':
-    resolution: {integrity: sha512-2PTmxFR2yHW/eB3uqWtcgRcgAbG1rwG9ZriSvQw+nnb7c4uCr3RAcGMb6/zfE88SKlC1Nj2ziUvc96Z379mHgQ==}
-
-  '@prisma/engines@5.22.0':
-    resolution: {integrity: sha512-UNjfslWhAt06kVL3CjkuYpHAWSO6L4kDCVPegV6itt7nD1kSJavd3vhgAEhjglLJJKEdJ7oIqDJ+yHk6qO8gPA==}
-
-  '@prisma/fetch-engine@5.22.0':
-    resolution: {integrity: sha512-bkrD/Mc2fSvkQBV5EpoFcZ87AvOgDxbG99488a5cexp5Ccny+UM6MAe/UFkUC0wLYD9+9befNOqGiIJhhq+HbA==}
-
-  '@prisma/get-platform@5.22.0':
-    resolution: {integrity: sha512-pHhpQdr1UPFpt+zFfnPazhulaZYCUqeIcPpJViYoq9R+D/yw4fjE+CtnsnKzPYm0ddUbeXUzjGVGIRVgPDCk4Q==}
-
   '@rollup/pluginutils@5.3.0':
     resolution: {integrity: sha512-5EdhGZtnu3V88ces7s53hhfK5KSASnJZv8Lulpc04cWO3REESroJXg73DFsOmgbU2BhwV0E20bu2IDZb3VKW4Q==}
     engines: {node: '>=14.0.0'}
@@ -661,28 +625,6 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@supabase/auth-js@2.76.1':
-    resolution: {integrity: sha512-bxmcgPuyjTUBg7+jAohJ15TDh3ph4hXcv7QkRsQgnIpszurD5LYaJPzX638ETQ8zDL4fvHZRHfGrcmHV8C91jA==}
-
-  '@supabase/functions-js@2.76.1':
-    resolution: {integrity: sha512-+zJym/GC1sofm5QYKGxHSszCpMW4Ao2dj/WC3YlffAGuIlIhUtWTJvKsv5q7sWaSKUKdDhGpWhZ2OD++fW5BtQ==}
-
-  '@supabase/node-fetch@2.6.15':
-    resolution: {integrity: sha512-1ibVeYUacxWYi9i0cf5efil6adJ9WRyZBLivgjs+AUpewx1F3xPi7gLgaASI2SmIQxPoCEjAsLAzKPgMJVgOUQ==}
-    engines: {node: 4.x || >=6.0.0}
-
-  '@supabase/postgrest-js@2.76.1':
-    resolution: {integrity: sha512-QJ1Cwim6L9gzWKP8U4Lgw9x/4lMWkZSVMDRYFCH+vVGitVbtfU885swTiioOjjUe4EYGZm+Xktg90twzSVv6IA==}
-
-  '@supabase/realtime-js@2.76.1':
-    resolution: {integrity: sha512-B5Lfmprea2fx2FS7obp4uAWiRUlEa6j9J3+BvvETGp/2LdkSRBaLEJCBylfcZTXk67ajNPX6ppvKvAZsckqXYg==}
-
-  '@supabase/storage-js@2.76.1':
-    resolution: {integrity: sha512-OJiNT8tocI9tcTjTjv1SBVLabzgEnS1NorZuqivkiJ0gTYmeg2c2PFmqCARhoQ4whF6zR9MVsX/Mtj2oSv4i/w==}
-
-  '@supabase/supabase-js@2.76.1':
-    resolution: {integrity: sha512-dYMh9EsTVXZ6WbQ0QmMGIhbXct5+x636tXXaaxUmwjj3kY1jyBTQU8QehxAIfjyRu1mWGV07hoYmTYakkxdSGQ==}
-
   '@swc/helpers@0.5.17':
     resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
 
@@ -713,17 +655,11 @@ packages:
   '@types/node@24.7.2':
     resolution: {integrity: sha512-/NbVmcGTP+lj5oa4yiYxxeBjRivKQ5Ns1eSZeB99ExsEQ6rX5XYU1Zy/gGxY/ilqtD4Etx9mKyrPxZRetiahhA==}
 
-  '@types/phoenix@1.6.6':
-    resolution: {integrity: sha512-PIzZZlEppgrpoT2QgbnDU+MMzuR6BbCjllj0bM70lWoejMeNJAxCchxnv7J3XFkI8MpygtRpzXrIlmWUBclP5A==}
-
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
-
-  '@types/ws@8.18.1':
-    resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
@@ -1822,11 +1758,6 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prisma@5.22.0:
-    resolution: {integrity: sha512-vtpjW3XuYCSnMsNVBjLMNkTj6OZbudcPPTPYHqX0CJfpcdWciI1dM8uHETwmDxxiqEwCIE6WvXucWUetJgfu/A==}
-    engines: {node: '>=16.13'}
-    hasBin: true
-
   prismjs@1.30.0:
     resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
     engines: {node: '>=6'}
@@ -2412,18 +2343,6 @@ packages:
     resolution: {integrity: sha512-42AtmgqjV+X1VpdOfyTGOYRi0/zsoLqtXQckTmqTeybT+BDIbM/Guxo7x3pE2vtpr1ok6xRqM9OpBe+Jyoqyww==}
     engines: {node: '>=18'}
 
-  ws@8.18.3:
-    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   xxhash-wasm@1.1.0:
     resolution: {integrity: sha512-147y/6YNh+tlp6nd/2pWq38i9h6mz/EuQ6njIrmW8D1BS5nCqs0P6DG+m6zTGnNz5I+uhZ0SHxBs9BsPrwcKDA==}
 
@@ -2588,7 +2507,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/vercel@9.0.0(astro@5.15.1(@types/node@24.7.2)(@vercel/functions@2.2.13)(jiti@1.21.7)(lightningcss@1.30.1)(rollup@4.52.4)(typescript@5.9.3)(yaml@2.8.1))(react@19.2.0)(rollup@4.52.4)':
+  '@astrojs/vercel@8.2.11(astro@5.15.1(@types/node@24.7.2)(@vercel/functions@2.2.13)(jiti@1.21.7)(lightningcss@1.30.1)(rollup@4.52.4)(typescript@5.9.3)(yaml@2.8.1))(react@19.2.0)(rollup@4.52.4)':
     dependencies:
       '@astrojs/internal-helpers': 0.7.4
       '@vercel/analytics': 1.5.0(react@19.2.0)
@@ -2891,31 +2810,6 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@prisma/client@5.22.0(prisma@5.22.0)':
-    optionalDependencies:
-      prisma: 5.22.0
-
-  '@prisma/debug@5.22.0': {}
-
-  '@prisma/engines-version@5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2': {}
-
-  '@prisma/engines@5.22.0':
-    dependencies:
-      '@prisma/debug': 5.22.0
-      '@prisma/engines-version': 5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2
-      '@prisma/fetch-engine': 5.22.0
-      '@prisma/get-platform': 5.22.0
-
-  '@prisma/fetch-engine@5.22.0':
-    dependencies:
-      '@prisma/debug': 5.22.0
-      '@prisma/engines-version': 5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2
-      '@prisma/get-platform': 5.22.0
-
-  '@prisma/get-platform@5.22.0':
-    dependencies:
-      '@prisma/debug': 5.22.0
-
   '@rollup/pluginutils@5.3.0(rollup@4.52.4)':
     dependencies:
       '@types/estree': 1.0.8
@@ -3023,53 +2917,6 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@supabase/auth-js@2.76.1':
-    dependencies:
-      '@supabase/node-fetch': 2.6.15
-      tslib: 2.8.1
-
-  '@supabase/functions-js@2.76.1':
-    dependencies:
-      '@supabase/node-fetch': 2.6.15
-      tslib: 2.8.1
-
-  '@supabase/node-fetch@2.6.15':
-    dependencies:
-      whatwg-url: 5.0.0
-
-  '@supabase/postgrest-js@2.76.1':
-    dependencies:
-      '@supabase/node-fetch': 2.6.15
-      tslib: 2.8.1
-
-  '@supabase/realtime-js@2.76.1':
-    dependencies:
-      '@supabase/node-fetch': 2.6.15
-      '@types/phoenix': 1.6.6
-      '@types/ws': 8.18.1
-      tslib: 2.8.1
-      ws: 8.18.3
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  '@supabase/storage-js@2.76.1':
-    dependencies:
-      '@supabase/node-fetch': 2.6.15
-      tslib: 2.8.1
-
-  '@supabase/supabase-js@2.76.1':
-    dependencies:
-      '@supabase/auth-js': 2.76.1
-      '@supabase/functions-js': 2.76.1
-      '@supabase/node-fetch': 2.6.15
-      '@supabase/postgrest-js': 2.76.1
-      '@supabase/realtime-js': 2.76.1
-      '@supabase/storage-js': 2.76.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
   '@swc/helpers@0.5.17':
     dependencies:
       tslib: 2.8.1
@@ -3104,17 +2951,11 @@ snapshots:
     dependencies:
       undici-types: 7.14.0
 
-  '@types/phoenix@1.6.6': {}
-
   '@types/sax@1.2.7':
     dependencies:
       '@types/node': 24.7.2
 
   '@types/unist@3.0.3': {}
-
-  '@types/ws@8.18.1':
-    dependencies:
-      '@types/node': 24.7.2
 
   '@ungap/structured-clone@1.3.0': {}
 
@@ -4434,12 +4275,6 @@ snapshots:
 
   prettier@3.6.2: {}
 
-  prisma@5.22.0:
-    dependencies:
-      '@prisma/engines': 5.22.0
-    optionalDependencies:
-      fsevents: 2.3.3
-
   prismjs@1.30.0: {}
 
   prompts@2.4.2:
@@ -5088,8 +4923,6 @@ snapshots:
       ansi-styles: 6.2.3
       string-width: 7.2.0
       strip-ansi: 7.1.2
-
-  ws@8.18.3: {}
 
   xxhash-wasm@1.1.0: {}
 
