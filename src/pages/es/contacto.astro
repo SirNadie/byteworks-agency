@@ -1,36 +1,49 @@
 ---
-import Base from '../../layouts/Base.astro';
-const ENV = process.env as Record<string, string | undefined>;
+import Base from "../../layouts/Base.astro";
 
-const title = 'Contáctanos | ByteWorks - Construyamos Tu Sitio Web';
+const title = "Contáctanos | ByteWorks - Construyamos Tu Sitio Web";
 const description =
-  'Ponte en contacto con ByteWorks para iniciar tu proyecto de diseño web. Contáctanos a través de nuestro formulario o redes sociales para discutir tus ideas y obtener una cotización para un sitio web profesional y bilingüe.';
+  "Ponte en contacto con ByteWorks para iniciar tu proyecto de diseño web. Contáctanos a través de nuestro formulario o redes sociales para discutir tus ideas y obtener una cotización para un sitio web profesional y bilingüe.";
 const breadcrumb = [
-  { name: 'Inicio', url: 'https://byteworksagency.com/es/' },
-  { name: 'Contacto', url: 'https://byteworksagency.com/es/contacto/' },
+  { name: "Inicio", url: "https://byteworksagency.com/es/" },
+  { name: "Contacto", url: "https://byteworksagency.com/es/contacto/" },
 ];
 
-const phone = ENV.PUBLIC_WHATSAPP_PHONE || '';
-const message = ENV.PUBLIC_WHATSAPP_MSG || 'Hola ByteWorks, estoy interesado en un sitio web.';
-const wa = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}` : null;
+const phone = (import.meta.env || {}).PUBLIC_WHATSAPP_PHONE || "";
+const message =
+  (import.meta.env || {}).PUBLIC_WHATSAPP_MSG ||
+  "Hola ByteWorks, estoy interesado en un sitio web.";
+const wa = phone
+  ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+  : null;
 ---
 
-<Base title={title} description={description} image="/og-image.png" lang="es" breadcrumb={breadcrumb}>
+<Base
+  title={title}
+  description={description}
+  image="/og-image.png"
+  lang="es"
+  breadcrumb={breadcrumb}
+>
   <section
     class="px-6 md:px-10 lg:px-16 max-w-3xl mx-auto py-16 md:py-24 text-center space-y-8"
-    data-wa={phone || ''}
+    data-wa={phone || ""}
   >
     <h1 class="text-3xl md:text-5xl font-semibold">Trabajemos juntos</h1>
     <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-      ¿Listo para una web moderna, bilingüe y con mantenimiento incluido?
-      Elige cualquiera de nuestras redes en la sección “Síguenos” (WhatsApp, Instagram, etc.). El formulario nos ayuda a responderte rápido por el canal que prefieras.
+      ¿Listo para una web moderna, bilingüe y con mantenimiento incluido? Elige
+      cualquiera de nuestras redes en la sección “Síguenos” (WhatsApp,
+      Instagram, etc.). El formulario nos ayuda a responderte rápido por el
+      canal que prefieras.
     </p>
 
     <!-- Botón de WhatsApp removido para el nuevo embudo -->
 
     <form id="contact-form" class="mt-12 text-left space-y-5 max-w-md mx-auto">
       <div>
-        <label for="name" class="block text-sm font-medium mb-1">Nombre / Marca / Empresa / Organización</label>
+        <label for="name" class="block text-sm font-medium mb-1"
+          >Nombre / Marca / Empresa / Organización</label
+        >
         <input
           id="name"
           name="name"
@@ -42,7 +55,9 @@ const wa = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}` 
       </div>
 
       <div id="phone_wrap" class="">
-        <label for="phone" class="block text-sm font-medium mb-1">Contacto preferido (WhatsApp o usuario social)</label>
+        <label for="phone" class="block text-sm font-medium mb-1"
+          >Contacto preferido (WhatsApp o usuario social)</label
+        >
         <input
           id="phone"
           name="phone"
@@ -56,7 +71,9 @@ const wa = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}` 
       <!-- Email removido por ahora; centralizamos contacto en redes -->
 
       <div>
-        <label for="message" class="block text-sm font-medium mb-1">Mensaje</label>
+        <label for="message" class="block text-sm font-medium mb-1"
+          >Mensaje</label
+        >
         <textarea
           id="message"
           name="message"
@@ -91,11 +108,16 @@ const wa = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}` 
         aria-live="polite"
         class="text-sm text-gray-600 dark:text-gray-300 min-h-[1.5rem]"
         data-tone="idle"
-      ></p>
+      >
+      </p>
     </form>
 
-    <div class="border-t border-gray-200 dark:border-gray-800 pt-10 mt-10 text-sm text-gray-600 dark:text-gray-400">
-      <p>¿Prefieres llamada o reunión? La agendamos después de un breve chat.</p>
+    <div
+      class="border-t border-gray-200 dark:border-gray-800 pt-10 mt-10 text-sm text-gray-600 dark:text-gray-400"
+    >
+      <p>
+        ¿Prefieres llamada o reunión? La agendamos después de un breve chat.
+      </p>
       <p class="mt-2 text-xs text-gray-500">
         Horario: Lunes a Viernes, 9:00 AM - 6:00 PM (AST)
       </p>
@@ -104,115 +126,99 @@ const wa = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}` 
 
   <script>
     (function () {
-      const root = document.querySelector('section[data-wa]');
-      const form = document.querySelector('#contact-form');
-      const nameEl = document.querySelector('#name');
-      const emailEl = document.querySelector('#email');
-      const messageEl = document.querySelector('#message');
-      const hpEl = document.querySelector('#website');
-      const btn = document.querySelector('#submitBtn');
-      // preferencia principal WhatsApp, pero registramos lo que el cliente indique
-      const statusEl = document.querySelector('#formStatus');
+      const form = document.querySelector("#contact-form");
+      const nameEl = document.querySelector("#name");
+      const phoneEl = document.querySelector("#phone");
+      const messageEl = document.querySelector("#message");
+      const hpEl = document.querySelector("#website");
+      const btn = document.querySelector("#submitBtn");
+      const statusEl = document.querySelector("#formStatus");
+
       if (!form || !nameEl || !messageEl || !hpEl) return;
 
-      // Preferencia por número a nivel de página; fallback al <body data-wa> configurado en Base.astro
-      let WA_NUMBER = (root && root.dataset ? (root.dataset.wa || '').trim() : '');
-      if (!WA_NUMBER) {
-        try { WA_NUMBER = (document.body?.dataset?.wa || '').trim(); } catch {}
-      }
-      WA_NUMBER = (WA_NUMBER || '').replace(/\D+/g, '');
-
-      const phoneEl = document.querySelector('#phone');
-
-      form.addEventListener('submit', async (ev) => {
+      form.addEventListener("submit", async (ev) => {
         ev.preventDefault();
 
         const name = nameEl.value.trim();
-        const email = '';
-        const phone = phoneEl ? phoneEl.value.trim() : '';
+        const phone = phoneEl ? phoneEl.value.trim() : "";
         const msg = messageEl.value.trim();
         const hp = hpEl.value.trim();
 
-        if (hp) return;
-        const setStatus = (message, tone = 'info') => {
+        if (hp) return; // Honeypot trap
+
+        const setStatus = (message, tone = "info") => {
           if (!statusEl) return;
           statusEl.textContent = message;
           statusEl.dataset.tone = tone;
           statusEl.classList.remove(
-            'text-red-600',
-            'dark:text-red-400',
-            'text-green-600',
-            'dark:text-green-400',
-            'text-amber-600',
-            'dark:text-amber-400'
+            "text-red-600",
+            "dark:text-red-400",
+            "text-green-600",
+            "dark:text-green-400",
+            "text-amber-600",
+            "dark:text-amber-400",
           );
 
           if (!message) {
-            statusEl.dataset.tone = 'idle';
+            statusEl.dataset.tone = "idle";
             return;
           }
 
           const toneClasses =
-            tone === 'error'
-              ? ['text-red-600', 'dark:text-red-400']
-              : tone === 'success'
-                ? ['text-green-600', 'dark:text-green-400']
-                : ['text-amber-600', 'dark:text-amber-400'];
+            tone === "error"
+              ? ["text-red-600", "dark:text-red-400"]
+              : tone === "success"
+                ? ["text-green-600", "dark:text-green-400"]
+                : ["text-amber-600", "dark:text-amber-400"];
 
           statusEl.classList.add(...toneClasses);
         };
+
         if (!name || !msg || !phone) {
-          setStatus('Por favor completa los campos requeridos.', 'error');
+          setStatus("Por favor completa los campos requeridos.", "error");
           return;
         }
 
         const original = btn ? btn.textContent : null;
-        setStatus('Enviando...', 'info');
-        if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
-
-        // Abrir WhatsApp primero (dentro del gesto del usuario) para evitar bloqueos de popups
-        if (!WA_NUMBER) {
-          setStatus('El contacto social no está configurado. Intenta más tarde.', 'error');
-          if (btn) { btn.disabled = false; btn.textContent = original || 'Enviar mensaje'; }
-          return;
-        }
-        const waText =
-          `¡Hola ByteWorks!\n\n` +
-          `Nuevo contacto:\n` +
-          `Nombre: ${name}\n` +
-          (phone ? `Teléfono: ${phone}\n` : '') +
-          `Mensaje:\n${msg}`;
-        const waUrl = `https://wa.me/${encodeURIComponent(WA_NUMBER)}?text=${encodeURIComponent(waText)}`;
-        try {
-          const a = document.createElement('a'); a.href = waUrl; a.target = '_blank'; a.rel = 'noopener';
-          document.body.appendChild(a); a.click(); a.remove();
-        } catch {
-          try { window.open(waUrl, '_blank'); } catch { window.location.href = waUrl; }
+        setStatus("Enviando...", "info");
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = "Enviando...";
         }
 
-        // Registrar el lead sin bloquear la navegación
         try {
-          await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+          // Formspree submission
+          const res = await fetch("https://formspree.io/f/xvgjjdnv", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               name,
               phone,
               message: msg,
-              lang: 'es',
-              sourceUrl: window.location.href,
-              preference: 'whatsapp',
+              _subject: `Nuevo contacto de ${name}`,
             }),
-            keepalive: true,
           });
-        } catch {}
 
-        nameEl.value = '';
-        if (phoneEl) phoneEl.value = '';
-        messageEl.value = '';
-        hpEl.value = '';
-        if (btn) { btn.disabled = false; btn.textContent = original || 'Enviar mensaje'; }
-        setStatus('¡Gracias! Recibimos tu solicitud y te contactaremos pronto.', 'success');
+          if (!res.ok) throw new Error("Failed to send");
+
+          nameEl.value = "";
+          if (phoneEl) phoneEl.value = "";
+          messageEl.value = "";
+          hpEl.value = "";
+
+          setStatus(
+            "¡Gracias! Recibimos tu solicitud y te contactaremos pronto.",
+            "success",
+          );
+        } catch (err) {
+          console.error(err);
+          setStatus("Algo salió mal. Por favor intenta más tarde.", "error");
+        } finally {
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = original || "Enviar mensaje";
+          }
+        }
       });
     })();
   </script>

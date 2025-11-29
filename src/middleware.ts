@@ -1,5 +1,5 @@
 import type { MiddlewareHandler } from 'astro';
-import { getSupabaseUserFromCookies } from './lib/supabase';
+
 const env = import.meta.env;
 
 const isAsset = (p: string) =>
@@ -18,28 +18,8 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
     return next();
   }
 
-  if (/^\/admin(\/|$)/.test(pathname)) {
-    // Prefer Supabase Auth session if available and email is allowed
-    const supaUser = await getSupabaseUserFromCookies(context.cookies);
-    const ALLOWED = env.ADMIN_EMAIL as string | undefined;
-    if (supaUser && (!ALLOWED || (supaUser.email?.toLowerCase?.() === ALLOWED.toLowerCase()))) {
-      return next();
-    }
+  // Admin routes removed
 
-    // Fallback simple gate with ADMIN_SECRET (development only)
-    if (!env.PROD) {
-      const ADMIN_SECRET = env.ADMIN_SECRET as string | undefined;
-      if (!ADMIN_SECRET) {
-        return new Response(null, { status: 307, headers: { Location: '/auth/signin' } });
-      }
-      const cookie = context.cookies.get('admin_session')?.value;
-      if (cookie !== ADMIN_SECRET) {
-        return new Response(null, { status: 307, headers: { Location: '/auth/signin' } });
-      }
-      return next();
-    }
-    return new Response(null, { status: 307, headers: { Location: '/auth/signin' } });
-  }
 
   if (/^\/(en|es)(\/|$)/.test(pathname) || isAsset(pathname)) {
     return next(); // ya estamos en idioma o es asset

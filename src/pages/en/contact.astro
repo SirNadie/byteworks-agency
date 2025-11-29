@@ -1,53 +1,106 @@
 ---
-import Base from '../../layouts/Base.astro';
-const ENV = process.env as Record<string, string | undefined>;
+import Base from "../../layouts/Base.astro";
 
-const title = 'Contact Us | ByteWorks - Let\'s Build Your Website';
+const title = "Contact Us | ByteWorks - Let's Build Your Website";
 const description =
-  'Get in touch with ByteWorks to start your web design project. Contact us via our form or social media to discuss your ideas and get a quote for a professional, bilingual website.';
+  "Get in touch with ByteWorks to start your web design project. Contact us via our form or social media to discuss your ideas and get a quote for a professional, bilingual website.";
 const breadcrumb = [
-  { name: 'Home', url: 'https://byteworksagency.com/en/' },
-  { name: 'Contact', url: 'https://byteworksagency.com/en/contact/' },
+  { name: "Home", url: "https://byteworksagency.com/en/" },
+  { name: "Contact", url: "https://byteworksagency.com/en/contact/" },
 ];
 
-const phone = ENV.PUBLIC_WHATSAPP_PHONE || '';
-const message = ENV.PUBLIC_WHATSAPP_MSG || "Hi ByteWorks, I'm interested in a website.";
-const wa = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}` : null;
+const phone = (import.meta.env || {}).PUBLIC_WHATSAPP_PHONE || "";
+const message =
+  (import.meta.env || {}).PUBLIC_WHATSAPP_MSG ||
+  "Hi ByteWorks, I'm interested in a website.";
+const wa = phone
+  ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+  : null;
 ---
 
-<Base title={title} description={description} image="/og-image.png" lang="en" breadcrumb={breadcrumb}>
-  <section class="px-6 md:px-10 lg:px-16 max-w-3xl mx-auto py-16 md:py-24 text-center space-y-8" data-wa={phone || ''}>
+<Base
+  title={title}
+  description={description}
+  image="/og-image.png"
+  lang="en"
+  breadcrumb={breadcrumb}
+>
+  <section
+    class="px-6 md:px-10 lg:px-16 max-w-3xl mx-auto py-16 md:py-24 text-center space-y-8"
+    data-wa={phone || ""}
+  >
     <h1 class="text-3xl md:text-5xl font-semibold">Let’s work together</h1>
     <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-      Ready to build a modern, bilingual website with maintenance included?
-      Pick any social link from the “Follow Us” section (WhatsApp, Instagram, etc.). The form below gives us the essentials so we can respond fast on the channel you prefer.
+      Ready to build a modern, bilingual website with maintenance included? Pick
+      any social link from the “Follow Us” section (WhatsApp, Instagram, etc.).
+      The form below gives us the essentials so we can respond fast on the
+      channel you prefer.
     </p>
 
     <!-- WhatsApp quick button removed for funnel flow -->
 
     <form id="contact-form" class="mt-12 text-left space-y-5 max-w-md mx-auto">
       <div>
-        <label for="name" class="block text-sm font-medium mb-1">Name / Brand / Company / Organization</label>
-        <input id="name" name="name" type="text" required placeholder="e.g. Jane Doe / ACME Inc." class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white" />
+        <label for="name" class="block text-sm font-medium mb-1"
+          >Name / Brand / Company / Organization</label
+        >
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          placeholder="e.g. Jane Doe / ACME Inc."
+          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+        />
       </div>
 
       <!-- Preferred contact detail -->
 
       <div id="phone_wrap" class="">
-        <label for="phone" class="block text-sm font-medium mb-1">Preferred contact (WhatsApp or social handle)</label>
-        <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="e.g. @brandhandle or +1 868 775 9858" class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white" />
+        <label for="phone" class="block text-sm font-medium mb-1"
+          >Preferred contact (WhatsApp or social handle)</label
+        >
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          inputmode="tel"
+          placeholder="e.g. @brandhandle or +1 868 775 9858"
+          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+        />
       </div>
 
       <!-- Email removed for now -->
 
       <div>
-        <label for="message" class="block text-sm font-medium mb-1">Message</label>
-        <textarea id="message" name="message" rows="5" required placeholder="Tell us a bit about your project..." class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"></textarea>
+        <label for="message" class="block text-sm font-medium mb-1"
+          >Message</label
+        >
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          required
+          placeholder="Tell us a bit about your project..."
+          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+        ></textarea>
       </div>
 
-      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true" />
+      <input
+        type="text"
+        id="website"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+        style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"
+        aria-hidden="true"
+      />
 
-      <button id="submitBtn" type="submit" class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 rounded-md bg-black text-white dark:bg-white dark:text-black hover:opacity-90 transition">
+      <button
+        id="submitBtn"
+        type="submit"
+        class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 rounded-md bg-black text-white dark:bg-white dark:text-black hover:opacity-90 transition"
+      >
         Send Message
       </button>
 
@@ -57,134 +110,116 @@ const wa = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}` 
         aria-live="polite"
         class="text-sm text-gray-600 dark:text-gray-300 min-h-[1.5rem]"
         data-tone="idle"
-      ></p>
+      >
+      </p>
     </form>
 
-    <div class="border-top border-gray-200 dark:border-gray-800 pt-10 mt-10 text-sm text-gray-600 dark:text-gray-400">
+    <div
+      class="border-top border-gray-200 dark:border-gray-800 pt-10 mt-10 text-sm text-gray-600 dark:text-gray-400"
+    >
       <p>Prefer a call or meeting? We’ll schedule one after a quick chat.</p>
-      <p class="mt-2 text-xs text-gray-500">Support hours: Monday–Friday, 9:00 AM – 6:00 PM (AST)</p>
+      <p class="mt-2 text-xs text-gray-500">
+        Support hours: Monday–Friday, 9:00 AM – 6:00 PM (AST)
+      </p>
     </div>
   </section>
 
   <script>
     (function () {
-      const root = document.querySelector('section[data-wa]');
-      const form = document.querySelector('#contact-form');
-      const nameEl = document.querySelector('#name');
-      // Email removed in social-first contact mode
-      const phoneEl = document.querySelector('#phone');
-      const messageEl = document.querySelector('#message');
-      const hpEl = document.querySelector('#website');
-      const btn = document.querySelector('#submitBtn');
-      // preference defaults to WhatsApp but we log whatever the client prefers
-      const statusEl = document.querySelector('#formStatus');
+      const form = document.querySelector("#contact-form");
+      const nameEl = document.querySelector("#name");
+      const phoneEl = document.querySelector("#phone");
+      const messageEl = document.querySelector("#message");
+      const hpEl = document.querySelector("#website");
+      const btn = document.querySelector("#submitBtn");
+      const statusEl = document.querySelector("#formStatus");
+
       if (!form || !nameEl || !messageEl || !hpEl) return;
 
-      // Prefer page-level WA number; fallback to <body data-wa> configured in Base.astro
-      let WA_NUMBER = (root && root.dataset ? (root.dataset.wa || '').trim() : '');
-      if (!WA_NUMBER) {
-        try { WA_NUMBER = (document.body?.dataset?.wa || '').trim(); } catch {}
-      }
-      WA_NUMBER = (WA_NUMBER || '').replace(/\D+/g, '');
-
-      // no toggle needed; phone is always shown
-
-      form.addEventListener('submit', async (ev) => {
+      form.addEventListener("submit", async (ev) => {
         ev.preventDefault();
 
         const name = nameEl.value.trim();
-        const email = '';
-        const phone = phoneEl ? phoneEl.value.trim() : '';
+        const phone = phoneEl ? phoneEl.value.trim() : "";
         const msg = messageEl.value.trim();
         const hp = hpEl.value.trim();
 
-        if (hp) return;
+        if (hp) return; // Honeypot trap
 
-        const setStatus = (message, tone = 'info') => {
+        const setStatus = (message, tone = "info") => {
           if (!statusEl) return;
           statusEl.textContent = message;
           statusEl.dataset.tone = tone;
           statusEl.classList.remove(
-            'text-red-600',
-            'dark:text-red-400',
-            'text-green-600',
-            'dark:text-green-400',
-            'text-amber-600',
-            'dark:text-amber-400'
+            "text-red-600",
+            "dark:text-red-400",
+            "text-green-600",
+            "dark:text-green-400",
+            "text-amber-600",
+            "dark:text-amber-400",
           );
 
           if (!message) {
-            statusEl.dataset.tone = 'idle';
+            statusEl.dataset.tone = "idle";
             return;
           }
 
           const toneClasses =
-            tone === 'error'
-              ? ['text-red-600', 'dark:text-red-400']
-              : tone === 'success'
-                ? ['text-green-600', 'dark:text-green-400']
-                : ['text-amber-600', 'dark:text-amber-400'];
+            tone === "error"
+              ? ["text-red-600", "dark:text-red-400"]
+              : tone === "success"
+                ? ["text-green-600", "dark:text-green-400"]
+                : ["text-amber-600", "dark:text-amber-400"];
 
           statusEl.classList.add(...toneClasses);
         };
 
         if (!name || !msg || !phone) {
-          setStatus('Please fill out all required fields.', 'error');
+          setStatus("Please fill out all required fields.", "error");
           return;
         }
 
         const original = btn ? btn.textContent : null;
-        setStatus('Sending...', 'info');
-        if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
-
-        // Open WhatsApp FIRST (within the user gesture) to avoid popup blockers
-        if (!WA_NUMBER) {
-          setStatus('Social contact is not configured. Please try again later.', 'error');
-          if (btn) { btn.disabled = false; btn.textContent = original || 'Send Message'; }
-          return;
-        }
-        const waText =
-          `Hello ByteWorks!\n\n` +
-          `New inquiry:\n` +
-          `Name: ${name}\n` +
-          (phone ? `Phone: ${phone}\n` : '') +
-          `Message:\n${msg}`;
-        const waUrl = `https://wa.me/${encodeURIComponent(WA_NUMBER)}?text=${encodeURIComponent(waText)}`;
-        try {
-          const a = document.createElement('a'); a.href = waUrl; a.target = '_blank'; a.rel = 'noopener';
-          document.body.appendChild(a); a.click(); a.remove();
-        } catch {
-          try { window.open(waUrl, '_blank'); } catch { window.location.href = waUrl; }
+        setStatus("Sending...", "info");
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = "Sending...";
         }
 
-        // Log the lead without blocking navigation
         try {
-          await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+          // Formspree submission
+          const res = await fetch("https://formspree.io/f/xvgjjdnv", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               name,
               phone,
               message: msg,
-              lang: 'en',
-              sourceUrl: window.location.href,
-              preference: 'whatsapp',
+              _subject: `New submission from ${name}`,
             }),
-            keepalive: true,
           });
-        } catch {}
 
-        nameEl.value = '';
-        if (phoneEl) phoneEl.value = '';
-        messageEl.value = '';
-        hpEl.value = '';
-        if (btn) { btn.disabled = false; btn.textContent = original || 'Send Message'; }
-        setStatus('Thanks! We received your request and will reach out shortly.', 'success');
+          if (!res.ok) throw new Error("Failed to send");
+
+          nameEl.value = "";
+          if (phoneEl) phoneEl.value = "";
+          messageEl.value = "";
+          hpEl.value = "";
+
+          setStatus(
+            "Message sent successfully! We'll be in touch soon.",
+            "success",
+          );
+        } catch (err) {
+          console.error(err);
+          setStatus("Something went wrong. Please try again later.", "error");
+        } finally {
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = original || "Send Message";
+          }
+        }
       });
     })();
   </script>
 </Base>
-
-
-
-
