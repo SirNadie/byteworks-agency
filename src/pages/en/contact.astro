@@ -37,8 +37,6 @@ const wa = phone
       channel you prefer.
     </p>
 
-    <!-- WhatsApp quick button removed for funnel flow -->
-
     <form id="contact-form" class="mt-12 text-left space-y-5 max-w-md mx-auto">
       <div>
         <label for="name" class="block text-sm font-medium mb-1"
@@ -54,8 +52,6 @@ const wa = phone
         />
       </div>
 
-      <!-- Preferred contact detail -->
-
       <div id="phone_wrap" class="">
         <label for="phone" class="block text-sm font-medium mb-1"
           >Preferred contact (WhatsApp or social handle)</label
@@ -70,7 +66,19 @@ const wa = phone
         />
       </div>
 
-      <!-- Email removed for now -->
+      <div>
+        <label for="email" class="block text-sm font-medium mb-1"
+          >Email Address</label
+        >
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          placeholder="e.g. contact@company.com"
+          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+        />
+      </div>
 
       <div>
         <label for="message" class="block text-sm font-medium mb-1"
@@ -128,6 +136,7 @@ const wa = phone
     (function () {
       const form = document.querySelector("#contact-form");
       const nameEl = document.querySelector("#name");
+      const emailEl = document.querySelector("#email");
       const phoneEl = document.querySelector("#phone");
       const messageEl = document.querySelector("#message");
       const hpEl = document.querySelector("#website");
@@ -140,6 +149,7 @@ const wa = phone
         ev.preventDefault();
 
         const name = nameEl.value.trim();
+        const email = emailEl.value.trim();
         const phone = phoneEl ? phoneEl.value.trim() : "";
         const msg = messageEl.value.trim();
         const hp = hpEl.value.trim();
@@ -174,7 +184,7 @@ const wa = phone
           statusEl.classList.add(...toneClasses);
         };
 
-        if (!name || !msg || !phone) {
+        if (!name || !email || !msg || !phone) {
           setStatus("Please fill out all required fields.", "error");
           return;
         }
@@ -187,21 +197,21 @@ const wa = phone
         }
 
         try {
-          // Formspree submission
-          const res = await fetch("https://formspree.io/f/xvgjjdnv", {
+          const res = await fetch("/api/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               name,
+              email,
               phone,
               message: msg,
-              _subject: `New submission from ${name}`,
             }),
           });
 
           if (!res.ok) throw new Error("Failed to send");
 
           nameEl.value = "";
+          emailEl.value = "";
           if (phoneEl) phoneEl.value = "";
           messageEl.value = "";
           hpEl.value = "";
