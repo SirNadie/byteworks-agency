@@ -1,22 +1,30 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Base from "../../layouts/Base.astro";
 
-const title = 'Nosotros | ByteWorks — Tu Socio para Sitios Web Bilingües de Pequeñas Empresas';
-const description = 'Conoce ByteWorks, un estudio de diseño web dedicado a ayudar a las pequeñas empresas a tener éxito en línea con sitios web profesionales, bilingües y soporte todo incluido.';
+("Nosotros | ByteWorks | Tu Socio para Sitios Web Bilingües de Pequeñas Empresas");
+const description =
+  "Conoce ByteWorks, un estudio de diseño web dedicado a ayudar a las pequeñas empresas a tener éxito en línea con sitios web profesionales, bilingües y soporte incluido.";
 const breadcrumb = [
-  { name: 'Inicio', url: 'https://byteworksagency.com/es/' },
-  { name: 'Sobre nosotros', url: 'https://byteworksagency.com/es/about/' },
+  { name: "Inicio", url: "https://byteworksagency.com/es/" },
+  { name: "Sobre nosotros", url: "https://byteworksagency.com/es/about/" },
 ];
 ---
 
-<Base title={title} description={description} image="/og-image.png" lang="es" breadcrumb={breadcrumb}>
+<Base
+  title={title}
+  description={description}
+  image="/og-image.png"
+  lang="es"
+  breadcrumb={breadcrumb}
+>
   <section class="px-6 md:px-10 lg:px-16 max-w-6xl mx-auto py-16 md:py-24">
     <header class="text-center max-w-3xl mx-auto space-y-3 mb-12">
       <h1 class="text-3xl md:text-5xl font-semibold">Sobre ByteWorks</h1>
       <p class="text-gray-600 dark:text-gray-300">
-        Construimos sitios web bilingües, limpios y modernos que ayudan a tu negocio a verse profesional y atraer a los
-        clientes correctos. Nada de tecnicismos complicados: solo un servicio fluido y confiable que entrega resultados
-        reales.
+        Construimos sitios web bilingües, limpios y modernos que ayudan a tu
+        negocio a verse profesional y atraer a los clientes correctos. Nada de
+        tecnicismos complicados. Solo un servicio fluido y confiable que entrega
+        resultados reales.
       </p>
     </header>
 
@@ -24,24 +32,30 @@ const breadcrumb = [
       <article class="space-y-4">
         <h2 class="text-xl md:text-2xl font-semibold">Qué hacemos</h2>
         <p class="text-gray-700 dark:text-gray-200">
-          ByteWorks es una solución web simple y efectiva para pequeños negocios y fundadores que quieren una presencia
-          profesional en línea sin sentirse abrumados.
+          ByteWorks es una solución web simple y efectiva para pequeños negocios
+          y fundadores que quieren una presencia profesional en línea sin
+          sentirse abrumados.
         </p>
-        <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200 space-y-1">
+        <ul
+          class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200 space-y-1"
+        >
           <li>Inglés + Español incluidos por defecto.</li>
           <li>Páginas rápidas, limpias y listas para SEO.</li>
           <li>Hosting, seguridad (SSL) y respaldos totalmente gestionados.</li>
           <li>Actualizaciones mensuales para mantener todo al día.</li>
-          <li>Add-ons para crecimiento SEO, blog o catálogo de productos.</li>
+          <li>Add-ons para SEO, blog o catálogo de productos.</li>
         </ul>
       </article>
 
       <article class="space-y-4">
         <h2 class="text-xl md:text-2xl font-semibold">Cómo trabajamos</h2>
         <p class="text-gray-700 dark:text-gray-200">
-          Precios claros. Cero estrés. Un stack moderno diseñado para rendimiento y estabilidad a largo plazo.
+          Precios claros. Cero estrés. Un stack moderno diseñado para
+          rendimiento y estabilidad.
         </p>
-        <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200 space-y-1">
+        <ul
+          class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200 space-y-1"
+        >
           <li>Carga rápida, mobile-first y accesible.</li>
           <li>Modelo de contenido flexible que crece con tu negocio.</li>
           <li>Soporte directo a través de nuestros canales sociales.</li>
@@ -52,7 +66,9 @@ const breadcrumb = [
     <div class="grid md:grid-cols-2 gap-10 items-start mt-12">
       <article class="space-y-3">
         <h2 class="text-xl md:text-2xl font-semibold">Proceso</h2>
-        <ol class="list-decimal list-inside text-sm text-gray-700 dark:text-gray-200 space-y-1">
+        <ol
+          class="list-decimal list-inside text-sm text-gray-700 dark:text-gray-200 space-y-1"
+        >
           <li>Entendemos tus objetivos</li>
           <li>Organizamos tu contenido y estructura</li>
           <li>Diseñamos y construimos tu sitio</li>
@@ -63,7 +79,9 @@ const breadcrumb = [
 
       <article class="space-y-3">
         <h2 class="text-xl md:text-2xl font-semibold">Qué recibes</h2>
-        <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200 space-y-1">
+        <ul
+          class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200 space-y-1"
+        >
           <li>Un sitio profesional que inspira confianza</li>
           <li>Tiempos de carga rápidos y experiencia fluida</li>
           <li>Páginas optimizadas para SEO y metadatos limpios</li>
@@ -73,7 +91,10 @@ const breadcrumb = [
       </article>
     </div>
     <div class="mt-12 text-center">
-      <a href="/es/contacto" class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-black text-white dark:bg-white dark:text-black hover:opacity-90 transition">
+      <a
+        href="/es/contacto"
+        class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-black text-white dark:bg-white dark:text-black hover:opacity-90 transition"
+      >
         Trabaja con nosotros
       </a>
     </div>

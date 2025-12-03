@@ -1,35 +1,55 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Base from "../../layouts/Base.astro";
 
-const title = 'Our Website Design Process | ByteWorks - From Discovery to Launch';
-const description = 'Learn about our transparent 4-step web design process. We guide you from initial discovery and design to development and launch for a stress-free experience.';
+const title =
+  "Our Website Design Process | ByteWorks - From Discovery to Launch";
+const description =
+  "Learn about our transparent 4-step web design process. We guide you from initial discovery and design to development and launch for a stress-free experience.";
 const breadcrumb = [
-  { name: 'Home', url: 'https://byteworksagency.com/en/' },
-  { name: 'How It Works', url: 'https://byteworksagency.com/en/how-it-works/' },
+  { name: "Home", url: "https://byteworksagency.com/en/" },
+  { name: "How It Works", url: "https://byteworksagency.com/en/how-it-works/" },
 ];
 ---
 
-<Base title={title} description={description} image="/og-image.png" lang="en" breadcrumb={breadcrumb}>
+<Base
+  title={title}
+  description={description}
+  image="/og-image.png"
+  lang="en"
+  breadcrumb={breadcrumb}
+>
   <section class="px-4 max-w-[960px] mx-auto py-16 md:py-24">
     <header class="text-center space-y-3 mb-10">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-text-primary font-heading">How It Works</h1>
+      <h1
+        class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-text-primary font-heading"
+      >
+        How It Works
+      </h1>
       <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        We follow a simple, transparent process to bring your website to life — fast, clear, and without stress.
+        Simple process to bring your site to life. Fast, clear, no stress.
       </p>
     </header>
 
     <div class="grid grid-cols-[auto_1fr] gap-x-8 gap-y-6">
       <!-- Discovery -->
       <div class="flex flex-col items-center gap-2">
-        <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
+        <div
+          class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
+        >
           <span class="material-symbols-outlined">search</span>
         </div>
         <div class="w-px bg-gray-300 dark:bg-gray-600 flex-1"></div>
       </div>
-      <article class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5">
-        <h2 class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary">Discovery</h2>
+      <article
+        class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5"
+      >
+        <h2
+          class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary"
+        >
+          Discovery
+        </h2>
         <p class="mt-2 text-gray-600 dark:text-gray-300">
-          We begin by understanding your goals, your audience, and the type of website your business truly needs. We review your brand assets and any content you already have.
+          We understand your goals and requirements.
         </p>
         <div class="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-300">
           <div>
@@ -49,21 +69,31 @@ const breadcrumb = [
               <li>Contact details and business info</li>
             </ul>
           </div>
-          <p class="font-medium text-gray-500 dark:text-gray-400">Typical duration: 1–2 weeks depending on availability.</p>
+          <p class="font-medium text-gray-500 dark:text-gray-400">
+            Duration: 1-2 weeks.
+          </p>
         </div>
       </article>
 
       <!-- Design -->
       <div class="flex flex-col items-center gap-2">
-        <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
+        <div
+          class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
+        >
           <span class="material-symbols-outlined">design_services</span>
         </div>
         <div class="w-px bg-gray-300 dark:bg-gray-600 flex-1"></div>
       </div>
-      <article class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5">
-        <h2 class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary">Design</h2>
+      <article
+        class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5"
+      >
+        <h2
+          class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary"
+        >
+          Design
+        </h2>
         <p class="mt-2 text-gray-600 dark:text-gray-300">
-          We create a clean, modern, user-friendly design focused on clarity, brand identity, and conversion.
+          We create a stunning, user-friendly design.
         </p>
         <div class="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-300">
           <div>
@@ -78,24 +108,36 @@ const breadcrumb = [
           <div>
             <p class="font-medium">Review rounds</p>
             <p>
-              Fast async feedback through our social channels (“Follow Us”) or email. We refine copy and layout quickly to keep momentum.
+              Fast feedback via social channels or email. We refine copy and
+              layout quickly.
             </p>
           </div>
-          <p class="font-medium text-gray-500 dark:text-gray-400">Typical duration: 2–3 weeks depending on scope & review speed.</p>
+          <p class="font-medium text-gray-500 dark:text-gray-400">
+            Duration: 2-3 weeks.
+          </p>
         </div>
       </article>
 
       <!-- Development -->
       <div class="flex flex-col items-center gap-2">
-        <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
+        <div
+          class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
+        >
           <span class="material-symbols-outlined">developer_mode</span>
         </div>
         <div class="w-px bg-gray-300 dark:bg-gray-600 flex-1"></div>
       </div>
-      <article class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5">
-        <h2 class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary">Development</h2>
+      <article
+        class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5"
+      >
+        <h2
+          class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary"
+        >
+          Development
+        </h2>
         <p class="mt-2 text-gray-600 dark:text-gray-300">
-          We build your website using clean code and a modern, high-performance stack — with speed, security, and SEO fundamentals built in.
+          We build with clean code and modern stack. Speed, security, and SEO
+          included.
         </p>
         <div class="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-300">
           <div>
@@ -108,20 +150,30 @@ const breadcrumb = [
               <li>Sitemap + clean metadata</li>
             </ul>
           </div>
-          <p class="font-medium text-gray-500 dark:text-gray-400">Typical duration: 3–4 weeks depending on content volume.</p>
+          <p class="font-medium text-gray-500 dark:text-gray-400">
+            Duration: 3-4 weeks.
+          </p>
         </div>
       </article>
 
       <!-- Launch -->
       <div class="flex flex-col items-center gap-2">
-        <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
+        <div
+          class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
+        >
           <span class="material-symbols-outlined">rocket_launch</span>
         </div>
       </div>
-      <article class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5">
-        <h2 class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary">Launch</h2>
+      <article
+        class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5"
+      >
+        <h2
+          class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary"
+        >
+          Launch
+        </h2>
         <p class="mt-2 text-gray-600 dark:text-gray-300">
-          We deploy your site and make sure everything works seamlessly across devices.
+          We deploy your site and provide ongoing support.
         </p>
         <div class="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-300">
           <div>
@@ -142,21 +194,25 @@ const breadcrumb = [
             </ul>
           </div>
           <p class="font-medium text-gray-500 dark:text-gray-400">
-            After launch: Monthly updates included with your plan + optional add-ons (SEO, blog, catalog, etc.).
+            After launch: Monthly updates included with your plan + optional
+            add-ons (SEO, blog, catalog, etc.).
           </p>
         </div>
       </article>
     </div>
 
-    <div class="mt-12 border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5">
-      <h2 class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary">Timeline & Communication</h2>
+    <div
+      class="mt-12 border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-background-dark/50 p-5"
+    >
+      <h2
+        class="text-lg md:text-xl font-bold font-heading text-gray-900 dark:text-text-primary"
+      >
+        Timeline & Communication
+      </h2>
       <p class="mt-2 text-gray-600 dark:text-gray-300">
-        Small websites can launch in 7–10 business days once we have all content. Larger scopes typically take 2–4 weeks.
-        We keep communication simple through our social channels (WhatsApp, Instagram, etc.) and share early previews so you can review quickly and easily.
+        Small sites launch in 7-10 days. Larger scopes take 2-4 weeks.
+        Communication via social channels. Early previews for quick review.
       </p>
     </div>
   </section>
 </Base>
-
-
-

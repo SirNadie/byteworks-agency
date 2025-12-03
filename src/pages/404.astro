@@ -11,7 +11,7 @@ const isES = lang === "es";
 
 const title = isES ? "Página no encontrada" : "Page Not Found";
 const description = isES
-  ? "La página que buscas no existe."
+  ? "Página no encontrada."
   : "The page you are looking for does not exist.";
 
 const home = isES ? "/es/" : "/en/";
@@ -46,7 +46,7 @@ function altHref(targetLang: "en" | "es") {
       <p class="text-base md:text-lg text-gray-600 dark:text-gray-300">
         {
           isES
-            ? "La página que buscas no existe o fue movida."
+            ? "Página no encontrada o movida."
             : "The page you're looking for doesn't exist or was moved."
         }
       </p>

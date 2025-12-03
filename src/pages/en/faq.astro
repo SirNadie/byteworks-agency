@@ -1,115 +1,115 @@
 ---
-import FAQAccordion from '../../components/FAQAccordion.astro';
-import Base from '../../layouts/Base.astro';
+import FAQAccordion from "../../components/FAQAccordion.astro";
+import Base from "../../layouts/Base.astro";
 
-const title = 'Frequently Asked Questions | ByteWorks Website Services';
+const title = "Frequently Asked Questions | ByteWorks Website Services";
 const description =
-  "Got questions about our website design subscriptions? Find answers on our process, pricing, SEO, content ownership, and what's included in our plans.";
+  "Questions about our subscriptions? Find answers on process, pricing, SEO, and plans.";
 const breadcrumb = [
-  { name: 'Home', url: 'https://byteworksagency.com/en/' },
-  { name: 'FAQ', url: 'https://byteworksagency.com/en/faq/' },
+  { name: "Home", url: "https://byteworksagency.com/en/" },
+  { name: "FAQ", url: "https://byteworksagency.com/en/faq/" },
 ];
 
 const faqs = [
   {
-    q: 'How fast can you deliver my website?',
-    a: 'Small sites can go live in 7–10 business days once we receive all content. Larger scopes typically take 2–4 weeks.',
+    q: "How fast can you deliver my website?",
+    a: "Small sites can go live in 7 to 10 business days once we receive all content. Larger scopes typically take 2 to 4 weeks.",
   },
   {
-    q: 'What do you need from me to start?',
-    a: 'Logo and brand colors (if available), a page outline or key sections, basic copy, images or placeholders, and a contact email/phone. For e-commerce we also need product names, prices, and photos.',
+    q: "What do you need from me to start?",
+    a: "Logo, colors, page outline, basic copy, and images. For e-commerce: product names, prices, and photos.",
   },
   {
-    q: 'What does the monthly update include?',
-    a: 'You can request text or content edits, new images, small layout tweaks, minor SEO adjustments, updates to service information, or fixes in existing sections. The amount of work depends on your plan.',
+    q: "What does the monthly update include?",
+    a: "Text or image edits, layout tweaks, SEO adjustments, or fixes. Work amount depends on your plan.",
   },
   {
-    q: 'What is NOT included in the monthly update?',
-    a: 'Full redesigns or new pages, new features or major functionality, large e-commerce expansions, custom integrations/automations, or new branding/advanced visual work. Those are handled as upgrades or one-time tasks.',
+    q: "What is NOT included in the monthly update?",
+    a: "Full redesigns, new pages, new features, or custom integrations. These are upgrades or one-time tasks.",
   },
   {
-    q: 'Do you write the copy?',
-    a: 'Yes — we can shape or improve your copy based on the information you provide. Full copywriting is available with your plan or as an add-on.',
+    q: "Do you write the copy?",
+    a: "Yes. We improve your copy. Full copywriting is available as an add-on.",
   },
   {
-    q: 'Do you design logos or brand kits?',
-    a: 'Yes — our Basic Branding Package includes logo, colors, typography, and social media assets.',
+    q: "Do you design logos or brand kits?",
+    a: "Yes. Our Branding Package includes logo, colors, and social assets.",
   },
   {
-    q: 'Do you work with a CMS?',
-    a: 'We use a modern, high-performance stack with cutting-edge frameworks. Simple sites do not require a CMS because updates are covered in your plan. For blogs or catalogs we rely on a lightweight internal dashboard or structured content.',
+    q: "Do you work with a CMS?",
+    a: "We use a modern stack. Simple sites don't need a CMS; updates are included. Blogs use a lightweight dashboard.",
   },
   {
-    q: 'Is bilingual included?',
-    a: 'Yes — every plan comes with English + Spanish routes by default, both SEO-ready.',
+    q: "Is bilingual included?",
+    a: "Yes. English and Spanish included by default.",
   },
   {
-    q: 'How does hosting work?',
-    a: 'Hosting, SSL, and backups are fully handled for you and included in the monthly plan.',
+    q: "How does hosting work?",
+    a: "Hosting, SSL, and backups are included.",
   },
   {
-    q: 'Do I own my domain and content?',
-    a: 'Absolutely. The domain can be registered under your name and all content belongs to you.',
+    q: "Do I own my domain and content?",
+    a: "Yes. You own the domain and all content.",
   },
   {
-    q: 'Can you use my existing domain?',
-    a: 'Yes — we can connect any domain you already own.',
+    q: "Can you use my existing domain?",
+    a: "Yes. We connect your existing domain.",
   },
   {
-    q: 'Do you create email accounts?',
-    a: 'We can guide you or set up email forwarding. Business email (e.g., Google Workspace) can be added separately if you want.',
+    q: "Do you create email accounts?",
+    a: "We guide you or set up forwarding. Business email can be added separately.",
   },
   {
-    q: 'What about SEO?',
-    a: 'All sites include clean structure, sitemap, indexable pages, metadata/Open Graph, and fast performance. Advanced SEO & Local Positioning is available as an add-on.',
+    q: "What about SEO?",
+    a: "Sites include structure, sitemap, metadata, and fast performance. Advanced SEO is an add-on.",
   },
   {
-    q: 'Do you set up business profiles?',
-    a: 'Yes — included in the Advanced SEO & Local Positioning add-on (Google Business Profile, local listings, etc.).',
+    q: "Do you set up business profiles?",
+    a: "Yes. Included in the Advanced SEO add-on.",
   },
   {
-    q: 'Are analytics included?',
-    a: 'Yes — basic analytics are integrated into your site or dashboard.',
+    q: "Are analytics included?",
+    a: "Yes. Basic analytics are integrated.",
   },
   {
-    q: 'Is e-commerce included?',
-    a: 'Yes — through the E-Commerce Pro plan or the Small Online Store add-on.',
+    q: "Is e-commerce included?",
+    a: "Yes. Via E-Commerce Pro or the Mini Store add-on.",
   },
   {
-    q: 'Product limits?',
-    a: 'Small Online Store covers up to 10 products. E-Commerce Pro covers up to 20 products. Additional blocks of 20 are available as add-ons, and large catalogs may require a custom plan.',
+    q: "Product limits?",
+    a: "Mini Store: 10 products. E-Commerce Pro: 20 products. Extra blocks available.",
   },
   {
-    q: 'How are payments handled?',
-    a: 'We support manual checkout for local orders and can guide you through payment gateway options if needed.',
+    q: "How are payments handled?",
+    a: "Manual checkout for local orders. We can guide you on gateways.",
   },
   {
-    q: 'Can I cancel anytime? What do I get?',
-    a: 'Yes — you keep your domain and content, and we can provide a static backup if you request it. Hosting and updates stop after cancellation.',
+    q: "Can I cancel anytime? What do I get?",
+    a: "Yes. You keep domain and content. We provide a static backup. Hosting stops.",
   },
   {
-    q: 'Will my site be fast and mobile-friendly?',
-    a: 'Absolutely — mobile-first design and performance optimization are core defaults.',
+    q: "Will my site be fast and mobile-friendly?",
+    a: "Yes. Mobile-first and optimized for speed.",
   },
   {
-    q: 'Accessibility?',
-    a: 'We follow accessibility best practices so your site is usable and clear for everyone.',
+    q: "Accessibility?",
+    a: "We follow best practices for usability.",
   },
   {
-    q: 'Backups and security?',
-    a: 'Daily or automated backups, SSL, and modern security practices are included in every plan.',
+    q: "Backups and security?",
+    a: "Daily backups, SSL, and security included.",
   },
   {
-    q: 'Support hours and response times?',
-    a: 'Support is available through our social channels (WhatsApp, Instagram) and email. We typically respond within 24 hours.',
+    q: "Support hours and response times?",
+    a: "Support via social channels and email. Response within 24 hours.",
   },
   {
-    q: 'How do we communicate?',
-    a: 'Lightweight, fast communication through WhatsApp, Instagram, or email — your choice. We also share early previews so you can review quickly.',
+    q: "How do we communicate?",
+    a: "WhatsApp, Instagram, or email. We share previews for quick review.",
   },
   {
-    q: 'Can you migrate my current site?',
-    a: 'Yes — we can rebuild or migrate your site into our modern system. Complex migrations may require a custom quote.',
+    q: "Can you migrate my current site?",
+    a: "Yes. We rebuild or migrate your site. Complex migrations may need a quote.",
   },
 ];
 ---
@@ -129,7 +129,7 @@ const faqs = [
         FAQ
       </h1>
       <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        Answers to the most common questions about how we work.
+        Answers to common questions.
       </p>
     </header>
 
@@ -140,26 +140,26 @@ const faqs = [
         What ByteWorks does
       </h2>
       <p class="mt-2 text-gray-600 dark:text-gray-300">
-        At ByteWorks, we believe having a professional website shouldn’t be complicated or
-        expensive. We take care of everything — design, development, hosting, security, updates, and
-        support — so you can focus on running your business.
+        Professional websites shouldn't be complicated. We handle design,
+        hosting, security, and updates. You focus on your business.
       </p>
       <p class="mt-2 text-gray-600 dark:text-gray-300">
-        Every website we build is fast, modern, mobile-friendly, and designed to create trust from
-        the first impression.
+        Fast, modern, mobile-friendly sites that create trust.
       </p>
       <div class="mt-3">
         <div class="font-medium mb-1">What’s included:</div>
-        <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1">
-          <li>Domain + hosting (no extra payments required)</li>
-          <li>Clean, professional, functional design</li>
+        <ul
+          class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1"
+        >
+          <li>Domain and hosting included</li>
+          <li>Clean, professional design</li>
           <li>Social links and contact form</li>
-          <li>Basic SEO so you appear on search engines</li>
-          <li>Monthly maintenance and real support</li>
+          <li>Basic SEO</li>
+          <li>Monthly maintenance and support</li>
         </ul>
       </div>
       <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
-        In short: You run your business — we handle the digital side.
+        In short: You run your business. We handle the digital side.
       </p>
     </div>
 

@@ -31,10 +31,9 @@ const wa = phone
   >
     <h1 class="text-3xl md:text-5xl font-semibold">Let’s work together</h1>
     <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-      Ready to build a modern, bilingual website with maintenance included? Pick
-      any social link from the “Follow Us” section (WhatsApp, Instagram, etc.).
-      The form below gives us the essentials so we can respond fast on the
-      channel you prefer.
+      Ready to start? We're here to help. Pick any social link from the “Follow
+      Us” section. The form below gives us the essentials so we can respond
+      fast.
     </p>
 
     <form id="contact-form" class="mt-12 text-left space-y-5 max-w-md mx-auto">
@@ -125,23 +124,35 @@ const wa = phone
     <div
       class="border-top border-gray-200 dark:border-gray-800 pt-10 mt-10 text-sm text-gray-600 dark:text-gray-400"
     >
-      <p>Prefer a call or meeting? We’ll schedule one after a quick chat.</p>
-      <p class="mt-2 text-xs text-gray-500">
-        Support hours: Monday–Friday, 9:00 AM – 6:00 PM (AST)
-      </p>
+      <p>Prefer a call? We'll schedule one after a chat.</p>
+      <p class="mt-2 text-xs text-gray-500">Support: Mon-Fri, 9AM-6PM (AST)</p>
     </div>
   </section>
 
   <script>
     (function () {
-      const form = document.querySelector("#contact-form");
-      const nameEl = document.querySelector("#name");
-      const emailEl = document.querySelector("#email");
-      const phoneEl = document.querySelector("#phone");
-      const messageEl = document.querySelector("#message");
-      const hpEl = document.querySelector("#website");
-      const btn = document.querySelector("#submitBtn");
-      const statusEl = document.querySelector("#formStatus");
+      const form = document.querySelector(
+        "#contact-form",
+      ) as HTMLFormElement | null;
+      const nameEl = document.querySelector("#name") as HTMLInputElement | null;
+      const emailEl = document.querySelector(
+        "#email",
+      ) as HTMLInputElement | null;
+      const phoneEl = document.querySelector(
+        "#phone",
+      ) as HTMLInputElement | null;
+      const messageEl = document.querySelector(
+        "#message",
+      ) as HTMLTextAreaElement | null;
+      const hpEl = document.querySelector(
+        "#website",
+      ) as HTMLInputElement | null;
+      const btn = document.querySelector(
+        "#submitBtn",
+      ) as HTMLButtonElement | null;
+      const statusEl = document.querySelector(
+        "#formStatus",
+      ) as HTMLParagraphElement | null;
 
       if (!form || !nameEl || !messageEl || !hpEl) return;
 
@@ -149,14 +160,14 @@ const wa = phone
         ev.preventDefault();
 
         const name = nameEl.value.trim();
-        const email = emailEl.value.trim();
+        const email = emailEl ? emailEl.value.trim() : "";
         const phone = phoneEl ? phoneEl.value.trim() : "";
         const msg = messageEl.value.trim();
         const hp = hpEl.value.trim();
 
         if (hp) return; // Honeypot trap
 
-        const setStatus = (message, tone = "info") => {
+        const setStatus = (message: string, tone = "info") => {
           if (!statusEl) return;
           statusEl.textContent = message;
           statusEl.dataset.tone = tone;
@@ -211,7 +222,7 @@ const wa = phone
           if (!res.ok) throw new Error("Failed to send");
 
           nameEl.value = "";
-          emailEl.value = "";
+          if (emailEl) emailEl.value = "";
           if (phoneEl) phoneEl.value = "";
           messageEl.value = "";
           hpEl.value = "";

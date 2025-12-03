@@ -108,41 +108,41 @@ export const HOME_FAQS: Record<'en' | 'es', readonly HomeFaq[]> = {
   en: [
     {
       q: 'How fast can you deliver my website?',
-      a: 'Start usually launches within 7-10 business days after we receive copy and assets. Pro/Elite take 2-4 weeks depending on scope and reviews.',
+      a: 'Start launches in 7 to 10 business days. Pro and Elite take 2 to 4 weeks.',
     },
     {
       q: 'What does "monthly update" include?',
-      a: "Small, scoped tasks like text/image changes, minor layout tweaks, or product edits. They're time-boxed per plan and don't roll over (see Terms + Service Levels).",
+      a: "Small tasks like text or image changes, layout tweaks, or product edits. They are time-boxed and do not roll over. See Terms and SLA.",
     },
     {
       q: 'Do you handle online payments?',
-      a: 'Not by default. Our E-Commerce Pro uses a manual order flow (no gateways). If you need payments later, we can quote a custom add-on.',
+      a: 'Not by default. E-Commerce Pro uses manual order flow without gateways. We can quote a custom add-on for payments.',
     },
     {
       q: 'Can I track delivery orders?',
-      a: 'Yes. Orders receive a simple internal code you can share with your customer. Status is managed in our internal dashboard and displayed on a tracking page.',
+      a: 'Yes. Orders get an internal code to share with customers. Track status in our dashboard.',
     },
     {
       q: 'Who owns the domain and content?',
-      a: 'You do. While your subscription is active we manage the technical stack; you retain ownership of brand assets, domain and content.',
+      a: 'You do. We manage the tech stack while subscribed. You keep ownership of your brand, domain, and content.',
     },
     {
       q: 'Bilingual by default?',
-      a: 'Yes. English and Spanish routes/structure are included. If you only need one language, we can keep the other hidden.',
+      a: 'Yes. English and Spanish structure included. We can hide one language if needed.',
     },
     {
       q: 'SEO included?',
-      a: 'All plans include basic SEO (structure, meta, sitemap). For ongoing improvements and local visibility, consider the Advanced SEO add-on.',
+      a: 'All plans include basic SEO like structure and sitemap. For more visibility, use the Advanced SEO add-on.',
     },
     {
       q: 'Can I migrate later?',
-      a: 'Yes. We can export your static site and hand over assets/data upon cancellation per our Terms.',
+      a: 'Yes. We can export your static site and assets upon cancellation.',
     },
   ],
   es: [
     {
       q: '¿En cuánto tiempo puedo tener mi sitio?',
-      a: 'Start suele salir en 7–10 días hábiles desde que recibimos textos y assets. Pro/Elite toman 2–4 semanas según alcance y revisiones.',
+      a: 'Start sale en 7 a 10 días hábiles desde que recibimos textos y assets. Pro y Elite toman 2 a 4 semanas según alcance y revisiones.',
     },
     {
       q: '¿Qué incluye la “actualización mensual”?',
@@ -150,7 +150,7 @@ export const HOME_FAQS: Record<'en' | 'es', readonly HomeFaq[]> = {
     },
     {
       q: '¿Incluye pagos en línea?',
-      a: 'No por defecto. E‑Commerce Pro usa flujo de pedido manual (sin pasarela). Si luego necesitas pagos, podemos cotizarlo como add‑on.',
+      a: 'No por defecto. E-Commerce Pro usa flujo de pedido manual sin pasarela. Si luego necesitas pagos, podemos cotizarlo como add-on.',
     },
     {
       q: '¿Puedo dar seguimiento a pedidos de delivery?',
