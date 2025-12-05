@@ -1,5 +1,7 @@
-﻿export type HomePlan = {
-  name: string;
+﻿export type PlanName = 'Start' | 'Pro' | 'Elite' | 'E-Commerce Pro';
+
+export type HomePlan = {
+  name: PlanName;
   price: string;
   yearly: string;
   features: readonly string[];
@@ -8,13 +10,6 @@
 export type HomeFaq = {
   q: string;
   a: string;
-};
-
-export const HOME_PLAN_ICONS: Record<string, string> = {
-  Start: '/icons/plans/start.svg',
-  Pro: '/icons/plans/pro.svg',
-  Elite: '/icons/plans/elite.svg',
-  'E-Commerce Pro': '/icons/plans/ecommerce.svg',
 };
 
 export const HOME_PLANS: Record<'en' | 'es', readonly HomePlan[]> = {

@@ -1,0 +1,69 @@
+---
+/**
+ * ServiceJsonLd - Schema.org Service structured data
+ * Helps search engines understand service offerings
+ */
+interface Props {
+  name: string;
+  description: string;
+  price: string;
+  priceCurrency?: string;
+  provider: {
+    name: string;
+    url: string;
+  };
+  areaServed?: string[];
+}
+
+const {
+  name,
+  description,
+  price,
+  priceCurrency = "USD",
+  provider,
+  areaServed = ["Trinidad and Tobago", "United States"],
+} = Astro.props;
+
+// Extract numeric price from string like "$45/mo" or "$459/yr"
+const numericPrice = price.replace(/[^0-9.]/g, "");
+const isYearly =
+  price.toLowerCase().includes("yr") || price.toLowerCase().includes("año");
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name,
+  description,
+  provider: {
+    "@type": "Organization",
+    name: provider.name,
+    url: provider.url,
+  },
+  areaServed: areaServed.map((area) => ({
+    "@type": "Country",
+    name: area,
+  })),
+  offers: {
+    "@type": "Offer",
+    price: numericPrice,
+    priceCurrency,
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: numericPrice,
+      priceCurrency,
+      unitCode: isYearly ? "ANN" : "MON",
+      referenceQuantity: {
+        "@type": "QuantitativeValue",
+        value: 1,
+        unitCode: isYearly ? "ANN" : "MON",
+      },
+    },
+  },
+};
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(serviceSchema)}
+/>

@@ -93,6 +93,7 @@ const wa = phone
         ></textarea>
       </div>
 
+      <!-- Honeypot fields - hidden from users, checked on submit -->
       <input
         type="text"
         id="website"
@@ -100,6 +101,15 @@ const wa = phone
         tabindex="-1"
         autocomplete="off"
         style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"
+        aria-hidden="true"
+      />
+      <input
+        type="url"
+        id="company_url"
+        name="company_url"
+        tabindex="-1"
+        autocomplete="off"
+        style="opacity:0;position:absolute;top:0;left:0;height:0;width:0;z-index:-1;pointer-events:none;"
         aria-hidden="true"
       />
 
@@ -131,101 +141,157 @@ const wa = phone
 
   <script>
     (function () {
-      const form = document.querySelector(
-        "#contact-form",
-      ) as HTMLFormElement | null;
-      const nameEl = document.querySelector("#name") as HTMLInputElement | null;
-      const emailEl = document.querySelector(
-        "#email",
-      ) as HTMLInputElement | null;
-      const phoneEl = document.querySelector(
-        "#phone",
-      ) as HTMLInputElement | null;
-      const messageEl = document.querySelector(
-        "#message",
-      ) as HTMLTextAreaElement | null;
-      const hpEl = document.querySelector(
-        "#website",
-      ) as HTMLInputElement | null;
-      const btn = document.querySelector(
-        "#submitBtn",
-      ) as HTMLButtonElement | null;
-      const statusEl = document.querySelector(
-        "#formStatus",
-      ) as HTMLParagraphElement | null;
+      // Type-safe element getters with proper type guards
+      const form = document.getElementById("contact-form");
+      if (!(form instanceof HTMLFormElement)) return;
 
-      if (!form || !nameEl || !messageEl || !hpEl) return;
+      const nameEl = document.getElementById("name");
+      const emailEl = document.getElementById("email");
+      const phoneEl = document.getElementById("phone");
+      const messageEl = document.getElementById("message");
+      const hpEl = document.getElementById("website");
+      const hp2El = document.getElementById("company_url");
+      const btn = document.getElementById("submitBtn");
+      const statusEl = document.getElementById("formStatus");
+
+      if (!(nameEl instanceof HTMLInputElement)) return;
+      if (!(emailEl instanceof HTMLInputElement)) return;
+      if (!(phoneEl instanceof HTMLInputElement)) return;
+      if (!(messageEl instanceof HTMLTextAreaElement)) return;
+      if (!(hpEl instanceof HTMLInputElement)) return;
+      if (!(hp2El instanceof HTMLInputElement)) return;
+      if (!(btn instanceof HTMLButtonElement)) return;
+      if (!(statusEl instanceof HTMLParagraphElement)) return;
+
+      // Email validation regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validation state classes
+      const validClass = "border-green-500 dark:border-green-400";
+      const invalidClass = "border-red-500 dark:border-red-400";
+      const defaultClass = "border-gray-300 dark:border-gray-700";
+
+      function setFieldState(
+        el: HTMLInputElement | HTMLTextAreaElement,
+        isValid: boolean | null,
+      ) {
+        el.classList.remove(validClass, invalidClass);
+        if (isValid === true) {
+          el.classList.add(validClass);
+        } else if (isValid === false) {
+          el.classList.add(invalidClass);
+        }
+      }
+
+      function validateField(
+        el: HTMLInputElement | HTMLTextAreaElement,
+        pattern?: RegExp,
+      ): boolean {
+        const value = el.value.trim();
+        if (!value) {
+          setFieldState(el, null);
+          return false;
+        }
+        const isValid = pattern ? pattern.test(value) : value.length > 0;
+        setFieldState(el, isValid);
+        return isValid;
+      }
+
+      // Real-time validation on blur
+      nameEl.addEventListener("blur", () => validateField(nameEl));
+      emailEl.addEventListener("blur", () =>
+        validateField(emailEl, emailRegex),
+      );
+      phoneEl.addEventListener("blur", () => validateField(phoneEl));
+      messageEl.addEventListener("blur", () => validateField(messageEl));
+
+      // Also validate on input for immediate feedback after first blur
+      nameEl.addEventListener("input", () => {
+        if (nameEl.value) validateField(nameEl);
+      });
+      emailEl.addEventListener("input", () => {
+        if (emailEl.value) validateField(emailEl, emailRegex);
+      });
+      phoneEl.addEventListener("input", () => {
+        if (phoneEl.value) validateField(phoneEl);
+      });
+      messageEl.addEventListener("input", () => {
+        if (messageEl.value) validateField(messageEl);
+      });
+
+      function setStatus(message: string, tone = "info") {
+        statusEl.textContent = message;
+        statusEl.dataset.tone = tone;
+        statusEl.classList.remove(
+          "text-red-600",
+          "dark:text-red-400",
+          "text-green-600",
+          "dark:text-green-400",
+          "text-amber-600",
+          "dark:text-amber-400",
+        );
+
+        if (!message) {
+          statusEl.dataset.tone = "idle";
+          return;
+        }
+
+        const toneClasses =
+          tone === "error"
+            ? ["text-red-600", "dark:text-red-400"]
+            : tone === "success"
+              ? ["text-green-600", "dark:text-green-400"]
+              : ["text-amber-600", "dark:text-amber-400"];
+
+        statusEl.classList.add(...toneClasses);
+      }
 
       form.addEventListener("submit", async (ev) => {
         ev.preventDefault();
 
         const name = nameEl.value.trim();
-        const email = emailEl ? emailEl.value.trim() : "";
-        const phone = phoneEl ? phoneEl.value.trim() : "";
+        const email = emailEl.value.trim();
+        const phone = phoneEl.value.trim();
         const msg = messageEl.value.trim();
-        const hp = hpEl.value.trim();
 
-        if (hp) return; // Honeypot trap
+        // Check both honeypot fields
+        if (hpEl.value.trim() || hp2El.value.trim()) return;
 
-        const setStatus = (message: string, tone = "info") => {
-          if (!statusEl) return;
-          statusEl.textContent = message;
-          statusEl.dataset.tone = tone;
-          statusEl.classList.remove(
-            "text-red-600",
-            "dark:text-red-400",
-            "text-green-600",
-            "dark:text-green-400",
-            "text-amber-600",
-            "dark:text-amber-400",
-          );
+        // Validate all fields
+        const nameValid = validateField(nameEl);
+        const emailValid = validateField(emailEl, emailRegex);
+        const phoneValid = validateField(phoneEl);
+        const msgValid = validateField(messageEl);
 
-          if (!message) {
-            statusEl.dataset.tone = "idle";
-            return;
-          }
-
-          const toneClasses =
-            tone === "error"
-              ? ["text-red-600", "dark:text-red-400"]
-              : tone === "success"
-                ? ["text-green-600", "dark:text-green-400"]
-                : ["text-amber-600", "dark:text-amber-400"];
-
-          statusEl.classList.add(...toneClasses);
-        };
-
-        if (!name || !email || !msg || !phone) {
-          setStatus("Please fill out all required fields.", "error");
+        if (!nameValid || !emailValid || !phoneValid || !msgValid) {
+          setStatus("Please fill out all required fields correctly.", "error");
           return;
         }
 
-        const original = btn ? btn.textContent : null;
+        const original = btn.textContent;
         setStatus("Sending...", "info");
-        if (btn) {
-          btn.disabled = true;
-          btn.textContent = "Sending...";
-        }
+        btn.disabled = true;
+        btn.textContent = "Sending...";
 
         try {
           const res = await fetch("/api/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name,
-              email,
-              phone,
-              message: msg,
-            }),
+            body: JSON.stringify({ name, email, phone, message: msg }),
           });
 
           if (!res.ok) throw new Error("Failed to send");
 
+          // Clear form and validation states
           nameEl.value = "";
-          if (emailEl) emailEl.value = "";
-          if (phoneEl) phoneEl.value = "";
+          emailEl.value = "";
+          phoneEl.value = "";
           messageEl.value = "";
           hpEl.value = "";
+          hp2El.value = "";
+          [nameEl, emailEl, phoneEl, messageEl].forEach((el) =>
+            setFieldState(el, null),
+          );
 
           setStatus(
             "Message sent successfully! We'll be in touch soon.",
@@ -235,10 +301,8 @@ const wa = phone
           console.error(err);
           setStatus("Something went wrong. Please try again later.", "error");
         } finally {
-          if (btn) {
-            btn.disabled = false;
-            btn.textContent = original || "Send Message";
-          }
+          btn.disabled = false;
+          btn.textContent = original || "Send Message";
         }
       });
     })();

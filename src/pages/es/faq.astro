@@ -1,5 +1,6 @@
 ---
 import FAQAccordion from "../../components/FAQAccordion.astro";
+import FAQPageJsonLd from "../../components/seo/FAQPageJsonLd.astro";
 import Base from "../../layouts/Base.astro";
 
 const title = "Preguntas Frecuentes | ByteWorks Servicios Web";
@@ -168,4 +169,7 @@ const faqs = [
 
     <FAQAccordion faqs={faqs} lang="es" />
   </section>
+
+  <!-- SEO: FAQPage structured data -->
+  <FAQPageJsonLd faqs={faqs} />
 </Base>

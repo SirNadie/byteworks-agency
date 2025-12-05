@@ -19,15 +19,6 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-/* Helpers */
-.bg-brand {
-  background-color: var(--brand);
-}
-
-.text-brand {
-  color: var(--brand);
-}
-
 /* Layout helpers */
 .container {
   width: 100%;
@@ -36,20 +27,3 @@ body {
   max-width: 72rem;
   /* ~ 1152px */
 }
-
-.section {
-  padding-block: 3rem;
-}
-
-@media (min-width: 768px) {
-  .section {
-    padding-block: 4rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section {
-    padding-block: 5rem;
-  }
-}
-

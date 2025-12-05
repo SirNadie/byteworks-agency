@@ -1,0 +1,35 @@
+---
+/**
+ * FAQPageJsonLd - Schema.org FAQPage structured data
+ * Helps search engines display FAQs in rich results
+ */
+interface FAQItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  faqs: FAQItem[];
+}
+
+const { faqs } = Astro.props;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(faqSchema)}
+/>
