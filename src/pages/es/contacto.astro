@@ -131,194 +131,294 @@ const wa = phone
       >
       </p>
     </form>
+  </section>
+</Base>
 
-    <div
-      class="border-t border-gray-200 dark:border-gray-800 pt-10 mt-10 text-sm text-gray-600 dark:text-gray-400"
-    >
-      <p>
-        ¿Prefieres llamada o reunión? La agendamos después de un breve chat.
+<!-- Modal Overlay -->
+<div
+  id="formModal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm"
+>
+  <div
+    class="bg-white dark:bg-gray-900 rounded-xl shadow-2xl p-8 max-w-sm mx-4 text-center"
+  >
+    <!-- Loading State -->
+    <div id="modalLoading" class="hidden">
+      <div
+        class="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"
+      >
+      </div>
+      <p class="text-lg font-medium text-gray-900 dark:text-white">
+        Enviando...
       </p>
-      <p class="mt-2 text-xs text-gray-500">
-        Horario: Lunes a Viernes, 9:00 AM - 6:00 PM (AST)
+      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+        Por favor espera
       </p>
     </div>
-  </section>
 
-  <script>
-    (function () {
-      // Type-safe element getters with proper type guards
-      const form = document.getElementById("contact-form");
-      if (!(form instanceof HTMLFormElement)) return;
+    <!-- Success State -->
+    <div id="modalSuccess" class="hidden">
+      <div
+        class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+      >
+        <svg
+          class="w-8 h-8 text-green-600 dark:text-green-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      <p class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+        ¡Mensaje Enviado!
+      </p>
+      <p class="text-gray-600 dark:text-gray-300 mb-6">
+        Gracias por contactarnos. Te responderemos lo antes posible.
+      </p>
+      <button
+        id="modalOkBtn"
+        class="w-full py-3 px-6 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors"
+      >
+        Aceptar
+      </button>
+    </div>
 
-      const nameEl = document.getElementById("name");
-      const emailEl = document.getElementById("email");
-      const phoneEl = document.getElementById("phone");
-      const messageEl = document.getElementById("message");
-      const hpEl = document.getElementById("website");
-      const hp2El = document.getElementById("company_url");
-      const btn = document.getElementById("submitBtn");
-      const statusEl = document.getElementById("formStatus");
+    <!-- Error State -->
+    <div id="modalError" class="hidden">
+      <div
+        class="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+      >
+        <svg
+          class="w-8 h-8 text-red-600 dark:text-red-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </div>
+      <p class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+        Algo salió mal
+      </p>
+      <p class="text-gray-600 dark:text-gray-300 mb-6">
+        Por favor intenta de nuevo más tarde o contáctanos directamente.
+      </p>
+      <button
+        id="modalRetryBtn"
+        class="w-full py-3 px-6 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors"
+      >
+        Reintentar
+      </button>
+    </div>
+  </div>
+</div>
 
-      if (!(nameEl instanceof HTMLInputElement)) return;
-      if (!(emailEl instanceof HTMLInputElement)) return;
-      if (!(phoneEl instanceof HTMLInputElement)) return;
-      if (!(messageEl instanceof HTMLTextAreaElement)) return;
-      if (!(hpEl instanceof HTMLInputElement)) return;
-      if (!(hp2El instanceof HTMLInputElement)) return;
-      if (!(btn instanceof HTMLButtonElement)) return;
-      if (!(statusEl instanceof HTMLParagraphElement)) return;
+<script>
+  (function () {
+    // Type-safe element getters with proper type guards
+    const form = document.getElementById("contact-form");
+    if (!(form instanceof HTMLFormElement)) return;
 
-      // Email validation regex
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const nameEl = document.getElementById("name");
+    const emailEl = document.getElementById("email");
+    const phoneEl = document.getElementById("phone");
+    const messageEl = document.getElementById("message");
+    const hpEl = document.getElementById("website");
+    const hp2El = document.getElementById("company_url");
+    const btn = document.getElementById("submitBtn");
+    const statusEl = document.getElementById("formStatus");
 
-      // Validation state classes
-      const validClass = "border-green-500 dark:border-green-400";
-      const invalidClass = "border-red-500 dark:border-red-400";
+    if (!(nameEl instanceof HTMLInputElement)) return;
+    if (!(emailEl instanceof HTMLInputElement)) return;
+    if (!(phoneEl instanceof HTMLInputElement)) return;
+    if (!(messageEl instanceof HTMLTextAreaElement)) return;
+    if (!(hpEl instanceof HTMLInputElement)) return;
+    if (!(hp2El instanceof HTMLInputElement)) return;
+    if (!(btn instanceof HTMLButtonElement)) return;
+    if (!(statusEl instanceof HTMLParagraphElement)) return;
 
-      function setFieldState(
-        el: HTMLInputElement | HTMLTextAreaElement,
-        isValid: boolean | null,
-      ) {
-        el.classList.remove(validClass, invalidClass);
-        if (isValid === true) {
-          el.classList.add(validClass);
-        } else if (isValid === false) {
-          el.classList.add(invalidClass);
-        }
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Validation state classes (as arrays for classList operations)
+    const validClasses = ["border-green-500", "dark:border-green-400"];
+    const invalidClasses = ["border-red-500", "dark:border-red-400"];
+
+    function setFieldState(
+      el: HTMLInputElement | HTMLTextAreaElement,
+      isValid: boolean | null,
+    ) {
+      el.classList.remove(...validClasses, ...invalidClasses);
+      if (isValid === true) {
+        el.classList.add(...validClasses);
+      } else if (isValid === false) {
+        el.classList.add(...invalidClasses);
       }
+    }
 
-      function validateField(
-        el: HTMLInputElement | HTMLTextAreaElement,
-        pattern?: RegExp,
-      ): boolean {
-        const value = el.value.trim();
-        if (!value) {
-          setFieldState(el, null);
-          return false;
-        }
-        const isValid = pattern ? pattern.test(value) : value.length > 0;
-        setFieldState(el, isValid);
-        return isValid;
+    function validateField(
+      el: HTMLInputElement | HTMLTextAreaElement,
+      pattern?: RegExp,
+    ): boolean {
+      const value = el.value.trim();
+      if (!value) {
+        setFieldState(el, null);
+        return false;
       }
+      const isValid = pattern ? pattern.test(value) : value.length > 0;
+      setFieldState(el, isValid);
+      return isValid;
+    }
 
-      // Real-time validation on blur
-      nameEl.addEventListener("blur", () => validateField(nameEl));
-      emailEl.addEventListener("blur", () =>
-        validateField(emailEl, emailRegex),
+    // Real-time validation on blur
+    nameEl.addEventListener("blur", () => validateField(nameEl));
+    emailEl.addEventListener("blur", () => validateField(emailEl, emailRegex));
+    phoneEl.addEventListener("blur", () => validateField(phoneEl));
+    messageEl.addEventListener("blur", () => validateField(messageEl));
+
+    // Also validate on input for immediate feedback
+    nameEl.addEventListener("input", () => {
+      if (nameEl.value) validateField(nameEl);
+    });
+    emailEl.addEventListener("input", () => {
+      if (emailEl.value) validateField(emailEl, emailRegex);
+    });
+    phoneEl.addEventListener("input", () => {
+      if (phoneEl.value) validateField(phoneEl);
+    });
+    messageEl.addEventListener("input", () => {
+      if (messageEl.value) validateField(messageEl);
+    });
+
+    function setStatus(message: string, tone = "info") {
+      statusEl.textContent = message;
+      statusEl.dataset.tone = tone;
+      statusEl.classList.remove(
+        "text-red-600",
+        "dark:text-red-400",
+        "text-green-600",
+        "dark:text-green-400",
+        "text-amber-600",
+        "dark:text-amber-400",
       );
-      phoneEl.addEventListener("blur", () => validateField(phoneEl));
-      messageEl.addEventListener("blur", () => validateField(messageEl));
 
-      // Also validate on input for immediate feedback
-      nameEl.addEventListener("input", () => {
-        if (nameEl.value) validateField(nameEl);
-      });
-      emailEl.addEventListener("input", () => {
-        if (emailEl.value) validateField(emailEl, emailRegex);
-      });
-      phoneEl.addEventListener("input", () => {
-        if (phoneEl.value) validateField(phoneEl);
-      });
-      messageEl.addEventListener("input", () => {
-        if (messageEl.value) validateField(messageEl);
-      });
-
-      function setStatus(message: string, tone = "info") {
-        statusEl.textContent = message;
-        statusEl.dataset.tone = tone;
-        statusEl.classList.remove(
-          "text-red-600",
-          "dark:text-red-400",
-          "text-green-600",
-          "dark:text-green-400",
-          "text-amber-600",
-          "dark:text-amber-400",
-        );
-
-        if (!message) {
-          statusEl.dataset.tone = "idle";
-          return;
-        }
-
-        const toneClasses =
-          tone === "error"
-            ? ["text-red-600", "dark:text-red-400"]
-            : tone === "success"
-              ? ["text-green-600", "dark:text-green-400"]
-              : ["text-amber-600", "dark:text-amber-400"];
-
-        statusEl.classList.add(...toneClasses);
+      if (!message) {
+        statusEl.dataset.tone = "idle";
+        return;
       }
 
-      form.addEventListener("submit", async (ev) => {
-        ev.preventDefault();
+      const toneClasses =
+        tone === "error"
+          ? ["text-red-600", "dark:text-red-400"]
+          : tone === "success"
+            ? ["text-green-600", "dark:text-green-400"]
+            : ["text-amber-600", "dark:text-amber-400"];
 
-        const name = nameEl.value.trim();
-        const email = emailEl.value.trim();
-        const phone = phoneEl.value.trim();
-        const msg = messageEl.value.trim();
+      statusEl.classList.add(...toneClasses);
+    }
 
-        // Check both honeypot fields
-        if (hpEl.value.trim() || hp2El.value.trim()) return;
+    // Modal elements
+    const modal = document.getElementById("formModal");
+    const modalLoading = document.getElementById("modalLoading");
+    const modalSuccess = document.getElementById("modalSuccess");
+    const modalError = document.getElementById("modalError");
+    const modalOkBtn = document.getElementById("modalOkBtn");
+    const modalRetryBtn = document.getElementById("modalRetryBtn");
 
-        // Validate all fields
-        const nameValid = validateField(nameEl);
-        const emailValid = validateField(emailEl, emailRegex);
-        const phoneValid = validateField(phoneEl);
-        const msgValid = validateField(messageEl);
+    function showModal(state: "loading" | "success" | "error") {
+      if (!modal || !modalLoading || !modalSuccess || !modalError) return;
 
-        if (!nameValid || !emailValid || !phoneValid || !msgValid) {
-          setStatus(
-            "Por favor completa todos los campos correctamente.",
-            "error",
-          );
-          return;
-        }
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
 
-        const original = btn.textContent;
-        setStatus("Enviando...", "info");
-        btn.disabled = true;
-        btn.textContent = "Enviando...";
+      modalLoading.classList.add("hidden");
+      modalSuccess.classList.add("hidden");
+      modalError.classList.add("hidden");
 
-        try {
-          const res = await fetch("/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, phone, message: msg }),
-          });
+      if (state === "loading") modalLoading.classList.remove("hidden");
+      if (state === "success") modalSuccess.classList.remove("hidden");
+      if (state === "error") modalError.classList.remove("hidden");
+    }
 
-          if (!res.ok) {
-            const errorData = await res.json();
-            throw new Error(
-              errorData.message || errorData.error || "Failed to send",
-            );
-          }
+    function hideModal() {
+      if (!modal) return;
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
 
-          // Clear form and validation states
-          nameEl.value = "";
-          emailEl.value = "";
-          phoneEl.value = "";
-          messageEl.value = "";
-          hpEl.value = "";
-          hp2El.value = "";
-          [nameEl, emailEl, phoneEl, messageEl].forEach((el) =>
-            setFieldState(el, null),
-          );
+    // Modal button handlers
+    modalOkBtn?.addEventListener("click", hideModal);
+    modalRetryBtn?.addEventListener("click", hideModal);
 
-          setStatus(
-            "¡Gracias! Recibimos tu solicitud y te contactaremos pronto.",
-            "success",
-          );
-        } catch (err) {
-          console.error(err);
-          const errorMsg =
-            err instanceof Error ? err.message : "Error desconocido";
-          setStatus(`Error: ${errorMsg}`, "error");
-        } finally {
-          btn.disabled = false;
-          btn.textContent = original || "Enviar mensaje";
-        }
-      });
-    })();
-  </script>
-</Base>
+    form.addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+
+      const name = nameEl.value.trim();
+      const email = emailEl.value.trim();
+      const phone = phoneEl.value.trim();
+      const msg = messageEl.value.trim();
+
+      // Check both honeypot fields
+      if (hpEl.value.trim() || hp2El.value.trim()) return;
+
+      // Validate all fields
+      const nameValid = validateField(nameEl);
+      const emailValid = validateField(emailEl, emailRegex);
+      const phoneValid = validateField(phoneEl);
+      const msgValid = validateField(messageEl);
+
+      if (!nameValid || !emailValid || !phoneValid || !msgValid) {
+        setStatus(
+          "Por favor completa todos los campos correctamente.",
+          "error",
+        );
+        return;
+      }
+
+      // Show loading modal
+      showModal("loading");
+      btn.disabled = true;
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, phone, message: msg }),
+        });
+
+        if (!res.ok) throw new Error("Failed to send");
+
+        // Clear form and validation states
+        nameEl.value = "";
+        emailEl.value = "";
+        phoneEl.value = "";
+        messageEl.value = "";
+        hpEl.value = "";
+        hp2El.value = "";
+        [nameEl, emailEl, phoneEl, messageEl].forEach((el) =>
+          setFieldState(el, null),
+        );
+        setStatus("", "idle");
+
+        // Show success modal
+        showModal("success");
+      } catch (err) {
+        console.error(err);
+        showModal("error");
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  })();
+</script>

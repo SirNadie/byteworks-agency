@@ -59,10 +59,36 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const data = await request.json();
   const { name, email, phone, message } = data;
 
-  if (!name || !email || !message) {
+  // Sanitize inputs: strip HTML tags, limit length
+  function sanitize(input: unknown, maxLength = 500): string {
+    if (typeof input !== 'string') return '';
+    return input
+      .replace(/<[^>]*>/g, '') // Strip HTML tags
+      .replace(/[<>]/g, '')    // Remove remaining angle brackets
+      .trim()
+      .slice(0, maxLength);
+  }
+
+  const cleanName = sanitize(name, 100);
+  const cleanEmail = sanitize(email, 254);
+  const cleanPhone = sanitize(phone, 30);
+  const cleanMessage = sanitize(message, 2000);
+
+  if (!cleanName || !cleanEmail || !cleanMessage) {
     return new Response(
       JSON.stringify({
         message: "Faltan campos requeridos (Nombre, Email, Mensaje)",
+      }),
+      { status: 400 }
+    );
+  }
+
+  // Basic email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(cleanEmail)) {
+    return new Response(
+      JSON.stringify({
+        message: "Formato de email inválido",
       }),
       { status: 400 }
     );
@@ -86,10 +112,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name,
-        email,
-        phone,
-        message,
+        name: cleanName,
+        email: cleanEmail,
+        phone: cleanPhone,
+        message: cleanMessage,
         date: new Date().toISOString(),
         source: "ByteWorks Website",
       }),

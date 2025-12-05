@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import AddOns from "../../components/AddOns.astro";
+import ServiceJsonLd from "../../components/seo/ServiceJsonLd.astro";
 
 const title =
   "Pricing & Plans | ByteWorks - Affordable Monthly Website Subscriptions";
@@ -452,4 +453,19 @@ const planMeta: Record<
       toggle(false);
     })();
   </script>
+
+  <!-- SEO: Service structured data for each plan -->
+  {
+    plans.map((p) => (
+      <ServiceJsonLd
+        name={`${p.name} Website Plan`}
+        description={p.bestFor}
+        price={p.price}
+        provider={{
+          name: "ByteWorks Agency",
+          url: "https://byteworksagency.com",
+        }}
+      />
+    ))
+  }
 </Base>

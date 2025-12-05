@@ -74,57 +74,65 @@ const regionLabel =
   }
 </style>
 
-<script is:inline>
-  (function () {
-    function onReady(fn) {
-      if (document.readyState !== "loading") fn();
-      else document.addEventListener("DOMContentLoaded", fn);
-    }
-    onReady(function () {
-      var accordions = document.querySelectorAll(".faq-accordion");
-      if (!accordions.length) return;
-      accordions.forEach(function (acc) {
-        var items = acc.querySelectorAll(".faq-item");
-        function closeAll(except) {
-          items.forEach(function (it) {
-            if (except && it === except) return;
-            var btn = it.querySelector("button");
-            var panel = it.querySelector(".answer");
-            var chev = it.querySelector(".chev");
-            if (!btn || !panel) return;
-            btn.setAttribute("aria-expanded", "false");
-            panel.setAttribute("aria-hidden", "true");
-            panel.style.maxHeight = "0px";
-            if (chev) chev.classList.remove("open");
-          });
-        }
-        acc.addEventListener("click", function (ev) {
-          var target = ev.target;
-          var item =
-            target && target.closest ? target.closest(".faq-item") : null;
-          if (!item) return;
-          var btn = item.querySelector("button");
-          var panel = item.querySelector(".answer");
-          var inner = panel ? panel.firstElementChild : null;
-          var chev = item.querySelector(".chev");
-          if (!btn || !panel || !inner) return;
-          var expanded = btn.getAttribute("aria-expanded") === "true";
-          if (expanded) {
-            btn.setAttribute("aria-expanded", "false");
-            panel.setAttribute("aria-hidden", "true");
-            panel.style.maxHeight = "0px";
-            if (chev) chev.classList.remove("open");
-          } else {
-            closeAll(item);
-            btn.setAttribute("aria-expanded", "true");
-            panel.setAttribute("aria-hidden", "false");
-            // ensure measurement after style change
-            var targetH = inner.scrollHeight;
-            panel.style.maxHeight = targetH + "px";
-            if (chev) chev.classList.add("open");
-          }
+<script>
+  function initFAQAccordions() {
+    const accordions = document.querySelectorAll(".faq-accordion");
+    if (!accordions.length) return;
+
+    accordions.forEach((acc) => {
+      // Skip if already initialized
+      if (acc.dataset.initialized === "true") return;
+      acc.dataset.initialized = "true";
+
+      const items = acc.querySelectorAll(".faq-item");
+
+      function closeAll(except?: Element) {
+        items.forEach((it) => {
+          if (except && it === except) return;
+          const btn = it.querySelector("button");
+          const panel = it.querySelector(".answer") as HTMLElement | null;
+          const chev = it.querySelector(".chev");
+          if (!btn || !panel) return;
+          btn.setAttribute("aria-expanded", "false");
+          panel.setAttribute("aria-hidden", "true");
+          panel.style.maxHeight = "0px";
+          if (chev) chev.classList.remove("open");
         });
+      }
+
+      acc.addEventListener("click", (ev) => {
+        const target = ev.target as Element | null;
+        const item = target?.closest(".faq-item");
+        if (!item) return;
+
+        const btn = item.querySelector("button");
+        const panel = item.querySelector(".answer") as HTMLElement | null;
+        const inner = panel?.firstElementChild as HTMLElement | null;
+        const chev = item.querySelector(".chev");
+
+        if (!btn || !panel || !inner) return;
+
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+
+        if (expanded) {
+          btn.setAttribute("aria-expanded", "false");
+          panel.setAttribute("aria-hidden", "true");
+          panel.style.maxHeight = "0px";
+          if (chev) chev.classList.remove("open");
+        } else {
+          closeAll(item);
+          btn.setAttribute("aria-expanded", "true");
+          panel.setAttribute("aria-hidden", "false");
+          panel.style.maxHeight = inner.scrollHeight + "px";
+          if (chev) chev.classList.add("open");
+        }
       });
     });
-  })();
+  }
+
+  // Run on initial load
+  initFAQAccordions();
+
+  // Run after Astro page transitions
+  document.addEventListener("astro:page-load", initFAQAccordions);
 </script>

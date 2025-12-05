@@ -12,12 +12,23 @@ export default defineConfig({
   output: "server",
   compressHTML: true,
   integrations: [tailwind({ applyBaseStyles: true }), sitemap()],
+
+  // Image optimization
+  image: {
+    // Enable image optimization with sharp
+    service: { entrypoint: 'astro/assets/services/sharp' },
+    // Default formats for optimized images
+    remotePatterns: [{ protocol: "https" }],
+  },
+
   vite: {
     ssr: {
       external: ["@prisma/client", "@prisma/engines"],
     },
     build: {
       target: "es2019",
+      // CSS code splitting for better caching
+      cssCodeSplit: true,
     },
     esbuild: {
       target: "es2019",

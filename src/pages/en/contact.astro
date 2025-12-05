@@ -139,6 +139,93 @@ const wa = phone
     </div>
   </section>
 
+  <!-- Modal Overlay -->
+  <div
+    id="formModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm"
+  >
+    <div
+      class="bg-white dark:bg-gray-900 rounded-xl shadow-2xl p-8 max-w-sm mx-4 text-center"
+    >
+      <!-- Loading State -->
+      <div id="modalLoading" class="hidden">
+        <div
+          class="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"
+        >
+        </div>
+        <p class="text-lg font-medium text-gray-900 dark:text-white">
+          Sending...
+        </p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Please wait</p>
+      </div>
+
+      <!-- Success State -->
+      <div id="modalSuccess" class="hidden">
+        <div
+          class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <svg
+            class="w-8 h-8 text-green-600 dark:text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <p class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+          Message Sent!
+        </p>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Thank you for contacting us. We'll get back to you as soon as
+          possible.
+        </p>
+        <button
+          id="modalOkBtn"
+          class="w-full py-3 px-6 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          OK
+        </button>
+      </div>
+
+      <!-- Error State -->
+      <div id="modalError" class="hidden">
+        <div
+          class="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <svg
+            class="w-8 h-8 text-red-600 dark:text-red-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </div>
+        <p class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+          Something went wrong
+        </p>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Please try again later or contact us directly.
+        </p>
+        <button
+          id="modalRetryBtn"
+          class="w-full py-3 px-6 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          Try Again
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       // Type-safe element getters with proper type guards
@@ -166,20 +253,19 @@ const wa = phone
       // Email validation regex
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      // Validation state classes
-      const validClass = "border-green-500 dark:border-green-400";
-      const invalidClass = "border-red-500 dark:border-red-400";
-      const defaultClass = "border-gray-300 dark:border-gray-700";
+      // Validation state classes (as arrays for classList operations)
+      const validClasses = ["border-green-500", "dark:border-green-400"];
+      const invalidClasses = ["border-red-500", "dark:border-red-400"];
 
       function setFieldState(
         el: HTMLInputElement | HTMLTextAreaElement,
         isValid: boolean | null,
       ) {
-        el.classList.remove(validClass, invalidClass);
+        el.classList.remove(...validClasses, ...invalidClasses);
         if (isValid === true) {
-          el.classList.add(validClass);
+          el.classList.add(...validClasses);
         } else if (isValid === false) {
-          el.classList.add(invalidClass);
+          el.classList.add(...invalidClasses);
         }
       }
 
@@ -246,6 +332,41 @@ const wa = phone
         statusEl.classList.add(...toneClasses);
       }
 
+      // Modal elements
+      const modal = document.getElementById("formModal");
+      const modalLoading = document.getElementById("modalLoading");
+      const modalSuccess = document.getElementById("modalSuccess");
+      const modalError = document.getElementById("modalError");
+      const modalOkBtn = document.getElementById("modalOkBtn");
+      const modalRetryBtn = document.getElementById("modalRetryBtn");
+
+      function showModal(state: "loading" | "success" | "error") {
+        if (!modal || !modalLoading || !modalSuccess || !modalError) return;
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        document.body.style.overflow = "hidden";
+
+        modalLoading.classList.add("hidden");
+        modalSuccess.classList.add("hidden");
+        modalError.classList.add("hidden");
+
+        if (state === "loading") modalLoading.classList.remove("hidden");
+        if (state === "success") modalSuccess.classList.remove("hidden");
+        if (state === "error") modalError.classList.remove("hidden");
+      }
+
+      function hideModal() {
+        if (!modal) return;
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        document.body.style.overflow = "";
+      }
+
+      // Modal button handlers
+      modalOkBtn?.addEventListener("click", hideModal);
+      modalRetryBtn?.addEventListener("click", hideModal);
+
       form.addEventListener("submit", async (ev) => {
         ev.preventDefault();
 
@@ -268,10 +389,9 @@ const wa = phone
           return;
         }
 
-        const original = btn.textContent;
-        setStatus("Sending...", "info");
+        // Show loading modal
+        showModal("loading");
         btn.disabled = true;
-        btn.textContent = "Sending...";
 
         try {
           const res = await fetch("/api/contact", {
@@ -292,17 +412,15 @@ const wa = phone
           [nameEl, emailEl, phoneEl, messageEl].forEach((el) =>
             setFieldState(el, null),
           );
+          setStatus("", "idle");
 
-          setStatus(
-            "Message sent successfully! We'll be in touch soon.",
-            "success",
-          );
+          // Show success modal
+          showModal("success");
         } catch (err) {
           console.error(err);
-          setStatus("Something went wrong. Please try again later.", "error");
+          showModal("error");
         } finally {
           btn.disabled = false;
-          btn.textContent = original || "Send Message";
         }
       });
     })();

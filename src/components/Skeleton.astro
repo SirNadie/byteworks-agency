@@ -1,0 +1,76 @@
+---
+/**
+ * Skeleton - Placeholder component for loading states
+ * Shows pulsing gray boxes while content loads
+ */
+interface Props {
+  class?: string;
+  lines?: number;
+  variant?: "text" | "card" | "avatar" | "button";
+}
+
+const { class: className = "", lines = 1, variant = "text" } = Astro.props;
+
+const variants = {
+  text: "h-4 rounded",
+  card: "h-32 rounded-lg",
+  avatar: "h-12 w-12 rounded-full",
+  button: "h-10 w-24 rounded-lg",
+};
+
+const baseClass = variants[variant] || variants.text;
+---
+
+<div class:list={["skeleton-wrapper", className]}>
+  {
+    Array.from({ length: lines }).map((_, i) => (
+      <div
+        class:list={[
+          "skeleton bg-gray-200 dark:bg-gray-700 animate-pulse",
+          baseClass,
+          i > 0 && "mt-2",
+          variant === "text" && i === lines - 1 && "w-3/4",
+        ]}
+        aria-hidden="true"
+      />
+    ))
+  }
+</div>
+
+<style>
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgb(229 231 235) 0%,
+      rgb(243 244 246) 50%,
+      rgb(229 231 235) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  :global(.dark) .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgb(55 65 81) 0%,
+      rgb(75 85 99) 50%,
+      rgb(55 65 81) 100%
+    );
+    background-size: 200% 100%;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton {
+      animation: none;
+    }
+  }
+</style>

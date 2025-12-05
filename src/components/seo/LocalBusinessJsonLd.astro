@@ -1,0 +1,48 @@
+---
+/**
+ * LocalBusinessJsonLd - Schema.org LocalBusiness structured data
+ * Helps with local search visibility
+ */
+interface Props {
+  lang?: "en" | "es";
+}
+
+const { lang = "en" } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://byteworksagency.com/#organization",
+  name: "ByteWorks Agency",
+  description:
+    lang === "es"
+      ? "Agencia de diseño web con suscripciones mensuales. Sitios modernos, rápidos y bilingües."
+      : "Web design agency with monthly subscriptions. Modern, fast, bilingual websites.",
+  url: "https://byteworksagency.com",
+  logo: "https://byteworksagency.com/logo.png",
+  image: "https://byteworksagency.com/og-image.png",
+  email: "hello@byteworksagency.com",
+  priceRange: "$$",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+  sameAs: [
+    "https://twitter.com/byteworksagency",
+    "https://linkedin.com/company/byteworksagency",
+  ],
+  areaServed: [
+    { "@type": "Country", name: "Trinidad and Tobago" },
+    { "@type": "Country", name: "United States" },
+  ],
+  serviceType: ["Web Design", "Web Development", "Website Maintenance", "SEO"],
+};
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>
