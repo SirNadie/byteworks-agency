@@ -47,7 +47,7 @@ const wa = phone
           type="text"
           required
           placeholder="e.g. Jane Doe / ACME Inc."
-          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition-all duration-200"
         />
       </div>
 
@@ -61,7 +61,7 @@ const wa = phone
           type="tel"
           inputmode="tel"
           placeholder="e.g. @brandhandle or +1 868 775 9858"
-          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition-all duration-200"
         />
       </div>
 
@@ -75,7 +75,7 @@ const wa = phone
           type="email"
           required
           placeholder="e.g. contact@company.com"
-          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition-all duration-200"
         />
       </div>
 
@@ -89,7 +89,7 @@ const wa = phone
           rows="5"
           required
           placeholder="Tell us a bit about your project..."
-          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+          class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition-all duration-200"
         ></textarea>
       </div>
 
@@ -306,6 +306,7 @@ const wa = phone
       });
 
       function setStatus(message: string, tone = "info") {
+        if (!statusEl) return;
         statusEl.textContent = message;
         statusEl.dataset.tone = tone;
         statusEl.classList.remove(
