@@ -130,11 +130,13 @@ const items = [
 <section id={id} class="mt-20">
   <header class="text-center mb-8 space-y-2">
     <h2
-      class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-text-primary font-heading"
+      class="hero-animate text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-text-primary font-heading"
     >
       {isEN ? "Optional Add-Ons" : "Add-ons opcionales"}
     </h2>
-    <p class="text-sm text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+    <p
+      class="hero-animate-delay-1 text-sm text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+    >
       {
         isEN
           ? "Activate only what you need. Every add-on integrates smoothly without affecting your design or core plan."
@@ -153,7 +155,7 @@ const items = [
         const foot = isEN ? it.footEN : it.footES;
 
         return (
-          <article class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 flex flex-col bg-white dark:bg-background-dark/50">
+          <article class="card-hover border border-gray-200 dark:border-gray-700 rounded-xl p-6 flex flex-col bg-white dark:bg-background-dark/50">
             <h3 class="text-lg font-bold leading-snug text-gray-900 dark:text-text-primary font-heading">
               {title}
             </h3>

@@ -11,7 +11,7 @@ const phoneEnv = (ENV.PUBLIC_CONTACT_PHONE || "").toString();
 const contactEmail = emailEnv || DEFAULT_EMAIL;
 const contactPhone = phoneEnv || DEFAULT_WA;
 
-function formatNANP(num) {
+function formatNANP(num: string | null | undefined) {
   try {
     const digits = (num || "").replace(/[^0-9]/g, "");
     if (!digits) return num || "";
@@ -83,11 +83,11 @@ const privacy = isEN ? `${base}/privacy` : `${base}/privacidad`;
         </h3>
         <div class="flex flex-col gap-2">
           <a
-            class="text-gray-600 dark:text-gray-400 text-sm hover:text-primary"
+            class="text-gray-600 dark:text-gray-400 text-sm hover:text-primary transition-colors duration-200"
             href={privacy}>{isEN ? "Privacy" : "Privacidad"}</a
           >
           <a
-            class="text-gray-600 dark:text-gray-400 text-sm hover:text-primary"
+            class="text-gray-600 dark:text-gray-400 text-sm hover:text-primary transition-colors duration-200"
             href={terms}>{isEN ? "Terms" : "Términos"}</a
           >
         </div>
@@ -118,7 +118,7 @@ const privacy = isEN ? `${base}/privacy` : `${base}/privacidad`;
             <i class="fa-brands fa-tiktok"></i>
           </a>
           <a
-            class="text-gray-600 dark:text-gray-400 hover:text-primary"
+            class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200"
             href="https://www.instagram.com/byteworksagency/"
             aria-label="Instagram"
             target="_blank"

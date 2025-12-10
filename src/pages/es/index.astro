@@ -19,67 +19,69 @@ const faqs = HOME_FAQS.es;
     <!-- HERO -->
     <div class="text-center space-y-6">
       <h1
-        class="text-4xl md:text-6xl font-extrabold leading-tight tracking-[-0.033em] text-gray-900 dark:text-text-primary font-heading"
+        class="hero-animate text-4xl md:text-6xl font-extrabold leading-tight tracking-[-0.033em] text-gray-900 dark:text-text-primary font-heading"
       >
         Eleva tu marca con diseño web impactante
       </h1>
       <p
-        class="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+        class="hero-animate-delay-1 text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
       >
         Diseño y desarrollo web por suscripción para emprendedores, marcas
         personales y pequeños negocios.
       </p>
-      <div class="flex items-center justify-center">
+      <div class="hero-animate-delay-2 flex items-center justify-center">
         <a
           href="/es/pricing"
-          class="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-transparent text-gray-900 dark:text-white border border-primary hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+          class="btn-hover inline-flex items-center justify-center h-12 px-6 rounded-lg bg-transparent text-gray-900 dark:text-white border border-primary hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
           >Ver planes</a
         >
       </div>
     </div>
 
     <!-- BENEFICIOS -->
-    <div class="grid md:grid-cols-3 gap-6 mt-16">
-      <div
-        class="p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark/50"
-      >
-        <h3
-          class="font-heading font-bold text-gray-900 dark:text-text-primary mb-2"
+    <ScrollReveal class="mt-16">
+      <div class="grid md:grid-cols-3 gap-6 stagger-children">
+        <div
+          class="card-hover p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark/50"
         >
-          Bilingüe desde el inicio
-        </h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">
-          Estructura en inglés y español con rutas amigables para SEO.
-        </p>
-      </div>
-      <div
-        class="p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark/50"
-      >
-        <h3
-          class="font-heading font-bold text-gray-900 dark:text-text-primary mb-2"
+          <h3
+            class="font-heading font-bold text-gray-900 dark:text-text-primary mb-2"
+          >
+            Bilingüe desde el inicio
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Estructura en inglés y español con rutas amigables para SEO.
+          </p>
+        </div>
+        <div
+          class="card-hover p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark/50"
         >
-          Precios transparentes
-        </h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">
-          Opciones mensuales/anuales, mantenimiento incluido y sin sorpresas.
-        </p>
-      </div>
-      <div
-        class="p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark/50"
-      >
-        <h3
-          class="font-heading font-bold text-gray-900 dark:text-text-primary mb-2"
+          <h3
+            class="font-heading font-bold text-gray-900 dark:text-text-primary mb-2"
+          >
+            Precios transparentes
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Opciones mensuales/anuales, mantenimiento incluido y sin sorpresas.
+          </p>
+        </div>
+        <div
+          class="card-hover p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark/50"
         >
-          Rápido y seguro
-        </h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300">
-          Rendimiento, SSL y copias de seguridad incluidos.
-        </p>
+          <h3
+            class="font-heading font-bold text-gray-900 dark:text-text-primary mb-2"
+          >
+            Rápido y seguro
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Rendimiento, SSL y copias de seguridad incluidos.
+          </p>
+        </div>
       </div>
-    </div>
+    </ScrollReveal>
 
     <!-- PLANES -->
-    <div class="mt-20" id="pricing">
+    <ScrollReveal class="mt-20" id="pricing">
       <div class="flex flex-col gap-4 text-center mb-6">
         <h2
           class="text-3xl md:text-4xl font-extrabold leading-tight tracking-[-0.033em] text-gray-900 dark:text-text-primary font-heading"
@@ -96,7 +98,7 @@ const faqs = HOME_FAQS.es;
         {
           planesHome.map((p) => (
             <div
-              class={`relative flex h-full flex-col rounded-xl bg-white dark:bg-background-dark/50 p-6 ${p.name === "Pro" ? "border-2 border-primary" : "border border-gray-200 dark:border-gray-700"}`}
+              class={`card-hover relative flex h-full flex-col rounded-xl bg-white dark:bg-background-dark/50 p-6 ${p.name === "Pro" ? "border-2 border-primary" : "border border-gray-200 dark:border-gray-700"}`}
             >
               {p.name === "Pro" && (
                 <p class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 text-white text-xs font-medium tracking-[0.015em] rounded-full bg-secondary px-3 py-1 text-center">
@@ -132,7 +134,7 @@ const faqs = HOME_FAQS.es;
               <div class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700">
                 <a
                   href="/es/pricing"
-                  class="inline-flex w-full items-center justify-center h-10 px-4 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors"
+                  class="btn-hover inline-flex w-full items-center justify-center h-10 px-4 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors"
                 >
                   Ver planes
                 </a>
@@ -144,7 +146,7 @@ const faqs = HOME_FAQS.es;
       <p class="text-center text-xs text-gray-500 dark:text-gray-400 mt-3">
         Precios en USD. Para otros métodos de pago/monedas, contáctanos.
       </p>
-    </div>
+    </ScrollReveal>
 
     <AddOns lang="es" id="add-ons" summaryOnly={true} />
 
@@ -166,7 +168,7 @@ const faqs = HOME_FAQS.es;
       <div class="grid grid-cols-[auto_1fr] gap-x-8 gap-y-4 max-w-md mx-auto">
         <div class="flex flex-col items-center gap-2">
           <div
-            class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
+            class="icon-pulse flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
           >
             <span class="material-symbols-outlined">search</span>
           </div>
@@ -184,7 +186,7 @@ const faqs = HOME_FAQS.es;
         </div>
         <div class="flex flex-col items-center gap-2">
           <div
-            class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
+            class="icon-pulse flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
           >
             <span class="material-symbols-outlined">design_services</span>
           </div>
@@ -202,7 +204,7 @@ const faqs = HOME_FAQS.es;
         </div>
         <div class="flex flex-col items-center gap-2">
           <div
-            class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
+            class="icon-pulse flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
           >
             <span class="material-symbols-outlined">developer_mode</span>
           </div>
@@ -220,7 +222,7 @@ const faqs = HOME_FAQS.es;
         </div>
         <div class="flex flex-col items-center gap-2">
           <div
-            class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
+            class="icon-pulse flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary"
           >
             <span class="material-symbols-outlined">rocket_launch</span>
           </div>

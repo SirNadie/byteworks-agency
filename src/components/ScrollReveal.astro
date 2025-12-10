@@ -7,14 +7,16 @@
  */
 interface Props {
   class?: string;
+  id?: string;
   delay?: number; // delay in ms
   threshold?: number; // 0-1, how much of element should be visible
 }
 
-const { class: className = "", delay = 0, threshold = 0.1 } = Astro.props;
+const { class: className = "", id, delay = 0, threshold = 0.1 } = Astro.props;
 ---
 
 <div
+  id={id}
   class={`scroll-reveal ${className}`}
   data-delay={delay}
   data-threshold={threshold}

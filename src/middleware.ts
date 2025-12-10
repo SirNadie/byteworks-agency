@@ -13,19 +13,12 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
   const url = new URL(context.request.url);
   const { pathname, searchParams } = url;
 
-  // Allow auth routes to render (no locale redirect)
-  if (/^\/auth(\/|$)/.test(pathname)) {
+  // Skip middleware for assets and existing locale routes
+  if (/^\/(en|es)(\/|$)/.test(pathname) || isAsset(pathname)) {
     return next();
   }
 
-  // Admin routes removed
-
-
-  if (/^\/(en|es)(\/|$)/.test(pathname) || isAsset(pathname)) {
-    return next(); // ya estamos en idioma o es asset
-  }
-
-  // override manual: /?lang=en|es
+  // Manual override via query param: /?lang=en|es
   const qlang = searchParams.get('lang');
   if (qlang === 'en' || qlang === 'es') {
     context.cookies.set('bw_lang', qlang, { path: '/', maxAge: 31536000 });
@@ -35,7 +28,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
     });
   }
 
-  // cookie guardada
+  // Check for saved cookie
   const cookieLang = context.cookies.get('bw_lang')?.value;
   if (cookieLang === 'en' || cookieLang === 'es') {
     return new Response(null, {
@@ -44,7 +37,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
     });
   }
 
-  // idioma del navegador
+  // Detect browser language
   const accept = context.request.headers.get('accept-language') || '';
 
   const parseAcceptLanguage = (header: string, supported: string[], fallback: string) => {
