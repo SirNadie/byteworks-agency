@@ -101,7 +101,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ lang = 'en' }) => {
                     {/* Mobile Hamburger */}
                     <button
                         id="hamburger"
-                        className={`md:hidden relative h-10 w-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary ${isMenuOpen ? 'open' : ''
+                        className={`md:hidden relative h-10 w-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors hover:bg-primary/20 cursor-pointer ${isMenuOpen ? 'open' : ''
                             }`}
                         aria-label={isEN ? 'Open menu' : 'Abrir menú'}
                         aria-expanded={isMenuOpen}
@@ -109,15 +109,15 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ lang = 'en' }) => {
                         type="button"
                     >
                         <span
-                            className={`absolute w-[22px] h-[2px] bg-currentColor rounded transition-all duration-200 ${isMenuOpen ? 'top-[18px] rotate-45' : 'top-[12px]'
+                            className={`absolute w-[22px] h-[2px] bg-current rounded transform left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out ${isMenuOpen ? 'top-[19px] rotate-45' : 'top-[12px]'
                                 }`}
                         ></span>
                         <span
-                            className={`absolute w-[22px] h-[2px] bg-currentColor rounded transition-all duration-200 top-[18px] ${isMenuOpen ? 'opacity-0 -translate-x-[6px]' : ''
+                            className={`absolute w-[22px] h-[2px] bg-current rounded transform left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out top-[19px] ${isMenuOpen ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'
                                 }`}
                         ></span>
                         <span
-                            className={`absolute w-[22px] h-[2px] bg-currentColor rounded transition-all duration-200 ${isMenuOpen ? 'top-[18px] -rotate-45' : 'top-[24px]'
+                            className={`absolute w-[22px] h-[2px] bg-current rounded transform left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out ${isMenuOpen ? 'top-[19px] -rotate-45' : 'top-[26px]'
                                 }`}
                         ></span>
                     </button>
