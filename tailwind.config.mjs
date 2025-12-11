@@ -1,12 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-const config = {
-  darkMode: "media",
-  content: ["./src/**/*.{astro,html,js,ts,jsx,tsx,vue,svelte}"],
+export default {
+  darkMode: "class",
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}"
+  ],
   theme: {
     extend: {
       colors: {
         brand: {
-          DEFAULT: "#06b6d4", // legacy brand
+          DEFAULT: "#06b6d4",
           soft: "#22d3ee",
           strong: "#0891b2",
         },
@@ -32,6 +35,4 @@ const config = {
     },
   },
   plugins: [],
-};
-
-export default config;
+}
