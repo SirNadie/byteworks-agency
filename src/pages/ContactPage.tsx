@@ -17,24 +17,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        // Temporary placeholder: API removed to be re-implemented with Payload/new automation
+        console.log("Form submitted (logic pending replacement):", formData);
+
         setStatus('loading');
-
-        try {
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
-
-            if (!res.ok) throw new Error(isEN ? 'Failed to send' : 'Error al enviar');
-
+        // Simulate delay
+        setTimeout(() => {
             setStatus('success');
             setFormData({ name: '', email: '', phone: '', message: '' });
-        } catch (err: any) {
-            console.error(err);
-            setStatus('error');
-            setErrorMessage(err.message || 'Error');
-        }
+        }, 1000);
     };
 
     return (

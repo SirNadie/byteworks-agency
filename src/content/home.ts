@@ -83,53 +83,61 @@ export const HOME_FAQS: Record<'en' | 'es', readonly HomeFaq[]> = {
   en: [
     {
       q: 'How fast can you deliver my website?',
-      a: 'Start launches in 7 to 10 business days. Pro and Elite take 2 to 4 weeks.',
+      a: 'Start launches in 7 to 10 business days. Pro and E-Commerce Pro take 2 to 4 weeks depending on scope.',
     },
     {
       q: 'What does "monthly update" include?',
-      a: "Small tasks like text or image changes, layout tweaks, or product edits. They are time-boxed and do not roll over. See Terms and SLA.",
+      a: "Small tasks like text or image changes, layout tweaks, or product edits. Work is time-boxed based on your plan.",
     },
     {
       q: 'Do you handle online payments?',
-      a: 'Not by default. E-Commerce Pro uses manual order flow without gateways. We can quote a custom add-on for payments.',
-    },
-    {
-      q: 'Can I track delivery orders?',
-      a: 'Yes. Orders get an internal code to share with customers. Track status in our dashboard.',
+      a: 'Not by default. E-Commerce Pro uses a manual checkout flow (WhatsApp/Email). We can quote custom payment gateways if needed.',
     },
     {
       q: 'Who owns the domain and content?',
-      a: 'You do. We manage the tech stack while subscribed. You keep ownership of your brand, domain, and content.',
+      a: 'You do. We manage the tech stack, but you keep full ownership of your brand, domain, and content.',
     },
     {
       q: 'Bilingual by default?',
-      a: 'Yes. English and Spanish structure included. We can hide one language if needed.',
+      a: 'Yes. English and Spanish structure included (SEO-friendly). We can hide one language if you prefer.',
     },
     {
       q: 'SEO included?',
-      a: 'All plans include basic SEO like structure and sitemap. For more visibility, use the Advanced SEO add-on.',
+      a: 'Yes. Structure, sitemap, metadata, and fast performance are standard. Advanced SEO/Local listing is an add-on.',
     },
     {
-      q: 'Can I migrate later?',
-      a: 'Yes. We can export your static site and assets upon cancellation.',
+      q: 'Can I cancel anytime?',
+      a: 'Yes. You retain your domain and content. We provide a static backup upon request. Hosting stops at end of cycle.',
     },
   ],
   es: [
     {
-      q: '¿En cuánto tiempo puedo tener mi sitio?',
-      a: 'Start sale en 7 a 10 días hábiles desde que recibimos textos y assets. Pro y Elite toman 2 a 4 semanas según alcance y revisiones.',
+      q: '¿Qué tan rápido pueden entregar mi sitio web?',
+      a: 'Start sale en 7 a 10 días hábiles. Pro y E-Commerce Pro toman 2 a 4 semanas según alcance.',
     },
     {
       q: '¿Qué incluye la “actualización mensual”?',
-      a: 'Tareas pequeñas como cambios de texto/imagen, ajustes de diseño o edición de productos. Están acotadas por tiempo según plan y no se acumulan (ver Términos + SLA).',
+      a: 'Tareas pequeñas como cambios de texto/imagen, ajustes de diseño o edición de productos. El trabajo se acota según tu plan.',
     },
     {
       q: '¿Incluye pagos en línea?',
-      a: 'No por defecto. E-Commerce Pro usa flujo de pedido manual sin pasarela. Si luego necesitas pagos, podemos cotizarlo como add-on.',
+      a: 'No por defecto. E-Commerce Pro usa checkout manual (WhatsApp/Email). Si necesitas pasarelas de pago, podemos cotizarlo.',
     },
     {
-      q: '¿Puedo dar seguimiento a pedidos de delivery?',
-      a: 'Sí. Cada pedido obtiene un código interno. El estado se maneja en nuestro dashboard interno y se muestra en una página de tracking.',
+      q: '¿Soy dueño de mi dominio y contenido?',
+      a: 'Sí. Nosotros gestionamos la tecnología, pero tú conservas la propiedad total de tu marca, dominio y contenido.',
+    },
+    {
+      q: '¿Es bilingüe por defecto?',
+      a: 'Sí. Incluye estructura en Inglés y Español (amigable para SEO). Podemos ocultar un idioma si lo prefieres.',
+    },
+    {
+      q: '¿Incluye SEO?',
+      a: 'Sí. Estructura, sitemap, metadatos y velocidad vienen de serie. El SEO Avanzado/Local está disponible como add-on.',
+    },
+    {
+      q: '¿Puedo cancelar cuando quiera?',
+      a: 'Sí. Conservas tu dominio y contenido. Entregamos un backup estático si lo pides. El hosting se detiene al final del ciclo.',
     },
   ],
 };
