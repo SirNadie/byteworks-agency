@@ -72,7 +72,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
 
             setStatus('success');
             setShowModal(true);
-            setFormData({ name: '', email: '', phone: '', message: '' });
+            setFormData({ name: '', email: '', phone: '', message: '', bot_field: '' });
         } catch (error) {
             console.error('Contact form error:', error);
             setStatus('error');
