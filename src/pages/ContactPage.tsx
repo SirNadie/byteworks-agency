@@ -10,7 +10,13 @@ const API_URL = import.meta.env.VITE_DASHBOARD_API_URL || 'http://localhost:3000
 
 export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     const isEN = lang === 'en';
-    const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        bot_field: ''
+    });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
     const [showModal, setShowModal] = useState(false);
@@ -21,6 +27,25 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Anti-Spam Check
+        if (formData.bot_field) {
+            setStatus('success');
+            setShowModal(true);
+            return;
+        }
+
+        // Phone Validation
+        const phoneRegex = /^[\d\s\-\+\(\)]{7,}$/;
+        if (formData.phone && !phoneRegex.test(formData.phone)) {
+            setStatus('error');
+            setErrorMessage(isEN
+                ? "Please enter a valid phone number (min 7 digits)."
+                : "Por favor ingresa un número de teléfono válido (mín. 7 dígitos).");
+            setShowModal(true);
+            return;
+        }
+
         setStatus('loading');
         setErrorMessage('');
 
@@ -36,6 +61,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                     phone: formData.phone || '',
                     message: formData.message,
                     source: 'byteworks-website',
+                    bot_field: formData.bot_field,
                 }),
             });
 
@@ -208,6 +234,20 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                             disabled={status === 'loading'}
                             className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white disabled:opacity-50"
                         ></textarea>
+                    </div>
+
+                    {/* Honeypot Field (Hidden) */}
+                    <div className="absolute opacity-0 -z-10 h-0 w-0 overflow-hidden">
+                        <label htmlFor="bot_field">Website</label>
+                        <input
+                            type="text"
+                            id="bot_field"
+                            name="bot_field"
+                            value={formData.bot_field}
+                            onChange={handleChange}
+                            tabIndex={-1}
+                            autoComplete="off"
+                        />
                     </div>
 
                     <button
