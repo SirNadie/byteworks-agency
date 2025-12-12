@@ -123,21 +123,47 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
 
                     <button
                         type="submit"
-                        disabled={status === 'loading'}
-                        className="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 rounded-md bg-black text-white dark:bg-white dark:text-black hover:opacity-90 transition disabled:opacity-50"
+                        disabled={status === 'loading' || status === 'success'}
+                        className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-black text-white dark:bg-white dark:text-black hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {status === 'loading' ? (isEN ? 'Sending...' : 'Enviando...') : (isEN ? 'Send Message' : 'Enviar Mensaje')}
+                        {status === 'loading' && (
+                            <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        )}
+                        {status === 'loading'
+                            ? (isEN ? 'Sending...' : 'Enviando...')
+                            : status === 'success'
+                                ? (isEN ? 'Sent!' : '¡Enviado!')
+                                : (isEN ? 'Send Message' : 'Enviar Mensaje')
+                        }
                     </button>
 
                     {status === 'success' && (
-                        <p className="text-green-600 dark:text-green-400 text-center font-bold">
-                            {isEN ? "Message Sent!" : "¡Mensaje Enviado!"}
-                        </p>
+                        <div className="mt-6 p-6 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-center space-y-3">
+                            <div className="flex justify-center">
+                                <svg className="h-12 w-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-green-700 dark:text-green-400">
+                                {isEN ? "Thank you!" : "¡Gracias!"}
+                            </h3>
+                            <p className="text-green-600 dark:text-green-300">
+                                {isEN
+                                    ? "Your message has been received. Please check your email for more information and next steps."
+                                    : "Tu mensaje ha sido recibido. Por favor revisa tu correo electrónico para más información y próximos pasos."
+                                }
+                            </p>
+                        </div>
                     )}
                     {status === 'error' && (
-                        <p className="text-red-600 dark:text-red-400 text-center font-bold">
-                            {errorMessage}
-                        </p>
+                        <div className="mt-4 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-center">
+                            <p className="text-red-600 dark:text-red-400 font-medium">
+                                {errorMessage}
+                            </p>
+                        </div>
                     )}
                 </form>
             </section>
