@@ -6,7 +6,7 @@ interface ContactPageProps {
 }
 
 // API URL - Dashboard de ByteWorks (Payload CMS)
-const API_URL = import.meta.env.PUBLIC_DASHBOARD_API_URL || 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_DASHBOARD_API_URL || 'http://localhost:3000';
 
 export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     const isEN = lang === 'en';
