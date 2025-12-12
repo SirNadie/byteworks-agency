@@ -13,6 +13,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,6 +45,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
             }
 
             setStatus('success');
+            setShowModal(true);
             setFormData({ name: '', email: '', phone: '', message: '' });
         } catch (error) {
             console.error('Contact form error:', error);
@@ -53,18 +55,102 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                     ? 'Something went wrong. Please try again or contact us directly.'
                     : 'Algo salió mal. Intenta de nuevo o contáctanos directamente.'
             );
+            setShowModal(true);
+        }
+    };
+
+    const handleAccept = () => {
+        if (status === 'success') {
+            // Redirect to home
+            window.location.href = isEN ? '/' : '/es';
+        } else {
+            // Close modal and allow retry
+            setShowModal(false);
+            setStatus('idle');
         }
     };
 
     return (
         <Layout lang={lang} title={isEN ? "Contact Us" : "Contacto"}>
+            {/* Modal Overlay */}
+            {showModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    {/* Backdrop */}
+                    <div
+                        className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
+                        onClick={() => status === 'error' && handleAccept()}
+                    />
+
+                    {/* Modal Card */}
+                    <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full p-8 animate-scale-in">
+                        {status === 'success' ? (
+                            <>
+                                {/* Success Icon */}
+                                <div className="flex justify-center mb-6">
+                                    <div className="w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                                        <svg className="h-10 w-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                {/* Success Title */}
+                                <h3 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-3">
+                                    {isEN ? "Thank you!" : "¡Gracias!"}
+                                </h3>
+
+                                {/* Success Message */}
+                                <p className="text-center text-gray-600 dark:text-gray-300 mb-6">
+                                    {isEN
+                                        ? "Your message has been received successfully. Please check your email for more information and next steps."
+                                        : "Tu mensaje ha sido recibido exitosamente. Por favor revisa tu correo electrónico para más información y próximos pasos."
+                                    }
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                {/* Error Icon */}
+                                <div className="flex justify-center mb-6">
+                                    <div className="w-20 h-20 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                                        <svg className="h-10 w-10 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                {/* Error Title */}
+                                <h3 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-3">
+                                    {isEN ? "Oops!" : "¡Ups!"}
+                                </h3>
+
+                                {/* Error Message */}
+                                <p className="text-center text-gray-600 dark:text-gray-300 mb-6">
+                                    {errorMessage}
+                                </p>
+                            </>
+                        )}
+
+                        {/* Accept Button */}
+                        <button
+                            onClick={handleAccept}
+                            className="w-full py-3 px-6 rounded-lg bg-black dark:bg-white text-white dark:text-black font-semibold hover:opacity-90 transition-opacity"
+                        >
+                            {status === 'success'
+                                ? (isEN ? "Go to Home" : "Ir al Inicio")
+                                : (isEN ? "Try Again" : "Intentar de Nuevo")
+                            }
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <section className="px-6 md:px-10 lg:px-16 max-w-3xl mx-auto py-16 md:py-24 text-center space-y-8">
                 <h1 className="text-3xl md:text-5xl font-semibold">
-                    {isEN ? "Let’s work together" : "Trabajemos juntos"}
+                    {isEN ? "Let's work together" : "Trabajemos juntos"}
                 </h1>
                 <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                     {isEN
-                        ? "Ready to start? We're here to help. Pick any social link from the “Follow Us” section or fill the form below."
+                        ? "Ready to start? We're here to help. Pick any social link from the "Follow Us" section or fill the form below."
                         : "Listo para empezar? Estamos aquí para ayudar. Elige un enlace social o llena el formulario."}
                 </p>
 
@@ -123,7 +209,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
 
                     <button
                         type="submit"
-                        disabled={status === 'loading' || status === 'success'}
+                        disabled={status === 'loading'}
                         className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-black text-white dark:bg-white dark:text-black hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {status === 'loading' && (
@@ -134,39 +220,35 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                         )}
                         {status === 'loading'
                             ? (isEN ? 'Sending...' : 'Enviando...')
-                            : status === 'success'
-                                ? (isEN ? 'Sent!' : '¡Enviado!')
-                                : (isEN ? 'Send Message' : 'Enviar Mensaje')
+                            : (isEN ? 'Send Message' : 'Enviar Mensaje')
                         }
                     </button>
-
-                    {status === 'success' && (
-                        <div className="mt-6 p-6 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-center space-y-3">
-                            <div className="flex justify-center">
-                                <svg className="h-12 w-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <h3 className="text-xl font-bold text-green-700 dark:text-green-400">
-                                {isEN ? "Thank you!" : "¡Gracias!"}
-                            </h3>
-                            <p className="text-green-600 dark:text-green-300">
-                                {isEN
-                                    ? "Your message has been received. Please check your email for more information and next steps."
-                                    : "Tu mensaje ha sido recibido. Por favor revisa tu correo electrónico para más información y próximos pasos."
-                                }
-                            </p>
-                        </div>
-                    )}
-                    {status === 'error' && (
-                        <div className="mt-4 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-center">
-                            <p className="text-red-600 dark:text-red-400 font-medium">
-                                {errorMessage}
-                            </p>
-                        </div>
-                    )}
                 </form>
             </section>
+
+            {/* CSS Animations */}
+            <style>{`
+                @keyframes fade-in {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes scale-in {
+                    from { 
+                        opacity: 0;
+                        transform: scale(0.9);
+                    }
+                    to { 
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+                .animate-fade-in {
+                    animation: fade-in 0.2s ease-out forwards;
+                }
+                .animate-scale-in {
+                    animation: scale-in 0.3s ease-out forwards;
+                }
+            `}</style>
         </Layout>
     );
 };
