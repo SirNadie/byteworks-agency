@@ -88,11 +88,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                     {/* Modal Card */}
                     <div className="relative bg-white dark:bg-[#0A0A0A] border border-gray-100 dark:border-white/10 rounded-2xl shadow-2xl max-w-sm w-full p-8 animate-scale-up overflow-hidden">
                         {status === 'success' ? (
-                            <div className="flex flex-col items-center text-center">
-                                {/* Success Icon with Pulse Effect */}
+                            <div className="flex flex-col items-center text-center animate-slide-up-fade" style={{ animationDelay: '0.1s' }}>
+                                {/* Success Icon */}
                                 <div className="mb-6 relative">
-                                    <div className="absolute inset-0 bg-green-500/20 rounded-full animate-ping-slow"></div>
-                                    <div className="relative w-20 h-20 rounded-full bg-green-50 dark:bg-green-900/20 flex items-center justify-center animate-bounce-in">
+                                    <div className="relative w-20 h-20 rounded-full bg-green-50 dark:bg-green-900/20 flex items-center justify-center">
                                         <svg className="h-10 w-10 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                                         </svg>
@@ -113,9 +112,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                                 </p>
                             </div>
                         ) : (
-                            <div className="flex flex-col items-center text-center">
+                            <div className="flex flex-col items-center text-center animate-slide-up-fade" style={{ animationDelay: '0.1s' }}>
                                 {/* Error Icon */}
-                                <div className="mb-6 relative w-20 h-20 rounded-full bg-red-50 dark:bg-red-900/20 flex items-center justify-center animate-shake">
+                                <div className="mb-6 relative w-20 h-20 rounded-full bg-red-50 dark:bg-red-900/20 flex items-center justify-center">
                                     <svg className="h-10 w-10 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                                     </svg>
@@ -136,7 +135,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                         {/* Accept Button */}
                         <button
                             onClick={handleAccept}
-                            className="w-full py-3.5 px-6 rounded-xl bg-black dark:bg-white text-white dark:text-black font-semibold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-black/5 dark:shadow-white/5"
+                            className="w-full py-3.5 px-6 rounded-xl bg-black dark:bg-white text-white dark:text-black font-semibold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-black/5 dark:shadow-white/5 animate-slide-up-fade"
+                            style={{ animationDelay: '0.2s' }}
                         >
                             {status === 'success'
                                 ? (isEN ? "Back to Home" : "Volver al Inicio")
@@ -153,7 +153,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                 </h1>
                 <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                     {isEN
-                        ? "Ready to start? We're here to help. Pick any social link from the "Follow Us" section or fill the form below."
+                        ? "Ready to start? We're here to help. Pick any social link from the 'Follow Us' section or fill the form below."
                         : "Listo para empezar? Estamos aquí para ayudar. Elige un enlace social o llena el formulario."}
                 </p>
 
@@ -238,31 +238,26 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                 @keyframes scale-up {
                     from { 
                         opacity: 0;
-                        transform: scale(0.95) translateY(10px);
+                        transform: scale(0.95);
                     }
                     to { 
                         opacity: 1;
-                        transform: scale(1) translateY(0);
+                        transform: scale(1);
                     }
                 }
-                @keyframes bounce-in {
-                    0% { transform: scale(0.5); opacity: 0; }
-                    60% { transform: scale(1.1); opacity: 1; }
-                    100% { transform: scale(1); }
+                @keyframes slide-up-fade {
+                    from {
+                        opacity: 0;
+                        transform: translateY(10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
                 }
-                @keyframes shake {
-                    0%, 100% { transform: translateX(0); }
-                    25% { transform: translateX(-5px); }
-                    75% { transform: translateX(5px); }
-                }
-                @keyframes ping-slow {
-                    75%, 100% { transform: scale(1.5); opacity: 0; }
-                }
-                .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
-                .animate-scale-up { animation: scale-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-                .animate-bounce-in { animation: bounce-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-                .animate-shake { animation: shake 0.4s ease-in-out; }
-                .animate-ping-slow { animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+                .animate-fade-in { animation: fade-in 0.2s ease-out forwards; }
+                .animate-scale-up { animation: scale-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+                .animate-slide-up-fade { animation: slide-up-fade 0.4s ease-out forwards; opacity: 0; }
             `}</style>
         </Layout>
     );
