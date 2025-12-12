@@ -14,7 +14,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' plausible.io static.cloudflareinsights.com data: blob:; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' fonts.gstatic.com; connect-src 'self' plausible.io cloudflareinsights.com *.cloudflareinsights.com hook.us1.make.com hook.eu1.make.com hook.us2.make.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob: data:;"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' plausible.io static.cloudflareinsights.com data: blob:; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' fonts.gstatic.com; connect-src 'self' plausible.io cloudflareinsights.com *.cloudflareinsights.com hook.us1.make.com hook.eu1.make.com hook.us2.make.com portal.byteworksagency.com http://localhost:3000; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob: data:;"
         },
         {
           "key": "Referrer-Policy",
