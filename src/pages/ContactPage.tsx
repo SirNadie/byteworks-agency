@@ -5,6 +5,9 @@ interface ContactPageProps {
     lang: 'en' | 'es';
 }
 
+// API URL - Dashboard de ByteWorks (Payload CMS)
+const API_URL = import.meta.env.PUBLIC_DASHBOARD_API_URL || 'http://localhost:3000';
+
 export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     const isEN = lang === 'en';
     const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
@@ -17,15 +20,40 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Temporary placeholder: API removed to be re-implemented with Payload/new automation
-        console.log("Form submitted (logic pending replacement):", formData);
-
         setStatus('loading');
-        // Simulate delay
-        setTimeout(() => {
+        setErrorMessage('');
+
+        try {
+            const response = await fetch(`${API_URL}/api/contact-requests`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone || '',
+                    message: formData.message,
+                    source: 'byteworks-website',
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || 'Failed to send message');
+            }
+
             setStatus('success');
             setFormData({ name: '', email: '', phone: '', message: '' });
-        }, 1000);
+        } catch (error) {
+            console.error('Contact form error:', error);
+            setStatus('error');
+            setErrorMessage(
+                isEN
+                    ? 'Something went wrong. Please try again or contact us directly.'
+                    : 'Algo salió mal. Intenta de nuevo o contáctanos directamente.'
+            );
+        }
     };
 
     return (
@@ -50,7 +78,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+                            disabled={status === 'loading'}
+                            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white disabled:opacity-50"
                         />
                     </div>
                     <div>
@@ -62,7 +91,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+                            disabled={status === 'loading'}
+                            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white disabled:opacity-50"
                         />
                     </div>
                     <div>
@@ -73,7 +103,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                             type="text"
                             value={formData.phone}
                             onChange={handleChange}
-                            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+                            disabled={status === 'loading'}
+                            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white disabled:opacity-50"
                         />
                     </div>
                     <div>
@@ -85,7 +116,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                             required
                             value={formData.message}
                             onChange={handleChange}
-                            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white"
+                            disabled={status === 'loading'}
+                            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-black px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white disabled:opacity-50"
                         ></textarea>
                     </div>
 
