@@ -7,6 +7,7 @@ import { PlanIcon } from '../components/PlanIcon';
 import { AddOns } from '../components/AddOns';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { HOME_PLANS, HOME_FAQS } from '../content/home';
+import { PROJECTS } from '../content/projects';
 
 interface HomePageProps {
     lang: 'en' | 'es';
@@ -84,6 +85,65 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
                         </p>
                     </div>
                 </StaggerReveal>
+
+
+
+                {/* Featured Work Section */}
+                <ScrollReveal className="py-20 max-w-[1200px] mx-auto px-4">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white font-heading mb-4">
+                            {isEN ? "Featured Work" : "Proyectos Destacados"}
+                        </h2>
+                        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                            {isEN
+                                ? "Real results for real businesses. See what we've built."
+                                : "Resultados reales para negocios reales. Mira lo que hemos construido."}
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+                        {PROJECTS.map((project, index) => (
+                            <div key={index} className="group relative bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300">
+                                {/* Image */}
+                                <div className="aspect-video w-full overflow-hidden bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700/50 flex items-center justify-center p-8">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                </div>
+
+                                {/* Content */}
+                                <div className="p-6">
+                                    <div className="flex flex-wrap gap-2 mb-3">
+                                        {project.tags.map(tag => (
+                                            <span key={tag} className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                                        {isEN ? project.description.en : project.description.es}
+                                    </p>
+                                    <a
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+                                    >
+                                        {isEN ? "Visit Website" : "Visitar Sitio"}
+                                        <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </ScrollReveal>
 
                 {/* PLANS */}
                 <ScrollReveal className="mt-20" id="pricing">
