@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Helmet } from 'react-helmet-async';
 import { Layout } from '../layouts/Layout';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { ScrollReveal } from '../components/ScrollReveal';
@@ -65,7 +66,7 @@ const faqsEN: FAQCategory[] = [
             },
             {
                 q: "Will my website appear on Google immediately?",
-                a: "We build every site with an SEO-friendly structure (clean code, mobile optimization, fast loading) and submit it to Google upon launch. However, ranking on the first page depends on your content strategy. For faster results, we recommend our Advanced SEO Setup service."
+                a: "We build every site with an Advanced SEO structure (keyword research, mobile optimization, fast loading) and submit it to Google upon launch. Your site is fully optimized to rank from day one."
             },
             {
                 q: "How do I request changes or support?",
@@ -166,7 +167,7 @@ const faqsES: FAQCategory[] = [
             },
             {
                 q: "¿Mi sitio aparecerá en Google inmediatamente?",
-                a: "Construimos cada sitio con una estructura amigable para SEO (código limpio, optimización móvil, carga rápida) y lo enviamos a Google al lanzar. Sin embargo, rankear en la primera página depende de tu estrategia de contenido. Para resultados más rápidos, recomendamos nuestro servicio de Configuración SEO Avanzada."
+                a: "Construimos cada sitio con una estructura SEO Avanzada (investigación de palabras clave, optimización móvil, carga rápida) y lo enviamos a Google al lanzar. Tu sitio está totalmente optimizado para rankear desde el primer día."
             },
             {
                 q: "¿Cómo solicito cambios o soporte?",
@@ -231,6 +232,22 @@ export const FAQPage: React.FC<FAQPageProps> = ({ lang }) => {
 
     return (
         <Layout lang={lang} title={title} description={description}>
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": faqs.flatMap(cat => cat.items.map(item => ({
+                            "@type": "Question",
+                            "name": item.q,
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": typeof item.a === 'string' ? item.a : "Please contact us for more details."
+                            }
+                        })))
+                    })}
+                </script>
+            </Helmet>
             <section className="px-4 max-w-[960px] mx-auto py-20">
                 <header className="text-center space-y-3 mb-8">
                     <h1 className="hero-animate text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-text-primary font-heading">
@@ -272,7 +289,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ lang }) => {
                                     <li>Domain + hosting (no extra payments)</li>
                                     <li>Clean, professional, functional design</li>
                                     <li>Social links and contact form</li>
-                                    <li>Basic SEO to appear in search</li>
+                                    <li>Advanced SEO to rank higher</li>
                                     <li>Monthly maintenance and real support</li>
                                 </>
                             ) : (
@@ -280,7 +297,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ lang }) => {
                                     <li>Dominio + hosting (sin pagos extra)</li>
                                     <li>Diseño limpio, profesional y funcional</li>
                                     <li>Enlaces a redes y formulario de contacto</li>
-                                    <li>SEO básico para aparecer en buscadores</li>
+                                    <li>SEO Avanzado para rankear mejor</li>
                                     <li>Mantenimiento mensual y soporte real</li>
                                 </>
                             )}

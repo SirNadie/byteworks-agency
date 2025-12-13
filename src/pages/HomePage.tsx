@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Layout } from '../layouts/Layout';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { StaggerReveal } from '../components/StaggerReveal';
@@ -28,6 +29,32 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
 
     return (
         <Layout lang={lang} title={title} description={description}>
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "ProfessionalService",
+                        "name": "ByteWorks Agency",
+                        "image": "https://byteworksagency.com/android-chrome-512x512.png",
+                        "@id": "https://byteworksagency.com",
+                        "url": "https://byteworksagency.com",
+                        "telephone": "",
+                        "priceRange": "$45 - $70 USD/mo",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressCountry": "MX"
+                        },
+                        "serviceArea": {
+                            "@type": "GeoShape",
+                            "box": "14.53, -117.12 32.72, -86.74"
+                        },
+                        "sameAs": [
+                            "https://instagram.com/byteworksagency"
+                        ],
+                        "description": description
+                    })}
+                </script>
+            </Helmet>
             <section className="px-4 max-w-[960px] mx-auto py-20" id="about">
                 {/* HERO */}
                 <div className="text-center space-y-6">
@@ -58,8 +85,8 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
                         </h3>
                         <p className="text-sm text-gray-600 dark:text-gray-300">
                             {isEN
-                                ? "English and Spanish structure ready. SEO-friendly routes."
-                                : "Estructura en inglés y español lista. Rutas amigables para SEO."}
+                                ? "English and Spanish structure. Advanced SEO to rank."
+                                : "Estructura Inglés y Español. SEO Avanzado para rankear."}
                         </p>
                     </div>
                     <div className="card-hover p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark/50 flex flex-col items-center text-center">
@@ -230,10 +257,10 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
                     <div className="grid grid-cols-[auto_1fr] gap-x-8 gap-y-4 max-w-md mx-auto">
                         {/* Simple Steps - simplified for React/JSX mapping */}
                         {[
-                            { icon: 'search', titleEN: 'Discovery', titleES: 'Descubrimiento', descEN: 'We start by understanding your goals and requirements. (1-2 Weeks)', descES: 'Empezamos entendiendo tus objetivos y requisitos. (1-2 Semanas)', last: false },
-                            { icon: 'design_services', titleEN: 'Design', titleES: 'Diseño', descEN: 'We create a stunning, user-friendly design. (2-3 Weeks)', descES: 'Creamos un diseño impresionante y fácil de usar. (2-3 Semanas)', last: false },
-                            { icon: 'developer_mode', titleEN: 'Development', titleES: 'Desarrollo', descEN: 'We build your site with clean code and modern tech. (3-4 Weeks)', descES: 'Construimos tu sitio con código limpio y tecnología moderna. (3-4 Semanas)', last: false },
-                            { icon: 'rocket_launch', titleEN: 'Launch', titleES: 'Lanzamiento', descEN: 'We deploy your site and provide ongoing support. (1 Week)', descES: 'Desplegamos tu sitio y brindamos soporte continuo. (1 Semana)', last: true },
+                            { icon: 'search', titleEN: 'Discovery', titleES: 'Descubrimiento', descEN: 'We start by understanding your goals and requirements. (3-5 Days)', descES: 'Empezamos entendiendo tus objetivos y requisitos. (3-5 Días)', last: false },
+                            { icon: 'design_services', titleEN: 'Design', titleES: 'Diseño', descEN: 'We create a stunning, user-friendly design. (~1 Week)', descES: 'Creamos un diseño impresionante y fácil de usar. (~1 Semana)', last: false },
+                            { icon: 'developer_mode', titleEN: 'Development', titleES: 'Desarrollo', descEN: 'We build your site with clean code and modern tech. (~2 Weeks)', descES: 'Construimos tu sitio con código limpio y tecnología moderna. (~2 Semanas)', last: false },
+                            { icon: 'rocket_launch', titleEN: 'Launch', titleES: 'Lanzamiento', descEN: 'We deploy your site and provide ongoing support.', descES: 'Desplegamos tu sitio y brindamos soporte continuo.', last: true },
                         ].map((step, idx) => (
                             <React.Fragment key={idx}>
                                 <div className="flex flex-col items-center gap-2">

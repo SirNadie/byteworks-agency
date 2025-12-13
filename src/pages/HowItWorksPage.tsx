@@ -58,7 +58,7 @@ export const HowItWorksPage: React.FC<HowItWorksPageProps> = ({ lang }) => {
                                 </ul>
                             </div>
                             <p className="font-medium text-gray-500 dark:text-gray-400">
-                                {isEN ? "Duration: 1-2 weeks." : "Duración: 1-2 semanas."}
+                                {isEN ? "Duration: 3-5 days." : "Duración: 3-5 días."}
                             </p>
                         </div>
                     </article>
@@ -94,7 +94,7 @@ export const HowItWorksPage: React.FC<HowItWorksPageProps> = ({ lang }) => {
                                 </p>
                             </div>
                             <p className="font-medium text-gray-500 dark:text-gray-400">
-                                {isEN ? "Duration: 2-3 weeks." : "Duración: 2-3 semanas."}
+                                {isEN ? "Duration: ~1 week." : "Duración: ~1 semana."}
                             </p>
                         </div>
                     </article>
@@ -125,7 +125,7 @@ export const HowItWorksPage: React.FC<HowItWorksPageProps> = ({ lang }) => {
                                 </ul>
                             </div>
                             <p className="font-medium text-gray-500 dark:text-gray-400">
-                                {isEN ? "Duration: 3-4 weeks." : "Duración: 3-4 semanas."}
+                                {isEN ? "Duration: ~2 weeks." : "Duración: ~2 semanas."}
                             </p>
                         </div>
                     </article>

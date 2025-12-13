@@ -29,6 +29,7 @@ export const HOME_PLANS: Record<'en' | 'es', readonly HomePlan[]> = {
         'Mobile-First & Fully Responsive',
         'High-conversion Contact Form',
         'Managed Hosting & SSL Included',
+        'Advanced SEO Integration',
       ],
     },
     {
@@ -43,6 +44,7 @@ export const HOME_PLANS: Record<'en' | 'es', readonly HomePlan[]> = {
         'Custom UI/UX Design',
         'Centralized Lead Management',
         'Priority Support & Content Updates',
+        'Advanced SEO Integration',
       ],
     },
     {
@@ -57,6 +59,7 @@ export const HOME_PLANS: Record<'en' | 'es', readonly HomePlan[]> = {
         'Unlimited Inventory & Dashboard',
         'Simplified Manual Checkout',
         '500 Transactional Emails/mo',
+        'Advanced SEO Integration',
       ],
     },
   ],
@@ -73,6 +76,7 @@ export const HOME_PLANS: Record<'en' | 'es', readonly HomePlan[]> = {
         'Diseño Mobile-First y Responsivo',
         'Formulario de contacto de alta conversión',
         'Hosting Gestionado y SSL Incluido',
+        'Integración SEO Avanzada',
       ],
     },
     {
@@ -87,6 +91,7 @@ export const HOME_PLANS: Record<'en' | 'es', readonly HomePlan[]> = {
         'Diseño UI/UX Personalizado',
         'Gestión Centralizada de Leads',
         'Soporte Prioritario y Actualizaciones',
+        'Integración SEO Avanzada',
       ],
     },
     {
@@ -101,6 +106,7 @@ export const HOME_PLANS: Record<'en' | 'es', readonly HomePlan[]> = {
         'Inventario Ilimitado y Dashboard',
         'Checkout Manual Simplificado',
         '500 Emails Transaccionales/mes',
+        'Integración SEO Avanzada',
       ],
     },
   ],

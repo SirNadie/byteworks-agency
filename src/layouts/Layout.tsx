@@ -25,6 +25,33 @@ export const Layout: React.FC<LayoutProps> = ({
     const siteUrl = 'https://byteworksagency.com'; // Base URL for production
     const currentUrl = `${siteUrl}${pathname}`;
 
+    // Map of routes for translation
+    const routeMap: Record<string, { en: string; es: string }> = {
+        'home': { en: '/en', es: '/es' },
+        'about': { en: '/en/about', es: '/es/about' },
+        'pricing': { en: '/en/pricing', es: '/es/pricing' },
+        'contact': { en: '/en/contact', es: '/es/contacto' },
+        'faq': { en: '/en/faq', es: '/es/faq' },
+        'how-it-works': { en: '/en/how-it-works', es: '/es/how-it-works' },
+        'privacy': { en: '/en/privacy', es: '/es/privacidad' },
+        'terms': { en: '/en/terms', es: '/es/terminos' },
+    };
+
+    const getAlternateLink = (currentPath: string, targetLang: 'en' | 'es'): string => {
+        // 1. Identify current key
+        let currentKey = 'home';
+        // Remove trailing slash for consistency
+        const cleanPath = currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath;
+
+        for (const [key, paths] of Object.entries(routeMap)) {
+            if (paths.en === cleanPath || paths.es === cleanPath) {
+                currentKey = key;
+                break;
+            }
+        }
+        return `${siteUrl}${routeMap[currentKey][targetLang]}`;
+    };
+
     return (
         <div className="min-h-screen flex flex-col font-body bg-background-light text-gray-900 dark:bg-background-dark dark:text-text-secondary">
             <Helmet>
@@ -35,11 +62,11 @@ export const Layout: React.FC<LayoutProps> = ({
 
                 {/* Hreflang Tags for SEO */}
                 {/* @ts-ignore */}
-                <link rel="alternate" hreflang="en" href={`https://byteworksagency.com/en${pathname.replace(/^\/(en|es)/, '')}`} />
+                <link rel="alternate" hreflang="en" href={getAlternateLink(pathname, 'en')} />
                 {/* @ts-ignore */}
-                <link rel="alternate" hreflang="es" href={`https://byteworksagency.com/es${pathname.replace(/^\/(en|es)/, '')}`} />
+                <link rel="alternate" hreflang="es" href={getAlternateLink(pathname, 'es')} />
                 {/* @ts-ignore */}
-                <link rel="alternate" hreflang="x-default" href={`https://byteworksagency.com/en${pathname.replace(/^\/(en|es)/, '')}`} />
+                <link rel="alternate" hreflang="x-default" href={getAlternateLink(pathname, 'en')} />
 
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />

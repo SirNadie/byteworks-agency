@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Layout } from '../layouts/Layout';
 import { PlanIcon } from '../components/PlanIcon';
 import { AddOns } from '../components/AddOns';
@@ -76,6 +77,33 @@ export const PricingPage: React.FC<PricingPageProps> = ({ lang }) => {
 
     return (
         <Layout lang={lang} title={title} description={description}>
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Product",
+                        "name": "ByteWorks Web Subscription",
+                        "description": description,
+                        "brand": {
+                            "@type": "Brand",
+                            "name": "ByteWorks Agency"
+                        },
+                        "offers": plans.map(p => ({
+                            "@type": "Offer",
+                            "name": p.name,
+                            "price": p.price.replace(/[^0-9]/g, ''),
+                            "priceCurrency": "USD",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "price": p.price.replace(/[^0-9]/g, ''),
+                                "priceCurrency": "USD",
+                                "unitCode": "MON"
+                            },
+                            "description": p.description
+                        }))
+                    })}
+                </script>
+            </Helmet>
             <section className="px-4 max-w-[960px] mx-auto py-16 md:py-24">
                 <header className="text-center space-y-3">
                     <h1 className="hero-animate text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-text-primary font-heading">
