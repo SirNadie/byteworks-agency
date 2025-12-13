@@ -32,6 +32,15 @@ export const Layout: React.FC<LayoutProps> = ({
                 <title>{title}</title>
                 <meta name="description" content={description} />
                 <link rel="canonical" href={currentUrl} />
+
+                {/* Hreflang Tags for SEO */}
+                {/* @ts-ignore */}
+                <link rel="alternate" hreflang="en" href={`https://byteworksagency.com/en${pathname.replace(/^\/(en|es)/, '')}`} />
+                {/* @ts-ignore */}
+                <link rel="alternate" hreflang="es" href={`https://byteworksagency.com/es${pathname.replace(/^\/(en|es)/, '')}`} />
+                {/* @ts-ignore */}
+                <link rel="alternate" hreflang="x-default" href={`https://byteworksagency.com/en${pathname.replace(/^\/(en|es)/, '')}`} />
+
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
                 <meta property="og:url" content={currentUrl} />
@@ -40,7 +49,25 @@ export const Layout: React.FC<LayoutProps> = ({
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
                 <meta name="color-scheme" content="light dark" />
-                {/* Fonts are loaded in index.html for performance, but we rely on them here */}
+
+                {/* Organization Structured Data */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "ByteWorks Agency",
+                        "url": "https://byteworksagency.com",
+                        "logo": "https://byteworksagency.com/android-chrome-512x512.png",
+                        "contactPoint": {
+                            "@type": "ContactPoint",
+                            "contactType": "sales",
+                            "url": "https://byteworksagency.com/en/contact"
+                        },
+                        "sameAs": [
+                            "https://instagram.com/byteworksagency"
+                        ]
+                    })}
+                </script>
             </Helmet>
 
             <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[1000] bg-black text-white dark:bg-white dark:text-black px-3 py-2 rounded">

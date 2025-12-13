@@ -89,13 +89,15 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
                 <ScrollReveal className="mt-20" id="pricing">
                     <div className="flex flex-col gap-4 text-center mb-6">
                         <h2 className="text-3xl md:text-4xl font-extrabold leading-tight tracking-[-0.033em] text-gray-900 dark:text-text-primary font-heading">
-                            {isEN ? "Transparent Pricing" : "Precios Transparentes"}
+                            {isEN ? "Choose the Perfect Plan for Your Growth" : "Elige el plan perfecto para tu crecimiento"}
                         </h2>
                         <p className="text-base font-normal leading-normal max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-                            {isEN ? "Choose your plan. No hidden fees." : "Elige tu plan. Sin tarifas ocultas."}
+                            {isEN
+                                ? "Transparent pricing. Maintenance included. Scale whenever you need."
+                                : "Precios transparentes. Mantenimiento incluido. Escala cuando lo necesites."}
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div className="grid md:grid-cols-3 gap-6">
                         {homePlans.map((p) => (
                             <div
                                 key={p.name}
@@ -106,43 +108,49 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
                                         {isEN ? "Most Popular" : "Más Popular"}
                                     </p>
                                 )}
-                                <div className="space-y-1">
-                                    <h3 className={`flex items-center gap-3 text-2xl md:text-3xl font-extrabold tracking-[-0.025em] font-heading ${p.name === "Pro" ? "text-primary" : "text-gray-900 dark:text-text-primary"}`}>
-                                        <PlanIcon name={p.name} />
-                                        {p.name}
-                                    </h3>
-                                    <div className="flex items-center gap-2">
-                                        <p className="text-lg md:text-xl font-semibold text-gray-900 dark:text-text-primary">
-                                            {p.price}
+                                <div className="space-y-4">
+                                    <div className="space-y-1">
+                                        <h3 className={`flex items-center gap-2 text-xl md:text-2xl font-extrabold tracking-[-0.025em] font-heading ${p.name !== "Start" ? "text-primary" : "text-gray-900 dark:text-text-primary"}`}>
+                                            <PlanIcon name={p.name} className="w-6 h-6" />
+                                            {p.name}
+                                        </h3>
+                                        <div className="flex items-baseline gap-1">
+                                            <p className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-text-primary">
+                                                {p.price}
+                                            </p>
+                                        </div>
+                                        <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                                            {p.bestFor}
                                         </p>
-                                        <span className="inline-block text-[11px] md:text-xs font-medium bg-primary/10 text-primary px-2 py-0.5 rounded">
-                                            {p.yearly}
-                                        </span>
+                                    </div>
+
+                                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                        {p.description}
+                                    </p>
+
+                                    <div className="bg-primary/5 dark:bg-primary/10 rounded-lg p-3 border border-primary/10">
+                                        <p className="text-xs font-semibold text-primary mb-1">
+                                            {isEN ? "Key Benefit" : "Beneficio Clave"}
+                                        </p>
+                                        <p className="text-sm text-gray-700 dark:text-gray-200 font-medium">
+                                            {p.keyBenefit}
+                                        </p>
                                     </div>
                                 </div>
-                                <ul className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                                    {p.features.map((f, i) => (
-                                        <li key={i} className="flex gap-3 items-center">
-                                            <span className="material-symbols-outlined text-primary text-base">
-                                                check
-                                            </span>
-                                            {f}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700">
+
+                                <div className="mt-auto pt-6">
                                     <Link
                                         to={isEN ? "/en/pricing" : "/es/pricing"}
-                                        className="btn-hover inline-flex w-full items-center justify-center h-10 px-4 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors"
+                                        className={`btn-hover inline-flex w-full items-center justify-center h-10 px-4 rounded-lg font-bold transition-colors ${p.name === "Pro" ? "bg-primary text-white hover:bg-primary/90" : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"}`}
                                     >
-                                        {isEN ? "See Plans" : "Ver Planes"}
+                                        {isEN ? "See Full Details" : "Ver Detalles Completos"}
                                     </Link>
                                 </div>
                             </div>
                         ))}
                     </div>
-                    <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-3">
-                        {isEN ? "Prices in USD. For other payment methods/currencies, contact us." : "Precios en USD. Para otros métodos de pago/monedas, contáctanos."}
+                    <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-6">
+                        {isEN ? "Prices in USD. Cancel anytime. Contact us for other currencies." : "Precios en USD. Cancela cuando quieras. Contáctanos para otras monedas."}
                     </p>
                 </ScrollReveal>
 

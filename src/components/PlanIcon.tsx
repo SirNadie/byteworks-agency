@@ -1,6 +1,5 @@
 import React from 'react';
-
-type PlanName = 'Start' | 'Pro' | 'Elite' | 'E-Commerce Pro';
+import { PlanName } from '../content/home';
 
 interface PlanIconProps {
     name: PlanName;
@@ -28,15 +27,7 @@ export const PlanIcon: React.FC<PlanIconProps> = ({ name, className = "" }) => {
         );
     }
 
-    if (name === "Elite") {
-        return (
-            <svg className={baseClass} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M11.219 3.375L8 7.399L4.781 3.375A1.002 1.002 0 0 0 3 4v15c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V4a1.002 1.002 0 0 0-1.781-.625L16 7.399l-3.219-4.024c-.381-.474-1.181-.474-1.562 0M5 19v-2h14.001v2zm10.219-9.375c.381.475 1.182.475 1.563 0L19 6.851L19.001 15H5V6.851l2.219 2.774c.381.475 1.182.475 1.563 0L12 5.601z" />
-            </svg>
-        );
-    }
-
-    if (name === "E-Commerce Pro") {
+    if (name === "E-Commerce") {
         return (
             <svg className={baseClass} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M21.822 7.431A1 1 0 0 0 21 7H7.333L6.179 4.23A1.99 1.99 0 0 0 4.333 3H2v2h2.333l4.744 11.385A1 1 0 0 0 10 17h8c.417 0 .79-.259.937-.648l3-8a1 1 0 0 0-.115-.921M17.307 15h-6.64l-2.5-6h11.39z" />

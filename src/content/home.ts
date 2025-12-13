@@ -1,9 +1,12 @@
-﻿export type PlanName = 'Start' | 'Pro' | 'Elite' | 'E-Commerce Pro';
+﻿export type PlanName = 'Start' | 'Pro' | 'E-Commerce';
 
 export type HomePlan = {
   name: PlanName;
   price: string;
   yearly: string;
+  bestFor: string;
+  description: string;
+  keyBenefit: string;
   features: readonly string[];
 };
 
@@ -18,30 +21,42 @@ export const HOME_PLANS: Record<'en' | 'es', readonly HomePlan[]> = {
       name: 'Start',
       price: '$45/mo',
       yearly: '$459/yr',
+      bestFor: 'Validation & Personal Profiles.',
+      description: 'Launch fast with a professional one-page site. Perfect for turning visitors into contacts.',
+      keyBenefit: 'Look professional on any device instantly.',
       features: [
-        'Launch fast with a professional one-page site',
-        'Perfect for turning visitors into contacts',
-        'Look professional on any device instantly',
+        'Single-Page Application (SPA)',
+        'Mobile-First & Fully Responsive',
+        'High-conversion Contact Form',
+        'Managed Hosting & SSL Included',
       ],
     },
     {
       name: 'Pro',
       price: '$55/mo',
       yearly: '$561/yr',
+      bestFor: 'Small Businesses & Services.',
+      description: 'A complete multi-page website to showcase your services, build trust, and manage leads effectively.',
+      keyBenefit: 'Strengthen your brand identity and credibility.',
       features: [
-        'Complete multi-page website',
-        'Showcase your services and build trust',
-        'Manage leads effectively',
+        'Multi-Page Architecture',
+        'Custom UI/UX Design',
+        'Centralized Lead Management',
+        'Priority Support & Content Updates',
       ],
     },
     {
-      name: 'E-Commerce Pro',
+      name: 'E-Commerce',
       price: '$70/mo',
       yearly: '$714/yr',
+      bestFor: 'Online Stores.',
+      description: 'Sell without limits. Manage unlimited products and orders with a simplified checkout process.',
+      keyBenefit: 'Start selling online immediately without complex bank integrations.',
       features: [
-        'Sell without limits',
-        'Manage unlimited products and orders',
-        'Start selling immediately without complex bank integrations',
+        'Full E-Commerce Architecture',
+        'Unlimited Inventory & Dashboard',
+        'Simplified Manual Checkout',
+        '500 Transactional Emails/mo',
       ],
     },
   ],
@@ -50,30 +65,42 @@ export const HOME_PLANS: Record<'en' | 'es', readonly HomePlan[]> = {
       name: 'Start',
       price: '$45/mes',
       yearly: '$459/año',
+      bestFor: 'Validación y Perfiles Personales.',
+      description: 'Lanza rápido con un sitio profesional de una página. Perfecto para convertir visitantes en contactos.',
+      keyBenefit: 'Luce profesional en cualquier dispositivo al instante.',
       features: [
-        'Lanza rápido con un sitio profesional de una página',
-        'Perfecto para convertir visitantes en contactos',
-        'Luce profesional en cualquier dispositivo al instante',
+        'Aplicación de una sola página (SPA)',
+        'Diseño Mobile-First y Responsivo',
+        'Formulario de contacto de alta conversión',
+        'Hosting Gestionado y SSL Incluido',
       ],
     },
     {
       name: 'Pro',
       price: '$55/mes',
       yearly: '$561/año',
+      bestFor: 'Pequeños Negocios y Servicios.',
+      description: 'Un sitio web completo multipágina para mostrar tus servicios, generar confianza y gestionar leads efectivamente.',
+      keyBenefit: 'Fortalece tu identidad de marca y credibilidad.',
       features: [
-        'Sitio web completo de varias páginas',
-        'Muestra tus servicios y genera confianza',
-        'Gestiona leads de manera efectiva',
+        'Arquitectura Multi-Página',
+        'Diseño UI/UX Personalizado',
+        'Gestión Centralizada de Leads',
+        'Soporte Prioritario y Actualizaciones',
       ],
     },
     {
-      name: 'E-Commerce Pro',
+      name: 'E-Commerce',
       price: '$70/mes',
       yearly: '$714/año',
+      bestFor: 'Tiendas Online.',
+      description: 'Vende sin límites. Gestiona productos y pedidos ilimitados con un proceso de pago simplificado.',
+      keyBenefit: 'Empieza a vender online inmediatamente sin integraciones bancarias complejas.',
       features: [
-        'Vende sin límites',
-        'Gestiona productos y pedidos ilimitados',
-        'Empieza a vender ya sin integraciones bancarias complejas',
+        'Arquitectura E-Commerce Completa',
+        'Inventario Ilimitado y Dashboard',
+        'Checkout Manual Simplificado',
+        '500 Emails Transaccionales/mes',
       ],
     },
   ],
@@ -83,61 +110,53 @@ export const HOME_FAQS: Record<'en' | 'es', readonly HomeFaq[]> = {
   en: [
     {
       q: 'How fast can you deliver my website?',
-      a: 'Start launches in 7 to 10 business days. Pro and E-Commerce Pro take 2 to 4 weeks depending on scope.',
+      a: 'Start Plan: 7-10 business days. Pro & E-Commerce: 2-4 weeks depending on scope.',
     },
     {
-      q: 'What does "monthly update" include?',
-      a: "Small tasks like text or image changes, layout tweaks, or product edits. Work is time-boxed based on your plan.",
+      q: 'Do you write the text for the website?',
+      a: 'No, you provide text and images. We can use stock photos to get you started.',
     },
     {
-      q: 'Do you handle online payments?',
-      a: 'Not by default. E-Commerce Pro uses a manual checkout flow (WhatsApp/Email). We can quote custom payment gateways if needed.',
+      q: 'Is the website bilingual?',
+      a: 'Yes. English and Spanish structure included by default.',
+    },
+    {
+      q: 'Do I have to sign a long-term contract?',
+      a: 'No. Subscriptions are month-to-month. Cancel anytime.',
+    },
+    {
+      q: 'What does "Monthly Updates" include?',
+      a: "Small maintenance tasks like text/image changes. No structural changes or new pages.",
     },
     {
       q: 'Who owns the domain and content?',
-      a: 'You do. We manage the tech stack, but you keep full ownership of your brand, domain, and content.',
-    },
-    {
-      q: 'Bilingual by default?',
-      a: 'Yes. English and Spanish structure included (SEO-friendly). We can hide one language if you prefer.',
-    },
-    {
-      q: 'SEO included?',
-      a: 'Yes. Structure, sitemap, metadata, and fast performance are standard. Advanced SEO/Local listing is an add-on.',
-    },
-    {
-      q: 'Can I cancel anytime?',
-      a: 'Yes. You retain your domain and content. We provide a static backup upon request. Hosting stops at end of cycle.',
+      a: 'You do. You keep your domain and content.',
     },
   ],
   es: [
     {
       q: '¿Qué tan rápido pueden entregar mi sitio web?',
-      a: 'Start sale en 7 a 10 días hábiles. Pro y E-Commerce Pro toman 2 a 4 semanas según alcance.',
+      a: 'Plan Start: 7-10 días hábiles. Pro y E-Commerce: 2-4 semanas según alcance.',
     },
     {
-      q: '¿Qué incluye la “actualización mensual”?',
-      a: 'Tareas pequeñas como cambios de texto/imagen, ajustes de diseño o edición de productos. El trabajo se acota según tu plan.',
+      q: '¿Escriben el texto para el sitio web?',
+      a: 'No, tú provees textos e imágenes. Podemos usar fotos de stock para empezar.',
     },
     {
-      q: '¿Incluye pagos en línea?',
-      a: 'No por defecto. E-Commerce Pro usa checkout manual (WhatsApp/Email). Si necesitas pasarelas de pago, podemos cotizarlo.',
+      q: '¿Es bilingüe el sitio web?',
+      a: 'Sí. Estructura en Inglés y Español incluida por defecto.',
     },
     {
-      q: '¿Soy dueño de mi dominio y contenido?',
-      a: 'Sí. Nosotros gestionamos la tecnología, pero tú conservas la propiedad total de tu marca, dominio y contenido.',
+      q: '¿Debo firmar un contrato a largo plazo?',
+      a: 'No. Suscripciones mes a mes. Cancela cuando quieras.',
     },
     {
-      q: '¿Es bilingüe por defecto?',
-      a: 'Sí. Incluye estructura en Inglés y Español (amigable para SEO). Podemos ocultar un idioma si lo prefieres.',
+      q: '¿Qué incluyen las "Actualizaciones Mensuales"?',
+      a: 'Tareas pequeñas como cambios de texto/imagen. No cambios estructurales ni páginas nuevas.',
     },
     {
-      q: '¿Incluye SEO?',
-      a: 'Sí. Estructura, sitemap, metadatos y velocidad vienen de serie. El SEO Avanzado/Local está disponible como add-on.',
-    },
-    {
-      q: '¿Puedo cancelar cuando quiera?',
-      a: 'Sí. Conservas tu dominio y contenido. Entregamos un backup estático si lo pides. El hosting se detiene al final del ciclo.',
+      q: '¿Quién es dueño del dominio y el contenido?',
+      a: 'Tú. Conservas tu dominio y contenido.',
     },
   ],
 };

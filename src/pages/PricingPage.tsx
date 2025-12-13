@@ -11,48 +11,68 @@ interface PricingPageProps {
     lang: 'en' | 'es';
 }
 
-const planMeta: Record<string, any> = {
-    Start: {
-        pages: "Modern Single-Page Application",
-        updates: "1 update",
-        seo: "Foundational SEO setup",
-        automation: "Includes up to 500 auto-response emails/mo",
+const PLAN_META = {
+    en: {
+        Start: {
+            structure: "Single-Page App (SPA)",
+            design: "Mobile-First, Responsive",
+            functionality: "Contact Form + Notifications",
+            capacity: "500 auto-responses/mo",
+            maintenance: "Hosting, SSL, Security",
+        },
+        Pro: {
+            structure: "Multi-Page Architecture",
+            design: "Custom UI/UX & Branding",
+            functionality: "Lead Management System",
+            capacity: "500 auto-responses/mo",
+            maintenance: "Priority Support & Updates",
+        },
+        "E-Commerce": {
+            structure: "Full E-Commerce Archetype",
+            design: "Dynamic Product Pages",
+            functionality: "Manual Checkout & Inventory",
+            capacity: "500 transactional emails/mo",
+            maintenance: "No auto payment gateway",
+        },
     },
-    Pro: {
-        pages: "Multi-Page Architecture",
-        updates: "Monthly content updates",
-        seo: "Custom Brand Identity alignment",
-        automation: "Includes up to 500 auto-response emails/mo",
-    },
-    "E-Commerce Pro": {
-        pages: "Full Online Store",
-        updates: "Unlimited Inventory",
-        seo: "Enhanced SEO + catalog upkeep",
-        automation: "Includes up to 500 transaction emails/mo",
-    },
+    es: {
+        Start: {
+            structure: "App de una página (SPA)",
+            design: "Mobile-First, Responsivo",
+            functionality: "Formulario + Notificaciones",
+            capacity: "500 auto-respuestas/mes",
+            maintenance: "Hosting, SSL, Seguridad",
+        },
+        Pro: {
+            structure: "Arquitectura Multi-Página",
+            design: "UI/UX Personalizado",
+            functionality: "Gestión de Leads",
+            capacity: "500 auto-respuestas/mes",
+            maintenance: "Soporte Prioritario + Updates",
+        },
+        "E-Commerce": {
+            structure: "Arquitectura E-Commerce",
+            design: "Páginas Dinámicas",
+            functionality: "Checkout Manual + Inventario",
+            capacity: "500 emails transaccionales",
+            maintenance: "Sin pasarela automática",
+        },
+    }
 };
 
 export const PricingPage: React.FC<PricingPageProps> = ({ lang }) => {
     const [expanded, setExpanded] = useState(false);
     const isEN = lang === 'en';
     const plans = HOME_PLANS[lang];
-
-    const extendedPlans = plans.map(p => {
-        let bestFor = "";
-        if (p.name === "Start") bestFor = isEN ? "Validation & Personal Profiles." : "Validación y Perfiles Personales.";
-        if (p.name === "Pro") bestFor = isEN ? "Small Businesses & Services." : "Pequeños Negocios y Servicios.";
-        if (p.name === "E-Commerce Pro") bestFor = isEN ? "Online Stores." : "Tiendas Online.";
-
-        return { ...p, bestFor };
-    });
+    const meta = isEN ? PLAN_META.en : PLAN_META.es;
 
     const title = isEN
         ? "Pricing & Plans | ByteWorks - Affordable Monthly Website Subscriptions"
         : "Precios y Planes | ByteWorks - Suscripciones Web Mensuales Accesibles";
 
     const description = isEN
-        ? "Find the perfect website plan for your business. Our monthly subscriptions include web design, hosting, maintenance, and support, all with transparent pricing."
-        : "Encuentra el plan web perfecto para tu negocio. Nuestras suscripciones mensuales incluyen diseño, hosting, mantenimiento y soporte, todo con precios transparentes.";
+        ? "Find the perfect website plan for your business. From single-page validations to full e-commerce stores."
+        : "Encuentra el plan web perfecto. Desde validaciones de una página hasta tiendas online completas.";
 
     return (
         <Layout lang={lang} title={title} description={description}>
@@ -63,13 +83,13 @@ export const PricingPage: React.FC<PricingPageProps> = ({ lang }) => {
                     </h1>
                     <p className="hero-animate-delay-1 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                         {isEN
-                            ? "Clear pricing with maintenance included. Bilingual structure by default."
-                            : "Precios claros con mantenimiento incluido. Estructura bilingüe por defecto."}
+                            ? "Clear pricing. Scalable architecture. No hidden fees."
+                            : "Precios claros. Arquitectura escalable. Sin costos ocultos."}
                     </p>
                 </header>
 
-                <StaggerReveal className="grid md:grid-cols-2 gap-8 mt-10">
-                    {extendedPlans.map((p) => (
+                <StaggerReveal className="grid md:grid-cols-3 gap-6 mt-10">
+                    {plans.map((p) => (
                         <article
                             key={p.name}
                             className={`card-hover relative h-full rounded-xl p-6 flex flex-col bg-white dark:bg-background-dark/50 ${p.name === "Pro" ? "border-2 border-primary" : "border border-gray-200 dark:border-gray-700"}`}
@@ -133,12 +153,12 @@ export const PricingPage: React.FC<PricingPageProps> = ({ lang }) => {
                     <section id="plan-comparison" className="mt-16 animate-slide-down">
                         <header className="text-center space-y-2 mb-8">
                             <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-gray-900 dark:text-text-primary">
-                                {isEN ? "Compare plans at a glance" : "Comparar planes de un vistazo"}
+                                {isEN ? "Compare details" : "Comparar detalles"}
                             </h2>
                             <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
                                 {isEN
-                                    ? "Key differences in scope, monthly care, and SEO focus so you can pick the right fit."
-                                    : "Diferencias clave en alcance, cuidado mensual y enfoque SEO para elegir el adecuado."}
+                                    ? "In-depth look at structure, functionality, and capacity."
+                                    : "Vistazo profundo a estructura, funcionalidad y capacidad."}
                             </p>
                         </header>
 
@@ -148,9 +168,9 @@ export const PricingPage: React.FC<PricingPageProps> = ({ lang }) => {
                                     <thead>
                                         <tr className="bg-background-light dark:bg-background-dark/80 text-gray-900 dark:text-text-primary">
                                             <th scope="col" className="px-4 py-3 font-semibold">
-                                                {isEN ? "What you get" : "Qué obtienes"}
+                                                {isEN ? "Feature" : "Característica"}
                                             </th>
-                                            {extendedPlans.map((p) => (
+                                            {plans.map((p) => (
                                                 <th key={p.name} scope="col" className="px-4 py-3 font-semibold text-center">
                                                     {p.name}
                                                 </th>
@@ -160,9 +180,9 @@ export const PricingPage: React.FC<PricingPageProps> = ({ lang }) => {
                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                         <tr>
                                             <th scope="row" className="px-4 py-3 font-medium text-gray-700 dark:text-gray-200">
-                                                {isEN ? "Best for" : "Ideal para"}
+                                                {isEN ? "Best For" : "Ideal Para"}
                                             </th>
-                                            {extendedPlans.map((p) => (
+                                            {plans.map((p) => (
                                                 <td key={p.name} className="px-4 py-3 text-center text-gray-600 dark:text-gray-300">
                                                     {p.bestFor}
                                                 </td>
@@ -170,44 +190,90 @@ export const PricingPage: React.FC<PricingPageProps> = ({ lang }) => {
                                         </tr>
                                         <tr>
                                             <th scope="row" className="px-4 py-3 font-medium text-gray-700 dark:text-gray-200">
-                                                {isEN ? "Pages included" : "Páginas incluidas"}
+                                                {isEN ? "Structure" : "Estructura"}
                                             </th>
-                                            {extendedPlans.map((p) => (
+                                            {plans.map((p) => (
                                                 <td key={p.name} className="px-4 py-3 text-center text-gray-600 dark:text-gray-300">
-                                                    {(planMeta[p.name] || planMeta["Start"]).pages}
+                                                    {meta[p.name]?.structure}
                                                 </td>
                                             ))}
                                         </tr>
                                         <tr>
                                             <th scope="row" className="px-4 py-3 font-medium text-gray-700 dark:text-gray-200">
-                                                {isEN ? "Monthly updates" : "Actualizaciones mensuales"}
+                                                {isEN ? "Design" : "Diseño"}
                                             </th>
-                                            {extendedPlans.map((p) => (
+                                            {plans.map((p) => (
                                                 <td key={p.name} className="px-4 py-3 text-center text-gray-600 dark:text-gray-300">
-                                                    {(planMeta[p.name] || planMeta["Start"]).updates}
+                                                    {meta[p.name]?.design}
                                                 </td>
                                             ))}
                                         </tr>
-                                        {/* Simplified for brevity (SEO, Automation) similar pattern */}
+                                        <tr>
+                                            <th scope="row" className="px-4 py-3 font-medium text-gray-700 dark:text-gray-200">
+                                                {isEN ? "Functionality" : "Funcionalidad"}
+                                            </th>
+                                            {plans.map((p) => (
+                                                <td key={p.name} className="px-4 py-3 text-center text-gray-600 dark:text-gray-300">
+                                                    {meta[p.name]?.functionality}
+                                                </td>
+                                            ))}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" className="px-4 py-3 font-medium text-gray-700 dark:text-gray-200">
+                                                {isEN ? "Capacity" : "Capacidad"}
+                                            </th>
+                                            {plans.map((p) => (
+                                                <td key={p.name} className="px-4 py-3 text-center text-gray-600 dark:text-gray-300">
+                                                    {meta[p.name]?.capacity}
+                                                </td>
+                                            ))}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" className="px-4 py-3 font-medium text-gray-700 dark:text-gray-200">
+                                                {isEN ? "Maintenance" : "Mantenimiento"}
+                                            </th>
+                                            {plans.map((p) => (
+                                                <td key={p.name} className="px-4 py-3 text-center text-gray-600 dark:text-gray-300">
+                                                    {meta[p.name]?.maintenance}
+                                                </td>
+                                            ))}
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
 
                         <div className="md:hidden space-y-4">
-                            {extendedPlans.map((p) => (
+                            {plans.map((p) => (
                                 <article key={p.name} className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark/60 p-4 shadow-sm">
                                     <h3 className="text-lg font-heading font-semibold text-gray-900 dark:text-text-primary">
                                         {p.name}
                                     </h3>
                                     <dl className="mt-3 space-y-2 text-sm text-gray-700 dark:text-gray-300">
                                         <div>
-                                            <dt className="font-medium text-gray-900 dark:text-text-primary">
-                                                {isEN ? "Best for" : "Ideal para"}
-                                            </dt>
+                                            <dt className="font-medium text-gray-900 dark:text-text-primary">{isEN ? "Best For" : "Ideal Para"}</dt>
                                             <dd>{p.bestFor}</dd>
                                         </div>
-                                        {/* More fields */}
+                                        <div>
+                                            <dt className="font-medium text-gray-900 dark:text-text-primary">{isEN ? "Structure" : "Estructura"}</dt>
+                                            <dd>{meta[p.name]?.structure}</dd>
+                                        </div>
+                                        <div>
+                                            <dt className="font-medium text-gray-900 dark:text-text-primary">{isEN ? "Design" : "Diseño"}</dt>
+                                            <dd>{meta[p.name]?.design}</dd>
+                                        </div>
+                                        <div>
+                                            <dt className="font-medium text-gray-900 dark:text-text-primary">{isEN ? "Functionality" : "Funcionalidad"}</dt>
+                                            <dd>{meta[p.name]?.functionality}</dd>
+                                        </div>
+                                        <div>
+                                            <dt className="font-medium text-gray-900 dark:text-text-primary">{isEN ? "Capacity" : "Capacidad"}</dt>
+                                            <dd>{meta[p.name]?.capacity}</dd>
+                                        </div>
+                                        <div>
+                                            <dt className="font-medium text-gray-900 dark:text-text-primary">{isEN ? "Maintenance" : "Mantenimiento"}</dt>
+                                            <dd>{meta[p.name]?.maintenance}</dd>
+                                        </div>
                                     </dl>
                                 </article>
                             ))}

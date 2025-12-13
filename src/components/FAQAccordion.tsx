@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface FAQItem {
     q: string;
-    a: string;
+    a: React.ReactNode;
 }
 
 interface FAQAccordionProps {
