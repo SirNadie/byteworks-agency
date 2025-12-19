@@ -5,8 +5,8 @@ interface ContactPageProps {
     lang: 'en' | 'es';
 }
 
-// API URL - Dashboard de ByteWorks (Payload CMS)
-const API_URL = import.meta.env.VITE_DASHBOARD_API_URL || 'http://localhost:3000';
+// API URL - Dashboard de ByteWorks (Backend FastAPI)
+const API_URL = import.meta.env.VITE_DASHBOARD_API_URL || 'http://localhost:8000';
 
 export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     const isEN = lang === 'en';
@@ -50,7 +50,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
         setErrorMessage('');
 
         try {
-            const response = await fetch(`${API_URL}/api/contact-requests`, {
+            const response = await fetch(`${API_URL}/api/contacts/public`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
