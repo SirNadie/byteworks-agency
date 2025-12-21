@@ -218,10 +218,19 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                 <h1 className="text-3xl md:text-5xl font-semibold">
                     {isEN ? "Let's work together" : "Trabajemos juntos"}
                 </h1>
+
+                {/* FREE Badge */}
+                <div className="flex justify-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-bold shadow-lg">
+                        <span className="material-symbols-outlined text-lg">verified</span>
+                        {isEN ? "100% FREE CONSULTATION" : "CONSULTA 100% GRATIS"}
+                    </div>
+                </div>
+
                 <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                     {isEN
-                        ? "Ready to start? Tell us how you'd like us to contact you."
-                        : "¿Listo para empezar? Dinos cómo te gustaría que te contactemos."}
+                        ? "Get a detailed, custom quote for your project. No payment required. No commitment. Just tell us about your vision."
+                        : "Obtén una cotización detallada y personalizada para tu proyecto. Sin pago. Sin compromiso. Solo cuéntanos tu visión."}
                 </p>
 
                 {/* Step 1: Choose Contact Method */}
@@ -284,8 +293,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                         {/* Method Badge */}
                         <div className="flex justify-center mb-6">
                             <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${contactMethod === 'whatsapp'
-                                    ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                                    : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+                                ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
                                 }`}>
                                 {contactMethod === 'whatsapp' ? (
                                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -393,8 +402,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                                 type="submit"
                                 disabled={status === 'loading'}
                                 className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md text-white transition disabled:opacity-50 disabled:cursor-not-allowed ${contactMethod === 'whatsapp'
-                                        ? 'bg-green-600 hover:bg-green-700'
-                                        : 'bg-blue-600 hover:bg-blue-700'
+                                    ? 'bg-green-600 hover:bg-green-700'
+                                    : 'bg-blue-600 hover:bg-blue-700'
                                     }`}
                             >
                                 {status === 'loading' && (

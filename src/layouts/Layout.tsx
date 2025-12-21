@@ -4,6 +4,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import { Footer } from '../components/Footer';
 import { WhatsAppButton } from '../components/WhatsAppButton';
 import { ScrollToTop } from '../components/ScrollToTop';
+import { FreeQuoteBanner } from '../components/FreeQuoteBanner';
 import { useLocation } from 'react-router-dom';
 
 interface LayoutProps {
@@ -101,11 +102,13 @@ export const Layout: React.FC<LayoutProps> = ({
                 Skip to content
             </a>
 
+            <FreeQuoteBanner lang={lang} />
+
             <SiteHeader lang={lang} />
 
             <main
                 id="main"
-                className="flex-1 px-4 lg:px-40 pb-10 flex justify-center pt-20 md:pt-24"
+                className="flex-1 px-4 lg:px-40 pb-10 flex justify-center pt-24 md:pt-28"
             >
                 <div className="w-full">
                     {children}

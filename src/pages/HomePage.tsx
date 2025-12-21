@@ -66,10 +66,28 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
                             ? "Subscription-based web design for entrepreneurs and small businesses."
                             : "Diseño web por suscripción para emprendedores y pequeños negocios."}
                     </p>
-                    <div className="hero-animate-delay-2 flex items-center justify-center">
+
+                    {/* FREE QUOTE Badge */}
+                    <div className="hero-animate-delay-1 flex justify-center">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-bold shadow-lg shadow-green-500/25 animate-pulse">
+                            <span className="material-symbols-outlined text-lg">verified</span>
+                            {isEN ? "FREE CONSULTATION" : "CONSULTA GRATIS"}
+                            <span className="text-xs opacity-90">— {isEN ? "No commitment" : "Sin compromiso"}</span>
+                        </div>
+                    </div>
+
+                    {/* Dual CTAs */}
+                    <div className="hero-animate-delay-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <Link
+                            to={isEN ? "/en/contact" : "/es/contact"}
+                            className="btn-hover inline-flex items-center justify-center h-12 px-6 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all hover:scale-105"
+                        >
+                            <span className="material-symbols-outlined mr-2 text-lg">mail</span>
+                            {isEN ? "Get Free Quote" : "Cotización Gratis"}
+                        </Link>
                         <a
                             href="#pricing"
-                            className="btn-hover inline-flex items-center justify-center h-12 px-6 rounded-lg bg-transparent text-gray-900 dark:text-white border border-primary hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+                            className="btn-hover inline-flex items-center justify-center h-12 px-6 rounded-lg bg-transparent text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                         >
                             {isEN ? "See Plans" : "Ver Planes"}
                         </a>
@@ -169,6 +187,39 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+                </ScrollReveal>
+
+                {/* FREE CONSULTATION BANNER */}
+                <ScrollReveal className="mt-16">
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary to-secondary p-8 md:p-10 text-center">
+                        {/* Background decoration */}
+                        <div className="absolute inset-0 opacity-10">
+                            <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white"></div>
+                            <div className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-white"></div>
+                        </div>
+
+                        <div className="relative z-10">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-4">
+                                <span className="material-symbols-outlined text-sm">star</span>
+                                {isEN ? "100% FREE" : "100% GRATIS"}
+                            </div>
+                            <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-3 font-heading">
+                                {isEN ? "Not Sure Which Plan is Right for You?" : "¿No sabes qué plan es el adecuado?"}
+                            </h3>
+                            <p className="text-white/90 max-w-xl mx-auto mb-6">
+                                {isEN
+                                    ? "Tell us about your project and we'll create a custom proposal. No payment required. No obligation. Just solutions."
+                                    : "Cuéntanos sobre tu proyecto y crearemos una propuesta personalizada. Sin pago. Sin compromiso. Solo soluciones."}
+                            </p>
+                            <Link
+                                to={isEN ? "/en/contact" : "/es/contact"}
+                                className="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-white text-primary font-bold shadow-lg hover:bg-gray-100 transition-all hover:scale-105"
+                            >
+                                <span className="material-symbols-outlined mr-2">chat</span>
+                                {isEN ? "Get Your Free Quote →" : "Obtén tu Cotización Gratis →"}
+                            </Link>
+                        </div>
                     </div>
                 </ScrollReveal>
 

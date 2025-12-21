@@ -179,6 +179,37 @@ export const HowItWorksPage: React.FC<HowItWorksPageProps> = ({ lang }) => {
                     </p>
                 </ScrollReveal>
 
+                {/* FREE CONSULTATION CTA */}
+                <ScrollReveal className="mt-12" delay={300}>
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary to-secondary p-8 md:p-10 text-center">
+                        <div className="absolute inset-0 opacity-10">
+                            <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white"></div>
+                            <div className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-white"></div>
+                        </div>
+                        <div className="relative z-10">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-4">
+                                <span className="material-symbols-outlined text-sm">rocket_launch</span>
+                                {isEN ? "START TODAY" : "COMIENZA HOY"}
+                            </div>
+                            <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-3 font-heading">
+                                {isEN ? "Ready to Get Started?" : "¿Listo para comenzar?"}
+                            </h3>
+                            <p className="text-white/90 max-w-xl mx-auto mb-6">
+                                {isEN
+                                    ? "Get a free, no-obligation quote for your project. We'll analyze your needs and create a custom proposal."
+                                    : "Obtén una cotización gratuita y sin compromiso para tu proyecto. Analizaremos tus necesidades y crearemos una propuesta personalizada."}
+                            </p>
+                            <a
+                                href={isEN ? "/en/contact" : "/es/contact"}
+                                className="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-white text-primary font-bold shadow-lg hover:bg-gray-100 transition-all hover:scale-105"
+                            >
+                                <span className="material-symbols-outlined mr-2">chat</span>
+                                {isEN ? "Get Your Free Quote →" : "Obtén tu Cotización Gratis →"}
+                            </a>
+                        </div>
+                    </div>
+                </ScrollReveal>
+
             </section>
         </Layout>
     );
