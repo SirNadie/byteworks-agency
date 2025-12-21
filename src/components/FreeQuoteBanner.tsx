@@ -36,29 +36,29 @@ export const FreeQuoteBanner: React.FC<FreeQuoteBannerProps> = ({ lang }) => {
 
     return (
         <div
-            className={`fixed top-[52px] left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''
+            className={`fixed top-[64px] sm:top-[60px] left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''
                 }`}
         >
             <div className="bg-gradient-to-r from-emerald-600 via-green-500 to-teal-500 text-white">
-                <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-center gap-3 text-sm md:text-base">
-                    {/* Icon with pulse */}
-                    <span className="hidden sm:flex items-center justify-center w-6 h-6 rounded-full bg-white/20 animate-pulse">
+                <div className="max-w-7xl mx-auto px-2 sm:px-4 py-2 sm:py-2.5 flex items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm md:text-base relative">
+                    {/* Icon with pulse - hidden on mobile */}
+                    <span className="hidden md:flex items-center justify-center w-6 h-6 rounded-full bg-white/20 animate-pulse">
                         <span className="material-symbols-outlined text-sm">verified</span>
                     </span>
 
                     {/* Message */}
-                    <span className="font-medium">
+                    <span className="font-medium text-center sm:text-left">
                         {isEN ? (
                             <>
                                 <span className="font-bold">FREE QUOTE</span>
-                                <span className="hidden sm:inline"> — Get a custom proposal for your project, no obligation!</span>
-                                <span className="sm:hidden"> — No obligation!</span>
+                                <span className="hidden md:inline"> — Get a custom proposal, no obligation!</span>
+                                <span className="hidden sm:inline md:hidden"> — No obligation!</span>
                             </>
                         ) : (
                             <>
-                                <span className="font-bold">COTIZACIÓN GRATIS</span>
-                                <span className="hidden sm:inline"> — Obtén una propuesta personalizada, ¡sin compromiso!</span>
-                                <span className="sm:hidden"> — ¡Sin compromiso!</span>
+                                <span className="font-bold">GRATIS</span>
+                                <span className="hidden md:inline"> — Cotización personalizada, ¡sin compromiso!</span>
+                                <span className="hidden sm:inline md:hidden"> — ¡Sin compromiso!</span>
                             </>
                         )}
                     </span>
@@ -66,19 +66,19 @@ export const FreeQuoteBanner: React.FC<FreeQuoteBannerProps> = ({ lang }) => {
                     {/* CTA Button */}
                     <Link
                         to={isEN ? "/en/contact" : "/es/contact"}
-                        className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white text-green-600 font-bold text-xs hover:bg-gray-100 transition-all hover:scale-105 whitespace-nowrap"
+                        className="inline-flex items-center gap-0.5 sm:gap-1 px-2 sm:px-3 py-1 rounded-full bg-white text-green-600 font-bold text-[10px] sm:text-xs hover:bg-gray-100 transition-all hover:scale-105 whitespace-nowrap"
                     >
-                        {isEN ? "Get Quote" : "Cotizar"}
-                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                        {isEN ? "Quote" : "Cotizar"}
+                        <span className="material-symbols-outlined text-xs sm:text-sm">arrow_forward</span>
                     </Link>
 
                     {/* Close button */}
                     <button
                         onClick={handleDismiss}
-                        className="absolute right-2 md:right-4 p-1 hover:bg-white/20 rounded-full transition-colors"
+                        className="absolute right-1 sm:right-2 md:right-4 p-0.5 sm:p-1 hover:bg-white/20 rounded-full transition-colors"
                         aria-label="Dismiss"
                     >
-                        <span className="material-symbols-outlined text-lg">close</span>
+                        <span className="material-symbols-outlined text-base sm:text-lg">close</span>
                     </button>
                 </div>
             </div>
