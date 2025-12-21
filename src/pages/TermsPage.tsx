@@ -25,13 +25,13 @@ export const TermsPage: React.FC<TermsPageProps> = ({ lang }) => {
                             </li>
                             <li>
                                 <strong>{lang === 'en' ? "Payments:" : "Pagos:"}</strong> {lang === 'en'
-                                    ? "Subscriptions are billed in advance. Failure to pay the renewal fee within 5 days of the due date will result in the temporary suspension of the website and services."
-                                    : "Las suscripciones se facturan por adelantado. La falta de pago de la tarifa de renovación dentro de los 5 días posteriores a la fecha de vencimiento resultará en la suspensión temporal del sitio web y los servicios."}
+                                    ? "Payment of the first month is required to start the service. Subsequent subscriptions are billed in advance. Failure to pay the renewal fee within 5 days of the due date will result in the temporary suspension of the website and services."
+                                    : "Se requiere el pago del primer mes para iniciar el servicio. Las suscripciones subsiguientes se facturan por adelantado. La falta de pago de la tarifa de renovación dentro de los 5 días posteriores a la fecha de vencimiento resultará en la suspensión temporal del sitio web y los servicios."}
                             </li>
                             <li>
                                 <strong>{lang === 'en' ? "Cancellations:" : "Cancelaciones:"}</strong> {lang === 'en'
-                                    ? "You may cancel your subscription at any time. Upon cancellation, the service will remain active until the end of the paid billing cycle, after which the website will be taken offline."
-                                    : "Puedes cancelar tu suscripción en cualquier momento. Tras la cancelación, el servicio permanecerá activo hasta el final del ciclo de facturación pagado, después del cual el sitio web será desactivado."}
+                                    ? "You may cancel your subscription at any time with 15 days written notice before the next billing cycle. Upon cancellation, the service will remain active until the end of the paid billing cycle, after which the website will be taken offline."
+                                    : "Puedes cancelar tu suscripción en cualquier momento con 15 días de aviso por escrito antes del próximo ciclo de facturación. Tras la cancelación, el servicio permanecerá activo hasta el final del ciclo de facturación pagado, después del cual el sitio web será desactivado."}
                             </li>
                         </ul>
                     </section>
@@ -114,6 +114,32 @@ export const TermsPage: React.FC<TermsPageProps> = ({ lang }) => {
                             </li>
                             <li>
                                 <strong>{lang === 'en' ? "Our Technology:" : "Nuestra Tecnología:"}</strong> {lang === 'en' ? "ByteWorks Agency retains all rights to the source code, system architecture, and pre-built software components used to power your website." : "ByteWorks Agency conserva todos los derechos sobre el código fuente, la arquitectura del sistema y los componentes de software preconstruidos utilizados para potenciar tu sitio web."}
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 className="text-xl font-bold mb-3">{lang === 'en' ? "6. Limitation of Liability & Warranty Disclaimer" : "6. Limitación de Responsabilidad y Descargo de Garantía"}</h2>
+                        <ul className="list-disc list-inside space-y-2">
+                            <li>
+                                <strong>{lang === 'en' ? "As-Is Basis:" : "Base \"Tal Cual\":"}</strong> {lang === 'en'
+                                    ? "Services are provided on an \"as is\" and \"as available\" basis without warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or non-infringement."
+                                    : "Los servicios se proporcionan \"tal cual\" y \"según disponibilidad\" sin garantías de ningún tipo, ya sean expresas o implícitas, incluyendo pero no limitándose a garantías implícitas de comercialización, idoneidad para un propósito particular o no infracción."}
+                            </li>
+                            <li>
+                                <strong>{lang === 'en' ? "Liability Cap:" : "Límite de Responsabilidad:"}</strong> {lang === 'en'
+                                    ? "In no event shall ByteWorks Agency be liable for any indirect, incidental, special, consequential, or punitive damages. Our total liability is limited to the amount paid by you for services during the current billing period."
+                                    : "En ningún caso ByteWorks Agency será responsable por daños indirectos, incidentales, especiales, consecuentes o punitivos. Nuestra responsabilidad total está limitada al monto pagado por usted por servicios durante el período de facturación actual."}
+                            </li>
+                            <li>
+                                <strong>{lang === 'en' ? "Client Responsibility:" : "Responsabilidad del Cliente:"}</strong> {lang === 'en'
+                                    ? "You are solely responsible for maintaining backups of your own content (text, images, documents) outside of our platform. ByteWorks provides periodic backups but does not guarantee data recovery in all circumstances."
+                                    : "Usted es el único responsable de mantener copias de seguridad de su propio contenido (texto, imágenes, documentos) fuera de nuestra plataforma. ByteWorks proporciona respaldos periódicos pero no garantiza la recuperación de datos en todas las circunstancias."}
+                            </li>
+                            <li>
+                                <strong>{lang === 'en' ? "Third-Party Services:" : "Servicios de Terceros:"}</strong> {lang === 'en'
+                                    ? "ByteWorks is not responsible for the performance, availability, or policies of third-party services integrated with your website (payment processors, email providers, etc.)."
+                                    : "ByteWorks no es responsable por el rendimiento, disponibilidad o políticas de servicios de terceros integrados con su sitio web (procesadores de pago, proveedores de correo electrónico, etc.)."}
                             </li>
                         </ul>
                     </section>

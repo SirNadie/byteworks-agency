@@ -53,6 +53,37 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ lang }) => {
                                 : "Todos nuestros socios de infraestructura son seleccionados en base a estrictos estándares de seguridad (cumplimiento SOC2/ISO 27001) para proteger tu información."}
                         </p>
                     </section>
+
+                    <section>
+                        <h2 className="text-xl font-bold mb-3">{lang === 'en' ? "Data Retention & Deletion" : "Retención y Eliminación de Datos"}</h2>
+                        <ul className="list-disc list-inside space-y-2">
+                            <li>
+                                <strong>{lang === 'en' ? "Active Accounts:" : "Cuentas Activas:"}</strong> {lang === 'en'
+                                    ? "Your data is retained as long as your subscription remains active. We maintain regular backups to ensure service continuity."
+                                    : "Tus datos se retienen mientras tu suscripción permanezca activa. Mantenemos copias de seguridad regulares para asegurar la continuidad del servicio."}
+                            </li>
+                            <li>
+                                <strong>{lang === 'en' ? "After Cancellation:" : "Después de la Cancelación:"}</strong> {lang === 'en'
+                                    ? "Upon subscription cancellation, your website data is retained for 30 days to allow for potential reactivation. After this period, data is permanently deleted from our active systems."
+                                    : "Al cancelar la suscripción, los datos de tu sitio web se retienen por 30 días para permitir una posible reactivación. Después de este período, los datos se eliminan permanentemente de nuestros sistemas activos."}
+                            </li>
+                            <li>
+                                <strong>{lang === 'en' ? "Data Export:" : "Exportación de Datos:"}</strong> {lang === 'en'
+                                    ? "You may request an export of your content (text, images, customer data) at any time during an active subscription by contacting our support team."
+                                    : "Puedes solicitar una exportación de tu contenido (texto, imágenes, datos de clientes) en cualquier momento durante una suscripción activa contactando a nuestro equipo de soporte."}
+                            </li>
+                            <li>
+                                <strong>{lang === 'en' ? "Deletion Requests:" : "Solicitudes de Eliminación:"}</strong> {lang === 'en'
+                                    ? "You may request immediate deletion of your data by contacting us. We will process deletion requests within 14 business days, subject to legal retention requirements."
+                                    : "Puedes solicitar la eliminación inmediata de tus datos contactándonos. Procesaremos las solicitudes de eliminación dentro de 14 días hábiles, sujeto a requisitos legales de retención."}
+                            </li>
+                            <li>
+                                <strong>{lang === 'en' ? "Backup Retention:" : "Retención de Respaldos:"}</strong> {lang === 'en'
+                                    ? "Backup copies may be retained for up to 90 days for disaster recovery purposes. After this period, all backup data is permanently purged."
+                                    : "Las copias de respaldo pueden retenerse hasta 90 días para propósitos de recuperación ante desastres. Después de este período, todos los datos de respaldo se eliminan permanentemente."}
+                            </li>
+                        </ul>
+                    </section>
                 </div>
             </section>
         </Layout>
