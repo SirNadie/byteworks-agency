@@ -12,6 +12,7 @@
     "esbuild": "^0.25.0"
   },
   "dependencies": {
+    "@marsidev/react-turnstile": "^1.4.0",
     "@vercel/speed-insights": "^1.2.0",
     "framer-motion": "^11.0.0",
     "lucide-react": "^0.344.0",
