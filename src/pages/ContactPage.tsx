@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Layout } from '../layouts/Layout';
+import { API } from '../config';
 
 interface ContactPageProps {
     lang: 'en' | 'es';
 }
 
-// API URL - Dashboard de ByteWorks (Backend FastAPI)
-const API_URL = import.meta.env.VITE_DASHBOARD_API_URL || 'http://localhost:8000';
+// API URL from centralized config
+const API_URL = API.dashboardUrl;
 
 type ContactMethod = 'whatsapp' | 'email' | null;
 type FormStep = 'method' | 'details';
@@ -30,6 +31,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const [formLoadTime] = useState(() => Date.now()); // Track when form loaded for anti-spam
 
     const handleMethodSelect = (method: ContactMethod) => {
         setContactMethod(method);
@@ -48,9 +50,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Anti-Spam Check
+        // Anti-Spam Check 1: Honeypot
         if (formData.bot_field) {
             setStatus('success');
+            setShowModal(true);
+            return;
+        }
+
+        // Anti-Spam Check 2: Time-based (bots submit too fast)
+        const timeSpentMs = Date.now() - formLoadTime;
+        if (timeSpentMs < 3000) { // Less than 3 seconds
+            setStatus('success'); // Fake success for bots
             setShowModal(true);
             return;
         }
@@ -421,37 +431,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                     </div>
                 )}
             </section>
-
-            {/* CSS Animations */}
-            <style>{`
-                @keyframes fade-in {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-                @keyframes scale-up {
-                    from { 
-                        opacity: 0;
-                        transform: scale(0.95);
-                    }
-                    to { 
-                        opacity: 1;
-                        transform: scale(1);
-                    }
-                }
-                @keyframes slide-up-fade {
-                    from {
-                        opacity: 0;
-                        transform: translateY(10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                .animate-fade-in { animation: fade-in 0.2s ease-out forwards; }
-                .animate-scale-up { animation: scale-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-                .animate-slide-up-fade { animation: slide-up-fade 0.4s ease-out forwards; }
-            `}</style>
         </Layout>
     );
 };
